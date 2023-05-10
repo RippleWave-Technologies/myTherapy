@@ -6,14 +6,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class AddPhysioActivity extends AppCompatActivity {
+public class AdminAddPhysioActivity extends AppCompatActivity {
 
     /* hI short for hasInput - variables used to log whether a TextInputLayout has input
     * hNE short for hasNumberError - variable used to log whether there is a SSN error */
@@ -22,7 +21,7 @@ public class AddPhysioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_physio);
+        setContentView(R.layout.activity_admin_add_physio);
 
         // sets the status bar color
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
@@ -166,7 +165,7 @@ public class AddPhysioActivity extends AppCompatActivity {
     // onClick for button
     public void addPhysio(View v){
         // need to save the data to a database
-        Toast.makeText(AddPhysioActivity.this, "Το Φυσιοθεραπευτήριο έχει προστεθεί", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AdminAddPhysioActivity.this, "Το Φυσιοθεραπευτήριο έχει προστεθεί", Toast.LENGTH_SHORT).show();
         onBackPressed();
     }
 
