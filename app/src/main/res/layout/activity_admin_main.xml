@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminActivity">
+    tools:context=".R1_R2.AdminMainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/upper_base"
+        android:id="@+id/admin_constraintLayout_upper"
         android:layout_width="413dp"
         android:layout_height="200dp"
         android:background="@color/md_theme_light_surfaceVariant"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/text_company_name"
+            android:id="@+id/admin_textview_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text_welcome_message"
+            android:id="@+id/admin_textview_welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -41,10 +41,10 @@
             android:textColor="@color/black"
             android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_company_name" />
+            app:layout_constraintTop_toBottomOf="@+id/admin_textview_company" />
 
         <TextView
-            android:id="@+id/text_welcome_who"
+            android:id="@+id/admin_textview_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -55,35 +55,35 @@
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_welcome_message" />
+            app:layout_constraintTop_toBottomOf="@+id/admin_textview_welcome" />
 
         <ImageView
-            android:id="@+id/exit_view"
+            android:id="@+id/admin_imageview_exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:importantForAccessibility="no"
-            app:layout_constraintBottom_toBottomOf="@+id/text_company_name"
+            app:layout_constraintBottom_toBottomOf="@+id/admin_textview_company"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/text_company_name"
+            app:layout_constraintTop_toTopOf="@+id/admin_textview_company"
             app:srcCompat="@drawable/baseline_exit_to_app_24"
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:id="@+id/account_view"
+            android:id="@+id/admin_imageview_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:importantForAccessibility="no"
-            app:layout_constraintBottom_toBottomOf="@+id/text_company_name"
-            app:layout_constraintEnd_toStartOf="@+id/exit_view"
-            app:layout_constraintTop_toTopOf="@+id/text_company_name"
+            app:layout_constraintBottom_toBottomOf="@+id/admin_textview_company"
+            app:layout_constraintEnd_toStartOf="@+id/admin_imageview_exit"
+            app:layout_constraintTop_toTopOf="@+id/admin_textview_company"
             app:srcCompat="@drawable/baseline_account_circle_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_button"
+        android:id="@+id/admin_button_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
@@ -92,26 +92,30 @@
         android:clickable="true"
         android:importantForAccessibility="no"
         android:onClick="addToList"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
+        app:layout_constraintBottom_toTopOf="@+id/admin_bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/baseline_add_24" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
+        android:id="@+id/admin_bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/md_theme_light_surfaceVariant"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/navigation_menu" />
+        app:menu="@menu/admin_bottom_navigation_menu" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/physioRecyclerView"
-        android:layout_width="409dp"
-        android:layout_height="363dp"
-        android:layout_marginTop="20dp"
+    <Button
+        android:id="@+id/adminR1_button_users"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:onClick="viewUserData"
+        android:text="Προβολή στοιχείων χρήστη"
+        app:layout_constraintBottom_toTopOf="@+id/admin_bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upper_base" />
+        app:layout_constraintTop_toBottomOf="@+id/admin_constraintLayout_upper"
+        app:layout_constraintVertical_bias="0.120000000" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

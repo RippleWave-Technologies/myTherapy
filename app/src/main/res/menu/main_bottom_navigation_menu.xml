@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/MainPage1"
+        android:enabled="true"
+        android:icon="@drawable/baseline_admin_panel_settings_24"
+        android:title="Χρήστης ΠΣΦ">
+    </item>
+
+    <item android:id="@+id/MainPage2"
+        android:enabled="true"
+        android:icon="@drawable/baseline_business_24"
+        android:title="Φυσιοθεραπευτήριο">
+    </item>
+
+    <item android:id="@+id/MainPage3"
+        android:enabled="true"
+        android:icon="@drawable/baseline_account_circle_24"
+        android:title="Ασθενής">
+    </item>
+</menu>
