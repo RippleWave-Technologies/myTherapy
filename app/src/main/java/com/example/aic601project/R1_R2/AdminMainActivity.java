@@ -19,7 +19,6 @@ public class AdminMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
 
-        // sets the status and navigation bar color
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
         getWindow().setNavigationBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
 
@@ -38,24 +37,22 @@ public class AdminMainActivity extends AppCompatActivity {
         });
     }
 
-    /* onClick for add_button
+    /* onClick for admin_button_add
     * case R.id.AdminPage1 it starts AdminR1Activity
-    * case R.id.AdminPage2 it starts ... */
+    * case R.id.AdminPage2 it starts AdminR2Activity */
     public void addToList (View v){
         int selectedItemId = ((BottomNavigationView)(findViewById(R.id.admin_bottom_navigation_view))).getSelectedItemId();
-        switch (selectedItemId){
-            case R.id.AdminPage1:
-                startActivity(new Intent(this, AdminR1Activity.class));
-                overridePendingTransition(R.anim.slide_in_from_bottom,  R.anim.no_slide_in_or_out);
-                break;
-            case R.id.AdminPage2:
-                /* startActivity(new Intent(this, AdminR2Activity.class));
+        if (selectedItemId == R.id.AdminPage1){
+            startActivity(new Intent(this, AdminR1Activity.class));
+            overridePendingTransition(R.anim.slide_in_from_bottom,  R.anim.no_slide_in_or_out);
+        } else if (selectedItemId == R.id.AdminPage2) {
+            Toast.makeText(this, "AdminR2Activity", Toast.LENGTH_LONG).show();
+            /* startActivity(new Intent(this, AdminR2Activity.class));
                 overridePendingTransition(R.anim.slide_in_from_bottom,  R.anim.no_slide_in_or_out); */
-                break;
         }
     }
 
-    // temporary onClick for a show_user_details_button
+    // temporary onClick for adminR1_button_users
     public void viewUserData (View v){
         Intent i = new Intent(this, AdminR1Activity.class);
         i.putExtra("key", 2);

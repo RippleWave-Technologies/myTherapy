@@ -2,7 +2,6 @@ package com.example.aic601project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,25 +17,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // sets the status and navigation bar color
-        getWindow().setStatusBarColor(getResources().getColor(R.color.white, this.getTheme()));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
         getWindow().setNavigationBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
+
     }
 
+    // onClick for main_button_goToActivity Button
     public void goToOtherActivity (View v){
         int selectedItemId = ((BottomNavigationView)(findViewById(R.id.main_bottom_navigation_view))).getSelectedItemId();
-        switch (selectedItemId){
-            case R.id.MainPage1:
-                startActivity(new Intent(this, AdminMainActivity.class));
-                break;
-            case R.id.MainPage2:
-                // startActivity(new Intent(this, PhysioMainActivity.class));
-                Toast.makeText(MainActivity.this, "Παιδιά δουλεύουμε τώρα :) .MainPage2", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.MainPage3:
-                // startActivity(new Intent(this, UserMainActivity.class));
-                Toast.makeText(MainActivity.this, "Παιδιά δουλεύουμε τώρα :) .MainPage3", Toast.LENGTH_LONG).show();
-                break;
+        if (selectedItemId == R.id.MainPage1){
+            startActivity(new Intent(this, AdminMainActivity.class));
+        } else if (selectedItemId == R.id.MainPage2) {
+            Toast.makeText(this, "Παιδιά δουλεύουμε τώρα :) .MainPage2", Toast.LENGTH_LONG).show();
+        } else if (selectedItemId == R.id.MainPage3) {
+            Toast.makeText(this, "Παιδιά δουλεύουμε τώρα :) .MainPage3", Toast.LENGTH_LONG).show();
         }
     }
 }

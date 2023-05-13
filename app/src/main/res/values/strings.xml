@@ -15,4 +15,5 @@
     <string name="ssn_error_message">Μη έγκυρος αριθμός ΑΦΜ</string>
     <string name="clear_form">Εκκαθάριση φόρμας</string>
     <string name="add_button">Προσθήκη</string>
+    <string name="sign_in">Είσοδος</string>
 </resources>
