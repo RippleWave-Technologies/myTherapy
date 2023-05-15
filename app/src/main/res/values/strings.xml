@@ -16,4 +16,13 @@
     <string name="clear_form">Εκκαθάριση φόρμας</string>
     <string name="add_button">Προσθήκη</string>
     <string name="sign_in">Είσοδος</string>
+
+
+    <string name="physician_name">Όνομα</string>
+    <string name="physician_lastName">Επώνυμο</string>
+    <string name="physician_amka">ΑΜΚΑ</string>
+    <string name="physician_appointment_history">Προηγούμενες επισκέψεις</string>
+    <string name="physician_edit">Επεξεργασία</string>
+
+
 </resources>
