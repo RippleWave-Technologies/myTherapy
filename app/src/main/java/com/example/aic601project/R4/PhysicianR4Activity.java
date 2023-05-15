@@ -24,9 +24,6 @@ public class PhysicianR4Activity extends AppCompatActivity {
     private TextInputLayout textInputCity;
     private TextInputLayout textInputZip;
 
-    //    Text Views
-    private TextView textViewClearForm;
-
 
     //    Buttons
     private Boolean physicianEditButtonIsClicked;
@@ -56,9 +53,6 @@ public class PhysicianR4Activity extends AppCompatActivity {
         textInputZip = findViewById(R.id.physician_r4_textInputLayout_zip);
 
 
-        //        get TextView id
-        textViewClearForm = findViewById(R.id.physician_r4_textview_clearForm);
-
         // Set all textInputField Disable
         this.loadStartPhysicianInformationScreen();
 
@@ -72,9 +66,6 @@ public class PhysicianR4Activity extends AppCompatActivity {
 
         // Set all textInputFields disable
         this.changeStatusOfTextInputField(false);
-
-        // Set clearForm to invisible
-        this.textViewClearForm.setVisibility(View.INVISIBLE);
 
     }
     public void viewAppointmentsHistory(View v){
@@ -93,8 +84,6 @@ public class PhysicianR4Activity extends AppCompatActivity {
         // Set all textInputFields disable
         this.changeStatusOfTextInputField(true);
 
-        // Set clearForm to invisible
-        this.textViewClearForm.setVisibility(View.VISIBLE);
     }
     public void physicianEditButtonClicked (View v){
         if (physicianEditButtonIsClicked){
