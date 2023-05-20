@@ -2,10 +2,17 @@ package com.example.aic601project.R4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -27,8 +34,9 @@ public class PhysicianR4Activity extends AppCompatActivity {
 
     //    Buttons
     private Boolean physicianEditButtonIsClicked;
-//    private Button physicianEditButton ;
+    private Button physicianEditButton ;
     private Button physicianAppointmentsHistoryButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +49,7 @@ public class PhysicianR4Activity extends AppCompatActivity {
 
         //        get all buttons ids
 //        physicianEditButton = findViewById(R.id.physician_r4_appointmentsHistoryButton);
-        physicianAppointmentsHistoryButton = findViewById(R.id.physician_r4_EditButton);
+        physicianEditButton = findViewById(R.id.physician_r4_EditButton);
 
         //        get all TextInput ids.
         textInputName = findViewById(R.id.physician_r4_textInputLayout_name);
@@ -52,23 +60,48 @@ public class PhysicianR4Activity extends AppCompatActivity {
         textInputCity = findViewById(R.id.physician_r4_textInputLayout_city);
         textInputZip = findViewById(R.id.physician_r4_textInputLayout_zip);
 
-
+        physicianAppointmentsHistoryButton = findViewById(R.id.physician_r4_appointmentsHistoryButton);
         // Set all textInputField Disable
         this.loadStartPhysicianInformationScreen();
 
     }
+
+    public void viewAppointmentsHistory(View v){
+        showDialog();
+
+    }
+
+    private void showDialog(){
+        final Dialog dialog  = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottom_history_sheet_layout);
+
+        LinearLayout editLayout = dialog.findViewById(R.id.layoutEdit);
+        LinearLayout editLayout2 = dialog.findViewById(R.id.layoutEdit2);
+        LinearLayout editLayout3 = dialog.findViewById(R.id.layoutEdit3);
+        editLayout.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                Toast.makeText(PhysicianR4Activity.this, "clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialoAnimation;
+
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+    }
     private void loadStartPhysicianInformationScreen(){
         this.toolbar.setTitle("Πληροφορίες");
-
+        this.physicianAppointmentsHistoryButton.setVisibility(View.VISIBLE);
         // check if edit button is clicked
         this.physicianEditButtonIsClicked = false;
-        this.physicianAppointmentsHistoryButton.setText("Επεξεργασία");
+        this.physicianEditButton.setText("Επεξεργασία");
 
         // Set all textInputFields disable
         this.changeStatusOfTextInputField(false);
-
-    }
-    public void viewAppointmentsHistory(View v){
 
     }
     public void clearForm(View v){
@@ -77,9 +110,10 @@ public class PhysicianR4Activity extends AppCompatActivity {
     private void loadEditPhysicianInformationScreen(){
         this.toolbar.setTitle("Επεξεργασία");
 
+        this.physicianAppointmentsHistoryButton.setVisibility(View.INVISIBLE);
         // check if edit button is clicked
         this.physicianEditButtonIsClicked = true;
-        this.physicianAppointmentsHistoryButton.setText("Αποθήκευση");
+        this.physicianEditButton.setText("Αποθήκευση");
 
         // Set all textInputFields disable
         this.changeStatusOfTextInputField(true);
