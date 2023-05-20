@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".R1_R2.AdminMainActivity">
+    tools:context=".R1_R2.AdminR1Activity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/admin_r1_appBarLayout"
@@ -20,22 +20,13 @@
             android:id="@+id/admin_r1_topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/admin_r1_app_bar_layout"
             app:navigationIcon="@drawable/baseline_arrow_back_24"
             app:title="Νέο Φυσιοθεραπευτήριο"
             app:titleCentered="true"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ImageView
-        android:id="@+id/admin_r1_imageview_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:src="@drawable/baseline_business_24"
-        android:importantForAccessibility="no"
-        app:layout_constraintBottom_toBottomOf="@+id/admin_r1_appBarLayout"
-        app:layout_constraintEnd_toEndOf="@+id/admin_r1_appBarLayout"
-        app:layout_constraintTop_toTopOf="@+id/admin_r1_appBarLayout" />
 
     <Button
         android:id="@+id/admin_r1_button"
@@ -49,7 +40,8 @@
         android:text="@string/add_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="@+id/admin_r1_constraintLayout_fields"
-        app:layout_constraintTop_toBottomOf="@+id/admin_r1_constraintLayout_fields" />
+        app:layout_constraintTop_toBottomOf="@+id/admin_r1_constraintLayout_fields"
+        tools:ignore="RtlHardcoded" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/admin_r1_constraintLayout_fields"
@@ -65,7 +57,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/admin_r1_textInputLayout_name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/name_physio"
@@ -80,7 +71,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/admin_r1_textInputLayout_ssn"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -104,7 +94,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/admin_r1_textInputLayout_email"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="108dp"
@@ -120,7 +109,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/admin_r1_textInputLayout_street"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -135,7 +123,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/admin_r1_textInputLayout_stNumber"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -151,7 +138,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/admin_r1_textInputLayout_city"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -166,7 +152,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/admin_r1_textInputLayout_zip"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -185,7 +170,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/admin_r1_textInputLayout_country"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -200,17 +184,6 @@
                 android:text="Ελλάδα"
                 tools:ignore="HardcodedText" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/admin_r1_textview_clear_form"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
-            android:onClick="clearForm"
-            android:text="@string/clear_form"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_country" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
