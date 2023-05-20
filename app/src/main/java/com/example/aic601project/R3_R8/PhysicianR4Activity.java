@@ -1,6 +1,4 @@
-package com.example.aic601project.R4;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.aic601project.R3_R8;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -13,6 +11,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -74,7 +74,7 @@ public class PhysicianR4Activity extends AppCompatActivity {
     private void showDialog(){
         final Dialog dialog  = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.bottom_history_sheet_layout);
+        dialog.setContentView(R.layout.layout_physician_r4_bottom_sheet);
 
         LinearLayout editLayout = dialog.findViewById(R.id.layoutEdit);
         LinearLayout editLayout2 = dialog.findViewById(R.id.layoutEdit2);
@@ -88,7 +88,7 @@ public class PhysicianR4Activity extends AppCompatActivity {
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialoAnimation;
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
 
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 

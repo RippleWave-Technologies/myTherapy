@@ -1,7 +1,5 @@
 package com.example.aic601project.R1_R2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,6 +7,8 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -121,7 +121,7 @@ public class AdminR1Activity extends AppCompatActivity {
                 exponent--;
             }
             if (((sum % 11) % 10) != lastDigit) {
-                textInputLayoutArray[1].setError(getString(R.string.ssn_error_message));
+                textInputLayoutArray[1].setError(getString(R.string.admin_ssnError));
                 AdminR1Activity.this.hNE = true;
             }
         } else {
@@ -199,9 +199,9 @@ public class AdminR1Activity extends AppCompatActivity {
     }
 }
 
-// TO-DO
+// TODO
 // με κλικ του admin_r1_button στη Προσθήκη Φυσιοθεραπευτηρίου -> αποθήκευση των δεδομένων στη ΒΔ
-// υλοποίηση recyclerview για τα δεδομένα που αντλούνται από τη ΒΔ
-// υλοποίηση ελέγχου για το αν έχουν γίνει αλλαγές στα στοιχεία του φυσιοθεραπευτηρίου και αποθήκευση των αλλαγών στη ΒΔ
-// αλλαγή του AppBarLayout και των εικονιδίων που αυτό έχει
-// αφαίρεση των style από τα TextInputLayout ;
+//// υλοποίηση recyclerview για τα δεδομένα που αντλούνται από τη ΒΔ
+//// υλοποίηση ελέγχου για το αν έχουν γίνει αλλαγές στα στοιχεία του φυσιοθεραπευτηρίου και αποθήκευση των αλλαγών στη ΒΔ
+//// αλλαγή του AppBarLayout και των εικονιδίων που αυτό έχει
+//// αφαίρεση των style από τα TextInputLayout ;
