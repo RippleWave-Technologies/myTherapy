@@ -1,13 +1,13 @@
 package com.example.aic601project.R1_R2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -127,13 +127,6 @@ public class AdminR1Activity extends AppCompatActivity {
                 && Objects.requireNonNull(textInputLayoutArray[6].getEditText()).getText().length() == 5);
     }
 
-    // onClick for admin_r1_textview_clear_form TextView
-    public void clearForm(View v){
-        for (int i = 0; i <=6; i++){
-            Objects.requireNonNull(textInputLayoutArray[i].getEditText()).getText().clear();
-        }
-    }
-
     // enables/disables all TextInputLayouts
     private void fieldsEnableDisable(boolean enDis){
         for (int i = 0; i <=6; i++){
@@ -173,8 +166,6 @@ public class AdminR1Activity extends AppCompatActivity {
         // disables the counter for physio_ssn and physio_zip
         textInputLayoutArray[1].setCounterEnabled(false);
         textInputLayoutArray[6].setCounterEnabled(false);
-        // sets the form_clear TextView to invisible
-        findViewById(R.id.admin_r1_textview_clear_form).setVisibility(View.INVISIBLE);
         // sets the button to enabled, changes the text and removes the icon
         button.setEnabled(true);
         button.setText("Επεξεργασία");
@@ -190,8 +181,6 @@ public class AdminR1Activity extends AppCompatActivity {
         // enables the counter for physio_ssn and physio_zip
         textInputLayoutArray[1].setCounterEnabled(true);
         textInputLayoutArray[6].setCounterEnabled(true);
-        // sets the form_clear TextView to visible
-        findViewById(R.id.admin_r1_textview_clear_form).setVisibility(View.VISIBLE);
         // sets the button to disabled and changes the text
         button.setEnabled(false);
         button.setText("Αποθήκευση");

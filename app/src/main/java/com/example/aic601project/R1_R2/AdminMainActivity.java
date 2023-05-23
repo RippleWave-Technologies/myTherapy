@@ -1,13 +1,12 @@
 package com.example.aic601project.R1_R2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aic601project.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -46,9 +45,8 @@ public class AdminMainActivity extends AppCompatActivity {
             startActivity(new Intent(this, AdminR1Activity.class));
             overridePendingTransition(R.anim.slide_in_from_bottom,  R.anim.no_slide_in_or_out);
         } else if (selectedItemId == R.id.AdminPage2) {
-            Toast.makeText(this, "AdminR2Activity", Toast.LENGTH_LONG).show();
-            /* startActivity(new Intent(this, AdminR2Activity.class));
-                overridePendingTransition(R.anim.slide_in_from_bottom,  R.anim.no_slide_in_or_out); */
+            startActivity(new Intent(this, AdminR2Activity.class));
+            overridePendingTransition(R.anim.slide_in_from_bottom,  R.anim.no_slide_in_or_out);
         }
     }
 

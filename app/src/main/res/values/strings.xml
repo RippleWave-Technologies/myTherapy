@@ -16,4 +16,8 @@
     <string name="clear_form">Εκκαθάριση φόρμας</string>
     <string name="add_button">Προσθήκη</string>
     <string name="sign_in">Είσοδος</string>
+    <string name="name_service">Όνομα Παροχής</string>
+    <string name="code_service">Κωδικός Παροχής</string>
+    <string name="cost_service">Κόστος ανά Παροχή</string>
+    <string name="description_service">Περιγραφή Παροχής</string>
 </resources>
