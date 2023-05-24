@@ -37,4 +37,18 @@
     <string name="menu_physician_3patients">Ασθενείς</string>
     <string name="menu_user_1home">Αρχική</string>
     <string name="menu_user_2financialHistory">Κινήσεις</string>
+
+    <string name="user_welcome_message">Καλώς ορίσατε,</string>
+    <string name="user_name">Όνομα ασθενή</string>
+    <string name="textView_physio">Φυσιοθεραπευτήριο</string>
+    <string name="textView_time">Ώρα</string>
+    <string name="textView_date">Ημέρα</string>
+    <string name="appointment_state">Το ραντεβού δεν έχει επιβεβαιωθεί</string>
+    <string-array name="Services">
+        <item>Υπηρεσίες</item>
+        <!--the rest of the items will be filled with every new services inputted-->
+        <item>Test item</item>
+        <item>Test item 2</item>
+    </string-array>
+    <string name="services">Υπηρεσίες</string>
 </resources>

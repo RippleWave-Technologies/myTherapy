@@ -6,6 +6,79 @@
     android:layout_height="match_parent"
     tools:context=".R9_R10.UserMainActivity">
 
+    <!--top app bar-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/user_constraintLayout_upper"
+        android:layout_width="413dp"
+        android:layout_height="200dp"
+        android:background="@color/md_theme_light_surfaceVariant"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/user_R9_appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/md_theme_light_surfaceVariant"
+            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/user_R9_topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/top_app_bar_menu_user" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--textViews on top app bar-->
+        <TextView
+            android:id="@+id/textView_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/company_name"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/user_textView_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
+            android:text="@string/user_welcome_message"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_company" />
+
+        <TextView
+            android:id="@+id/user_textView_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="22dp"
+            android:text="@string/user_name"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_textView_welcome" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--bottom navigation bar-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/user_bottom_navigation_view"
         android:layout_width="match_parent"
@@ -22,8 +95,78 @@
         app:layout_constraintBottom_toTopOf="@+id/user_bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/user_constraintLayout_upper">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_physio"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="30dp"
+            android:hint="@string/textView_physio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/textView_physio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/textView_physio"
+                android:textSize="25sp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_date"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_physio">
+
+            <AutoCompleteTextView
+                android:id="@+id/text_Date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/textView_date"
+                android:textSize="25sp">
+
+            </AutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_time"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="361dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/text_Time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="@string/textView_time"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
 
     </FrameLayout>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

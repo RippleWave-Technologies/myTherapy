@@ -1,5 +1,6 @@
 package com.example.aic601project.R9_R10;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 
 import com.example.aic601project.R;
+import com.example.aic601project.R1_R2.AdminR1Activity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +28,15 @@ public class UserFragment1R9 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private AutoCompleteTextView date;
+    private AutoCompleteTextView physio;
+    private AutoCompleteTextView time;
+
+    //autocomplete textView Physio, the values for the PHYSIOS will be taken from the db
+    private static final String[] PHYSIOS = new String[]{
+            "Name1", "BName", "DName"
+    };
 
     public UserFragment1R9() {
         // Required empty public constructor
@@ -57,10 +69,19 @@ public class UserFragment1R9 extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user1, container, false);
+       return inflater.inflate(R.layout.activity_user_main, container, false);
+
+
     }
+
+    public void startActivity() {
+        startActivity(new Intent(getActivity(), UserR9MainActivity.class));
+        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+    }
+
 }
