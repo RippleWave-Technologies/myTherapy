@@ -1,23 +1,40 @@
 <resources>
     <string name="app_name">AIC601project</string>
     <string name="company_name">myTherapy</string>
-    <string name="welcome_message">Καλώς ορίσατε,</string>
-    <string name="user">Χρήστης ΠΣΦ</string>
 
-    <string name="name_physio">Όνομα Φυσιοθεραπευτηρίου</string>
-    <string name="ssn_physio">ΑΦΜ Φυσιοθεραπευτηρίου</string>
-    <string name="email_address">Διεύθυνση email</string>
     <string name="street">Οδός</string>
-    <string name="stnumber">Αριθμός</string>
+    <string name="stNumber">Αριθμός</string>
     <string name="city">Πόλη</string>
-    <string name="zip_no">Τ.Κ.</string>
+    <string name="zipNo">Τ.Κ.</string>
     <string name="country">Χώρα</string>
-    <string name="ssn_error_message">Μη έγκυρος αριθμός ΑΦΜ</string>
-    <string name="clear_form">Εκκαθάριση φόρμας</string>
-    <string name="add_button">Προσθήκη</string>
-    <string name="sign_in">Είσοδος</string>
-    <string name="name_service">Όνομα Παροχής</string>
-    <string name="code_service">Κωδικός Παροχής</string>
-    <string name="cost_service">Κόστος ανά Παροχή</string>
-    <string name="description_service">Περιγραφή Παροχής</string>
+    <string name="signIn">Είσοδος</string>
+    <string name="welcome_message">Καλώς ορίσατε,</string>
+
+
+    <string name="admin_user">Χρήστης ΠΣΦ</string>
+    <string name="admin_namePhysio">Όνομα Φυσιοθεραπευτηρίου</string>
+    <string name="admin_ssnPhysio">ΑΦΜ Φυσιοθεραπευτηρίου</string>
+    <string name="admin_ssnError">Μη έγκυρος αριθμός ΑΦΜ</string>
+    <string name="admin_emailPhysio">Διεύθυνση email</string>
+    <string name="admin_addButton">Προσθήκη</string>
+    <string name="admin_viewUserData">Προβολή στοιχείων χρήστη</string>
+
+
+    <string name="physician_name">Όνομα</string>
+    <string name="physician_lastName">Επώνυμο</string>
+    <string name="physician_AMKA">ΑΜΚΑ</string>
+    <string name="physician_appointment_history">Προηγούμενες επισκέψεις</string>
+    <string name="physician_edit">Επεξεργασία</string>
+
+
+    <string name="menu_main_1admin">Χρήστης ΠΣΦ</string>
+    <string name="menu_main_2physician">Φυσιοθεραπευτήριο</string>
+    <string name="menu_main_3patient">Ασθενής</string>
+    <string name="menu_admin_1physicians">Φυσιοθεραπευτήρια</string>
+    <string name="menu_admin_2services">Παροχές</string>
+    <string name="menu_physician_1home">Αρχική</string>
+    <string name="menu_physician_2calendar">Ημερολόγιο</string>
+    <string name="menu_physician_3patients">Ασθενείς</string>
+    <string name="menu_user_1home">Αρχική</string>
+    <string name="menu_user_2financialHistory">Κινήσεις</string>
 </resources>

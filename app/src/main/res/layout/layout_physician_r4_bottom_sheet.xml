@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/history_dialog">
+
+    <ImageView
+        android:layout_marginLeft="110dp"
+        android:layout_width="140dp"
+        android:layout_height="44dp"
+        android:background="@drawable/baseline_remove_24"
+        />
+
+    <TextView
+        android:id="@+id/choosetxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Προηγούμενες επισκέψεις"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/layoutEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E1E3DD"
+        android:orientation="horizontal"
+        android:padding="1dp">
+
+        <Button
+            android:id="@+id/history1"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="0dp"
+            android:drawableRight="@drawable/baseline_arrow_right_24"
+            android:text="27/02/2023"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textColorLink="#E1E3DD"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutEdit2"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        android:background="#E1E3DD"
+        >
+
+        <Button
+            android:id="@+id/history2"
+            android:layout_marginTop="0dp"
+            android:textAlignment="textStart"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:text="27/02/2023"
+            android:textColorLink="#E1E3DD"
+            android:drawableRight="@drawable/baseline_arrow_right_24"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutEdit3"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        android:background="#E1E3DD"
+        >
+
+        <Button
+            android:id="@+id/history3"
+            android:textAlignment="textStart"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:text="27/02/2023"
+            android:textColorLink="#E1E3DD"
+            android:drawableRight="@drawable/baseline_arrow_right_24"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

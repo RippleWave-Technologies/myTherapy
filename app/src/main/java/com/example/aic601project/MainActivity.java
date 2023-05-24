@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.aic601project.R1_R2.AdminMainActivity;
+import com.example.aic601project.R3_R8.PhysicianMainActivity;
+import com.example.aic601project.R3_R8.PhysicianR4Activity;
+import com.example.aic601project.R9_R10.UserMainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
         if (selectedItemId == R.id.MainPage1){
             startActivity(new Intent(this, AdminMainActivity.class));
         } else if (selectedItemId == R.id.MainPage2) {
-            Toast.makeText(this, "Παιδιά δουλεύουμε τώρα :) .MainPage2", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this, PhysicianMainActivity.class));
         } else if (selectedItemId == R.id.MainPage3) {
-            Toast.makeText(this, "Παιδιά δουλεύουμε τώρα :) .MainPage3", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this, UserMainActivity.class));
         }
     }
 }

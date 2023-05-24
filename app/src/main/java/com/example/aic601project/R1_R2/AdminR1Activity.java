@@ -3,6 +3,7 @@ package com.example.aic601project.R1_R2;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -73,9 +74,18 @@ public class AdminR1Activity extends AppCompatActivity {
     }
 
     // overrides the default onBackPressed() function and includes an exit animation
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.no_slide_in_or_out, R.anim.slide_out_from_top);
+    }
+
+    /* overrides the onCreateOptionsMenu because by calling setSupportActionBar
+    * the menu will be populated with standard system menu items */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.admin_r1_app_bar_layout, menu);
+        return true;
     }
 
     // checks every TextInputLayout for changed text (and more) and calls enableButtonIfAllInputIsTrue
@@ -111,7 +121,7 @@ public class AdminR1Activity extends AppCompatActivity {
                 exponent--;
             }
             if (((sum % 11) % 10) != lastDigit) {
-                textInputLayoutArray[1].setError(getString(R.string.ssn_error_message));
+                textInputLayoutArray[1].setError(getString(R.string.admin_ssnError));
                 AdminR1Activity.this.hNE = true;
             }
         } else {
@@ -189,9 +199,9 @@ public class AdminR1Activity extends AppCompatActivity {
     }
 }
 
-// TO-DO
+// TODO
 // με κλικ του admin_r1_button στη Προσθήκη Φυσιοθεραπευτηρίου -> αποθήκευση των δεδομένων στη ΒΔ
-// υλοποίηση recyclerview για τα δεδομένα που αντλούνται από τη ΒΔ
-// υλοποίηση ελέγχου για το αν έχουν γίνει αλλαγές στα στοιχεία του φυσιοθεραπευτηρίου και αποθήκευση των αλλαγών στη ΒΔ
-// αλλαγή του AppBarLayout και των εικονιδίων που αυτό έχει
-// αφαίρεση των style από τα TextInputLayout ;
+//// υλοποίηση recyclerview για τα δεδομένα που αντλούνται από τη ΒΔ
+//// υλοποίηση ελέγχου για το αν έχουν γίνει αλλαγές στα στοιχεία του φυσιοθεραπευτηρίου και αποθήκευση των αλλαγών στη ΒΔ
+//// αλλαγή του AppBarLayout και των εικονιδίων που αυτό έχει
+//// αφαίρεση των style από τα TextInputLayout ;

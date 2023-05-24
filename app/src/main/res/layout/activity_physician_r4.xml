@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".R1_R2.AdminR1Activity">
+    tools:context=".R3_R8.PhysicianR4Activity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/admin_r1_appBarLayout"
+        android:id="@+id/physician_r4_appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/md_theme_light_surfaceVariant"
@@ -17,65 +17,81 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/admin_r1_topAppBar"
+            android:id="@+id/physician_r4_topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/admin_r1_app_bar_layout"
             app:navigationIcon="@drawable/baseline_arrow_back_24"
-            app:title="Νέο Φυσιοθεραπευτήριο"
-            app:titleCentered="true"/>
+            app:title="Πληροφορίες"
+            app:titleCentered="true" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <Button
-        android:id="@+id/admin_r1_button"
-        style="@style/Widget.Material3.Button.IconButton.Filled"
-        android:layout_width="148dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="35dp"
-        android:drawableLeft="@drawable/baseline_check_24"
-        android:enabled="false"
-        android:onClick="addPhysio"
-        android:text="@string/admin_addButton"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="@+id/admin_r1_constraintLayout_fields"
-        app:layout_constraintTop_toBottomOf="@+id/admin_r1_constraintLayout_fields"
-        tools:ignore="RtlHardcoded" />
+    <ImageView
+        android:id="@+id/physician_r4_imageview_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/baseline_person_outline_24"
+        app:layout_constraintBottom_toBottomOf="@+id/physician_r4_appBarLayout"
+        app:layout_constraintEnd_toEndOf="@+id/physician_r4_appBarLayout"
+        app:layout_constraintTop_toTopOf="@+id/physician_r4_appBarLayout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/admin_r1_constraintLayout_fields"
+        android:id="@+id/physician_r4_constraintLayout_fields"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_r1_appBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/physician_r4_appBarLayout">
+
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_name"
-            android:layout_width="0dp"
+            android:id="@+id/physician_r4_textInputLayout_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="361dp"
             android:layout_height="wrap_content"
-            android:hint="@string/admin_namePhysio"
+            android:hint="@string/physician_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_ssn"
-            android:layout_width="0dp"
+            android:id="@+id/physician_r4_textInputLayout_lastName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="361dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="18dp"
+            android:hint="@string/physician_lastName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/physician_r4_textInputLayout_amka"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="361dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
             android:clickable="false"
-            android:hint="@string/admin_ssnPhysio"
+            android:hint="@string/physician_AMKA"
             app:counterEnabled="true"
             app:counterMaxLength="9"
             app:endIconCheckable="false"
@@ -83,100 +99,95 @@
             app:errorIconDrawable="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_name">
+            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_lastName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:inputType="number"
                 android:maxLength="9" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_email"
+            android:id="@+id/physician_r4_textInputLayout_street"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="108dp"
-            android:hint="@string/admin_emailPhysio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_street"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="14dp"
             android:hint="@string/street"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_email">
+            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_amka">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="200dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                 />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_stNumber"
+            android:id="@+id/physician_r4_textInputLayout_stNumber"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="14dp"
             android:hint="@string/stNumber"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_email">
+            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_amka">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_city"
+            android:id="@+id/physician_r4_textInputLayout_city"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="18dp"
             android:hint="@string/city"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_street">
+            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_street">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="200dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_zip"
+            android:id="@+id/physician_r4_textInputLayout_zip"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="18dp"
             android:hint="@string/zipNo"
             app:counterEnabled="true"
             app:counterMaxLength="5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_stNumber">
+            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_stNumber">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:inputType="number"
                 android:maxLength="5" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_country"
+            android:id="@+id/physician_r4_textInputLayout_country"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="18dp"
             android:enabled="false"
             android:hint="@string/country"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_city">
+            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_city">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="200dp"
@@ -185,5 +196,40 @@
                 tools:ignore="HardcodedText" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <Button
+        android:id="@+id/physician_r4_appointmentsHistoryButton"
+        style="@style/Widget.Material3.Button.IconButton.Filled"
+        android:layout_width="300dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="94dp"
+        android:drawableLeft="@drawable/baseline_arrow_drop_up_24"
+        android:onClick="viewAppointmentsHistory"
+        android:text="@string/physician_appointment_history"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.595"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/physician_r4_constraintLayout_fields" />
+
+    <Button
+        android:id="@+id/physician_r4_EditButton"
+        style="@style/Widget.Material3.Button.IconButton.Filled"
+        android:layout_width="150dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="22dp"
+        android:onClick="physicianEditButtonClicked"
+        android:text="@string/physician_edit"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/physician_r4_constraintLayout_fields" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

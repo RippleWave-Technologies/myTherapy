@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/admin_textview_company"
+            android:id="@+id/admin_textView_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/admin_textview_welcome"
+            android:id="@+id/admin_textView_welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -41,60 +41,46 @@
             android:textColor="@color/black"
             android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_textview_company" />
+            app:layout_constraintTop_toBottomOf="@+id/admin_textView_company" />
 
         <TextView
-            android:id="@+id/admin_textview_name"
+            android:id="@+id/admin_textView_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="22dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="@string/user"
+            android:text="@string/admin_user"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_textview_welcome" />
+            app:layout_constraintTop_toBottomOf="@+id/admin_textView_welcome" />
 
         <ImageView
-            android:id="@+id/admin_imageview_exit"
+            android:id="@+id/admin_imageView_exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:importantForAccessibility="no"
-            app:layout_constraintBottom_toBottomOf="@+id/admin_textview_company"
+            app:layout_constraintBottom_toBottomOf="@+id/admin_textView_company"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/admin_textview_company"
+            app:layout_constraintTop_toTopOf="@+id/admin_textView_company"
             app:srcCompat="@drawable/baseline_exit_to_app_24"
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:id="@+id/admin_imageview_account"
+            android:id="@+id/admin_imageView_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:importantForAccessibility="no"
-            app:layout_constraintBottom_toBottomOf="@+id/admin_textview_company"
-            app:layout_constraintEnd_toStartOf="@+id/admin_imageview_exit"
-            app:layout_constraintTop_toTopOf="@+id/admin_textview_company"
+            app:layout_constraintBottom_toBottomOf="@+id/admin_textView_company"
+            app:layout_constraintEnd_toStartOf="@+id/admin_imageView_exit"
+            app:layout_constraintTop_toTopOf="@+id/admin_textView_company"
             app:srcCompat="@drawable/baseline_account_circle_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/admin_button_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:backgroundTint="@color/md_theme_light_surfaceVariant"
-        android:clickable="true"
-        android:importantForAccessibility="no"
-        android:onClick="addToList"
-        app:layout_constraintBottom_toTopOf="@+id/admin_bottom_navigation_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/baseline_add_24" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/admin_bottom_navigation_view"
@@ -103,19 +89,18 @@
         android:background="@color/md_theme_light_surfaceVariant"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/admin_bottom_navigation_menu" />
+        app:menu="@menu/bottom_navigation_menu_admin" />
 
-    <Button
-        android:id="@+id/adminR1_button_users"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:onClick="viewUserData"
-        android:text="Προβολή στοιχείων χρήστη"
+    <FrameLayout
+        android:id="@+id/admin_frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toTopOf="@+id/admin_bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_constraintLayout_upper"
-        app:layout_constraintVertical_bias="0.120000000" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_constraintLayout_upper">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
