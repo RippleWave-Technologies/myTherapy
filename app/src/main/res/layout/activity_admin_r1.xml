@@ -37,7 +37,7 @@
         android:drawableLeft="@drawable/baseline_check_24"
         android:enabled="false"
         android:onClick="addPhysio"
-        android:text="@string/add_button"
+        android:text="@string/admin_addButton"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="@+id/admin_r1_constraintLayout_fields"
         app:layout_constraintTop_toBottomOf="@+id/admin_r1_constraintLayout_fields"
@@ -59,7 +59,7 @@
             android:id="@+id/admin_r1_textInputLayout_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/name_physio"
+            android:hint="@string/admin_namePhysio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:clickable="false"
-            android:hint="@string/ssn_physio"
+            android:hint="@string/admin_ssnPhysio"
             app:counterEnabled="true"
             app:counterMaxLength="9"
             app:endIconCheckable="false"
@@ -97,7 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="108dp"
-            android:hint="@string/email_address"
+            android:hint="@string/admin_emailPhysio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_name">
@@ -126,7 +126,7 @@
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
-            android:hint="@string/stnumber"
+            android:hint="@string/stNumber"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_email">
 
@@ -155,7 +155,7 @@
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
-            android:hint="@string/zip_no"
+            android:hint="@string/zipNo"
             app:counterEnabled="true"
             app:counterMaxLength="5"
             app:layout_constraintEnd_toEndOf="parent"

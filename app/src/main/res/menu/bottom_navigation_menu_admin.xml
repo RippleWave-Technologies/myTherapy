@@ -4,13 +4,13 @@
     <item android:id="@+id/AdminPage1"
         android:enabled="true"
         android:icon="@drawable/baseline_business_24"
-        android:title="Φυσιοθεραπευτήρια">
+        android:title="@string/menu_admin_1physicians">
     </item>
 
     <item android:id="@+id/AdminPage2"
         android:enabled="true"
         android:icon="@drawable/baseline_medical_services_24"
-        android:title="Παροχές">
+        android:title="@string/menu_admin_2services">
     </item>
 
 </menu>

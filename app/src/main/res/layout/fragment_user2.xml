@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".R1_R2.AdminFragment2">
+    tools:context=".R9_R10.UserFragment2R10">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

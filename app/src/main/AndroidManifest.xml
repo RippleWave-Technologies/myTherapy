@@ -26,9 +26,14 @@
         <activity
             android:name=".R1_R2.AdminR1Activity"
             android:exported="false" />
-
+        <activity
+            android:name=".R3_R8.PhysicianMainActivity"
+            android:exported="false" />
         <activity
             android:name=".R3_R8.PhysicianR4Activity"
+            android:exported="false" />
+        <activity
+            android:name=".R9_R10.UserMainActivity"
             android:exported="false" />
 
         <meta-data

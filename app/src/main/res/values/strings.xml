@@ -25,4 +25,16 @@
     <string name="physician_AMKA">ΑΜΚΑ</string>
     <string name="physician_appointment_history">Προηγούμενες επισκέψεις</string>
     <string name="physician_edit">Επεξεργασία</string>
+
+
+    <string name="menu_main_1admin">Χρήστης ΠΣΦ</string>
+    <string name="menu_main_2physician">Φυσιοθεραπευτήριο</string>
+    <string name="menu_main_3patient">Ασθενής</string>
+    <string name="menu_admin_1physicians">Φυσιοθεραπευτήρια</string>
+    <string name="menu_admin_2services">Παροχές</string>
+    <string name="menu_physician_1home">Αρχική</string>
+    <string name="menu_physician_2calendar">Ημερολόγιο</string>
+    <string name="menu_physician_3patients">Ασθενείς</string>
+    <string name="menu_user_1home">Αρχική</string>
+    <string name="menu_user_2financialHistory">Κινήσεις</string>
 </resources>

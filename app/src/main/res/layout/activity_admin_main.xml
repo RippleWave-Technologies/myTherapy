@@ -89,12 +89,12 @@
         android:background="@color/md_theme_light_surfaceVariant"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/admin_bottom_navigation_menu" />
+        app:menu="@menu/bottom_navigation_menu_admin" />
 
     <FrameLayout
         android:id="@+id/admin_frameLayout"
-        android:layout_width="409dp"
-        android:layout_height="609dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toTopOf="@+id/admin_bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"

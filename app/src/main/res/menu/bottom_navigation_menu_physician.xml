@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/PhysicianPage1"
+        android:enabled="true"
+        android:icon="@drawable/baseline_home_24"
+        android:title="@string/menu_physician_1home">
+    </item>
+
+    <item android:id="@+id/PhysicianPage2"
+        android:enabled="true"
+        android:icon="@drawable/baseline_calendar_month_24"
+        android:title="@string/menu_physician_2calendar">
+    </item>
+
+    <item android:id="@+id/PhysicianPage3"
+        android:enabled="true"
+        android:icon="@drawable/baseline_person_outline_24"
+        android:title="@string/menu_physician_3patients">
+    </item>
+
+</menu>

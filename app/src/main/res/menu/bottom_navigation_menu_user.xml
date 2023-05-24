@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/UserPage1"
+        android:enabled="true"
+        android:icon="@drawable/baseline_home_24"
+        android:title="@string/menu_user_1home">
+    </item>
+
+    <item android:id="@+id/UserPage2"
+        android:enabled="true"
+        android:icon="@drawable/baseline_credit_card_24"
+        android:title="@string/menu_user_2financialHistory">
+    </item>
+
+</menu>
