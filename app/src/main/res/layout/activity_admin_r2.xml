@@ -112,7 +112,7 @@
         android:layout_height="65dp"
         android:layout_marginTop="35dp"
         android:drawableLeft="@drawable/baseline_check_24"
-        android:text="@string/add_button"
+        android:text="@string/admin_addButton"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

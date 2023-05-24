@@ -19,6 +19,11 @@
     <string name="admin_addButton">Προσθήκη</string>
     <string name="admin_viewUserData">Προβολή στοιχείων χρήστη</string>
 
+    <string name="name_service">Όνομα παροχής</string>
+    <string name="code_service">Κωδικός παροχής</string>
+    <string name="cost_service">Κόστος ανα συνεδρία</string>
+    <string name="description_service">Περιγραφή παροχής</string>
+
 
     <string name="physician_name">Όνομα</string>
     <string name="physician_lastName">Επώνυμο</string>

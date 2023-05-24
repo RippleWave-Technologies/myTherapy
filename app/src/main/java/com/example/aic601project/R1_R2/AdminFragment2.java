@@ -1,5 +1,6 @@
 package com.example.aic601project.R1_R2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,17 @@ public class AdminFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin2, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_admin2, container, false);
+
+        // setOnClickListener for the admin_fragment2_floatingActionButton
+        rootView.findViewById(R.id.admin_fragment2_floatingActionButton).setOnClickListener(v -> addPhysioToList());
+
+        return rootView;
+    }
+
+    // method for admin_fragment2_floatingActionButton
+    public void addPhysioToList() {
+        startActivity(new Intent(getActivity(), AdminR2Activity.class));
+        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 }
