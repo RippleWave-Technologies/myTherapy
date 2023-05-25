@@ -68,15 +68,12 @@ public class UserFragment1R9 extends Fragment {
        View rootView = inflater.inflate(R.layout.fragment_user1, container, false);
 
        return rootView;
-
-
-
     }
 
-   /**public void tempR9button(){
+   public void startActivity(){
        startActivity(new Intent(getActivity(), UserR9MainActivity.class));
        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
-   }**/
+   }
 
 
 

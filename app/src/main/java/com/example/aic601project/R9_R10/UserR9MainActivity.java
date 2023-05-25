@@ -47,10 +47,13 @@ public class UserR9MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_main);
+        setContentView(R.layout.fragment_user1);
+
+        Toolbar toolbar = findViewById(R.id.user_R9_topAppBar);
+        setSupportActionBar(toolbar);
 
 
-        /**assign variables to the textinputlayout
+        //assign variables to the textinputlayout
         textDate = findViewById(R.id.textInputLayout_date);
         textPhysio = findViewById(R.id.textInputLayout_physio);
         textTime = findViewById(R.id.textInputLayout_time);
@@ -80,20 +83,20 @@ public class UserR9MainActivity extends AppCompatActivity {
             }
         });
 
-        /**autocomplete text view: Physio
+        //autocomplete text view: Physio
         physio = findViewById(R.id.textView_physio);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, PHYSIOS);
         physio.setAdapter(adapter);
 
-        /**autocomplete text view: Time
+        //autocomplete text view: Time
         time = findViewById(R.id.text_Time);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, APPOINTMENTS_HOURS_AVAILABLE);
         time.setAdapter(adapter2);
 
 
-        /** clickable text to clear the fields, void will clear all fields
+        // clickable text to clear the fields, void will clear all fields
         TextView txtClear = (TextView) findViewById(R.id.textView_clear);
 
         txtClear.setOnClickListener(new View.OnClickListener() {
@@ -101,10 +104,13 @@ public class UserR9MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
             }
-        });**/
+        });
 
 
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -113,7 +119,7 @@ public class UserR9MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.notif_bell:
                 /**startActivity(new Intent(getActivity(), UserR9MainActivity.class));
