@@ -1,14 +1,22 @@
 package com.example.aic601project.R3_R8;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.aic601project.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +24,13 @@ import com.example.aic601project.R;
  * create an instance of this fragment.
  */
 public class PhysicianFragment3R5 extends Fragment {
+
+    private RecyclerView recyclerView;
+    private List<Temppatients> patients;
+    private List<Temppatients> filteredList;
+    private NewR5Adapter patientsAdapter;
+    private SearchView searchView;
+    private NewR5Adapter.RecyclerViewClickListener listener;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +76,92 @@ public class PhysicianFragment3R5 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_physician3, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_physician3, container, false);
+
+        patients = new ArrayList<>();
+
+        patients.add(new Temppatients("jfhdjhdf"));
+        patients.add(new Temppatients("ffjfhjhgjhfg"));
+        patients.add(new Temppatients("dhfjdfh"));
+        patients.add(new Temppatients("dfhhfjhf"));
+        patients.add(new Temppatients("euwdkleoe"));
+        patients.add(new Temppatients("oideen"));
+        patients.add(new Temppatients("jfhdjhdf"));
+        patients.add(new Temppatients("ffjfhjhgjhfg"));
+        patients.add(new Temppatients("dhfjdfh"));
+        patients.add(new Temppatients("dfhhfjhf"));
+        patients.add(new Temppatients("euwdkleoe"));
+        patients.add(new Temppatients("oideen"));
+        patients.add(new Temppatients("jfhdjhdf"));
+        patients.add(new Temppatients("ffjfhjhgjhfg"));
+        patients.add(new Temppatients("dhfjdfh"));
+        patients.add(new Temppatients("dfhhfjhf"));
+        patients.add(new Temppatients("euwdkleoe"));
+        patients.add(new Temppatients("oideen"));
+
+        recyclerView = rootView.findViewById(R.id.recyclerview);
+        recyclerView.setHasFixedSize(true);
+
+        setOnClickListener();
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        patientsAdapter = new NewR5Adapter(patients, listener);
+        recyclerView.setAdapter(patientsAdapter);
+        recyclerView.requestFocus();
+
+        searchView = rootView.findViewById((R.id.searchView));
+        /*searchView.clearFocus();*/
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                filteredList = new ArrayList<>();
+                for (Temppatients p : patients) {
+                    if (p.getName().toLowerCase().contains(newText.toLowerCase()))
+                    {
+                        filteredList.add(p);
+                    }
+                }
+
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                recyclerView.setLayoutManager(layoutManager);
+                patientsAdapter = new NewR5Adapter(filteredList, listener);
+                recyclerView.setAdapter(patientsAdapter);
+
+                return true;
+            }
+        });
+
+        FloatingActionButton button = rootView.findViewById(R.id.physician_r5_floatingActionButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(getApplicationContext(), PhysicianR3Acticity.class);
+                //startActivity(intent);
+                //requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+            }
+        });
+
+        return rootView;
+    }
+
+    private void setOnClickListener() {
+        listener = new NewR5Adapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(getContext(), PhysicianR4Activity.class);
+                startActivity(intent);
+                requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+            }
+        };
     }
 }
+
+// TODO
+// bottom bar comes up when searching
+// make textview grey
