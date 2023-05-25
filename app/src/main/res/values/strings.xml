@@ -10,7 +10,6 @@
     <string name="signIn">Είσοδος</string>
     <string name="welcome_message">Καλώς ορίσατε,</string>
 
-
     <string name="admin_user">Χρήστης ΠΣΦ</string>
     <string name="admin_namePhysio">Όνομα Φυσιοθεραπευτηρίου</string>
     <string name="admin_ssnPhysio">ΑΦΜ Φυσιοθεραπευτηρίου</string>
@@ -19,12 +18,12 @@
     <string name="admin_addButton">Προσθήκη</string>
     <string name="admin_viewUserData">Προβολή στοιχείων χρήστη</string>
 
-    <string name="name_service">Όνομα παροχής</string>
-    <string name="code_service">Κωδικός παροχής</string>
-    <string name="cost_service">Κόστος ανα συνεδρία</string>
-    <string name="description_service">Περιγραφή παροχής</string>
+    <string name="admin_service">Όνομα παροχής</string>
+    <string name="admin_serviceCode">Κωδικός παροχής</string>
+    <string name="admin_serviceCost">Κόστος ανα συνεδρία</string>
+    <string name="admin_serviceDescription">Περιγραφή παροχής</string>
 
-
+    <string name="physician_user">Όνομα</string>
     <string name="physician_name">Όνομα</string>
     <string name="physician_lastName">Επώνυμο</string>
     <string name="physician_AMKA">ΑΜΚΑ</string>

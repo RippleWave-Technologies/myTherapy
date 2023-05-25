@@ -137,7 +137,7 @@ public class PhysicianFragment2R6 extends Fragment {
         calendarBtn = rootView.findViewById(R.id.calendarBtn);
         calendar = Calendar.getInstance();
 
-        rootView.findViewById(R.id.imagebuttonview_calendar).setOnClickListener(v -> showDatePicker());
+        calendarBtn.setEndIconOnClickListener(v -> showDatePicker());
 
         return rootView;
     }
@@ -148,17 +148,11 @@ public class PhysicianFragment2R6 extends Fragment {
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        String selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", dayOfMonth, (month + 1), year);
-                        calendarBtn.getEditText().setText(selectedDate);
-                    }
+                (view, year1, month1, dayOfMonth1) -> {
+                    String selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", dayOfMonth1, (month1 + 1), year1);
+                    calendarBtn.getEditText().setText(selectedDate);
                 }, year, month, dayOfMonth);
 
         datePickerDialog.show();
     }
 }
-
-// TODO
-// fix bug, calendar dialog

@@ -65,6 +65,15 @@ public class PhysicianFragment1 extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_physician1, container, false);
 
+        // setOnClickListener for the physician_fragment1_Button_temporaryR4
+        rootView.findViewById(R.id.physician_fragment1_Button_temporaryR4).setOnClickListener(v -> tempR4button());
+
         return rootView;
+    }
+
+    // method for physician_fragment1_Button_temporaryR4
+    public void tempR4button() {
+        startActivity(new Intent(getActivity(), PhysicianR4Activity.class));
+        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 }
