@@ -11,6 +11,6 @@ public class UserNotificationActivityR9 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_notification_r9);
+        setContentView(R.layout.user_activity_notification_r9);
     }
 }

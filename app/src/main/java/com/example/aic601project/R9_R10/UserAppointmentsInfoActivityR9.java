@@ -11,6 +11,6 @@ public class UserAppointmentsInfoActivityR9 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appointments_information_user);
+        setContentView(R.layout.user_activity_appointments_information_r9);
     }
 }

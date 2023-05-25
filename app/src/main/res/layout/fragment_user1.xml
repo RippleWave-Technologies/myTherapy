@@ -6,14 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".R9_R10.UserFragment1R9">
 
-    <!--this fragment is the information the user receives on his appointments, right?-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+       <!--top app bar-->
+       <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/user_constraintLayout_upper"
+        android:layout_width="413dp"
+        android:layout_height="200dp"
+        android:background="@color/md_theme_light_surfaceVariant"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/user_topappBar_info"
+            android:id="@+id/user_R9_appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/md_theme_light_surfaceVariant"
@@ -23,119 +34,152 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/user_topappBar"
+                android:id="@+id/user_R9_topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:menu="@menu/top_app_bar_appointments_user"
-                android:navigationIcon="@drawable/baseline_arrow_back_24"
-                app:title="Πληροφορίες"
-                app:titleCentered="true" />
+                app:menu="@menu/top_app_bar_menu_user" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <!--textViews on top app bar-->
         <TextView
-            android:id="@+id/textView_physio"
-            android:layout_width="329dp"
-            android:layout_height="65dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="74dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="110dp"
-            android:hint="@string/textView_physio"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/text_Time"
-            app:layout_constraintStart_toStartOf="@+id/text_Date"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.039" />
-
-        <TextView
-            android:id="@+id/textView_service"
-            android:layout_width="329dp"
-            android:layout_height="65dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="40dp"
-            android:ems="10"
-            android:hint="@string/services"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_physio"
-            app:layout_constraintVertical_bias="0.01" />
-
-        <TextView
-            android:id="@+id/text_Time"
-            android:layout_width="85dp"
-            android:layout_height="65dp"
-            android:layout_marginStart="284dp"
-            android:ems="10"
-            android:hint="@string/textView_time"
-            android:inputType="time"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/text_Date"
-            app:layout_constraintEnd_toEndOf="@+id/textView_physio"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/text_Date"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/text_appointment_state"
-            android:layout_width="334dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/md_theme_light_background"
-            android:backgroundTint="@color/md_theme_light_background"
-            android:ems="10"
-            android:inputType="text"
-            android:text="@string/appointment_state"
-            android:textColor="#F80303"
-            android:textSize="14sp"
+            android:id="@+id/textView_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/company_name"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="36sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/text_Time"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView_service_cost"
-            app:layout_constraintTop_toBottomOf="@+id/textView_service_cost"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textView_service_cost"
-            android:layout_width="230dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="40dp"
-            android:hint="Κόστος"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/text_Date"
-            app:layout_constraintTop_toBottomOf="@+id/text_Date"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/text_Date"
-            android:layout_width="230dp"
-            android:layout_height="65dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="40dp"
-            android:ems="10"
-            android:hint="@string/textView_date"
-            android:inputType="date"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.019"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView_service"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/user_textView_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
+            android:text="@string/user_welcome_message"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_company" />
+
+        <TextView
+            android:id="@+id/user_textView_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="22dp"
+            android:text="@string/user_name"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_textView_welcome" />
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_physio"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="340dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="250dp"
+            android:hint="@string/textView_physio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:endIconDrawable="@drawable/baseline_map_24"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/textView_physio"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/textView_physio"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_date"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="210dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="40dp"
+            app:endIconDrawable="@drawable/baseline_calendar_month_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_physio"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/text_Date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/textView_date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_physio">
+
+            </AutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_time"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="95dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="276dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textInputLayout_date">
+
+            <AutoCompleteTextView
+                android:id="@+id/text_Time"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/textView_time"
+                >
+
+            </AutoCompleteTextView>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="190dp"
+            android:text="@string/textView_clear"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_date"
+            app:layout_constraintVertical_bias="0.14" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="160dp"
+            android:text="@string/button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayout_time"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout_time" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
+

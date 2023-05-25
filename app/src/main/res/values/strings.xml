@@ -42,13 +42,9 @@
     <string name="user_name">Όνομα ασθενή</string>
     <string name="textView_physio">Φυσιοθεραπευτήριο</string>
     <string name="textView_time">Ώρα</string>
-    <string name="textView_date">Ημέρα</string>
+    <string name="textView_date">Ημερομηνία</string>
     <string name="appointment_state">Το ραντεβού δεν έχει επιβεβαιωθεί</string>
-    <string-array name="Services">
-        <item>Υπηρεσίες</item>
-        <!--the rest of the items will be filled with every new services inputted-->
-        <item>Test item</item>
-        <item>Test item 2</item>
-    </string-array>
     <string name="services">Υπηρεσίες</string>
+    <string name="textView_clear">Εκκαθάριση φόρμας</string>
+    <string name="button">Υποβολή</string>
 </resources>
