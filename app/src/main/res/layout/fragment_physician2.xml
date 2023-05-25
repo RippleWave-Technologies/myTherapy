@@ -12,7 +12,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
 
-            android:id="@+id/calendarBtn"
+            android:id="@+id/physician_r6_textInputLayout_calendarBtn"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/dateEditText"
+                android:id="@+id/physician_r6_textInputEditText_dateEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Ημερομηνία"

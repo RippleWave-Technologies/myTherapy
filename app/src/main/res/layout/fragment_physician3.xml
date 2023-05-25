@@ -6,64 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".R3_R8.PhysicianFragment3R5">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:foregroundTint="@color/white">
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
+            android:id="@+id/physician_r5_searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/physician_r5_search_view_bg"
             app:iconifiedByDefault="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:queryHint="Αναζήτηση ασθενών" />
 
         <ImageView
-            android:id="@+id/physician_r4_imageview_icon"
+            android:id="@+id/physician_r5_imageview_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/searchView"
-            android:layout_alignEnd="@+id/searchView"
-            android:layout_alignBottom="@+id/searchView"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="12dp"
             android:importantForAccessibility="no"
             android:src="@drawable/baseline_person_pin_24"
-            app:layout_constraintBottom_toBottomOf="@+id/searchView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/searchView" />
-
+            android:layout_alignBottom="@+id/physician_r5_searchView"
+            android:layout_alignEnd="@+id/physician_r5_searchView"
+            android:layout_alignTop="@+id/physician_r5_searchView"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
+            android:id="@+id/physician_r5_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/searchView"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/physician_r5_searchView"
             android:layout_marginTop="8dp"
-            android:background="@color/md_theme_light_surface"
-            app:layout_constraintTop_toBottomOf="@+id/searchView"
-            tools:layout_editor_absoluteX="0dp" />
+            android:background="@color/md_theme_light_surface"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/physician_r5_floatingActionButton"
             android:layout_width="324dp"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/recyclerview"
-            android:layout_alignBottom="@+id/recyclerview"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
             android:backgroundTint="@color/md_theme_light_surfaceVariant"
             android:clickable="true"
-            android:contentDescription="@null"
             android:src="@drawable/baseline_add_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:contentDescription="@null"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_alignBottom="@+id/physician_r5_recyclerView"
+            android:layout_alignEnd="@+id/physician_r5_recyclerView"/>
+    </RelativeLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

@@ -77,7 +77,7 @@ public class PhysicianFragment2R6 extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_physician2, container, false);
 
-        date = (TextInputEditText) rootView.findViewById(R.id.dateEditText);
+        date = (TextInputEditText) rootView.findViewById(R.id.physician_r6_textInputEditText_dateEditText);
         date.addTextChangedListener(new TextWatcher() {
             private String current = "";
             private String ddmmyyyy = "ΗΗΜΜΕΕΕΕ";
@@ -134,7 +134,7 @@ public class PhysicianFragment2R6 extends Fragment {
             public void afterTextChanged(Editable s) {}
         });
 
-        calendarBtn = rootView.findViewById(R.id.calendarBtn);
+        calendarBtn = rootView.findViewById(R.id.physician_r6_textInputLayout_calendarBtn);
         calendar = Calendar.getInstance();
 
         calendarBtn.setEndIconOnClickListener(v -> showDatePicker());

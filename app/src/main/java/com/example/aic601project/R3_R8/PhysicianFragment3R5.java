@@ -99,7 +99,7 @@ public class PhysicianFragment3R5 extends Fragment {
         patients.add(new Temppatients("euwdkleoe"));
         patients.add(new Temppatients("oideen"));
 
-        recyclerView = rootView.findViewById(R.id.recyclerview);
+        recyclerView = rootView.findViewById(R.id.physician_r5_recyclerView);
         recyclerView.setHasFixedSize(true);
 
         setOnClickListener();
@@ -109,7 +109,7 @@ public class PhysicianFragment3R5 extends Fragment {
         recyclerView.setAdapter(patientsAdapter);
         recyclerView.requestFocus();
 
-        searchView = rootView.findViewById((R.id.searchView));
+        searchView = rootView.findViewById((R.id.physician_r5_searchView));
         /*searchView.clearFocus();*/
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
