@@ -200,6 +200,7 @@ public class AdminR1Activity extends AppCompatActivity {
 }
 
 // TODO
-// με κλικ του admin_r1_button στη Προσθήκη Φυσιοθεραπευτηρίου -> αποθήκευση των δεδομένων στη ΒΔ
-//// υλοποίηση recyclerview για τα δεδομένα που αντλούνται από τη ΒΔ
-//// υλοποίηση ελέγχου για το αν έχουν γίνει αλλαγές στα στοιχεία του φυσιοθεραπευτηρίου και αποθήκευση των αλλαγών στη ΒΔ
+// clicking admin_r1_button when in "Νέο Φυσιοθεραπευτηρίου" saves the data to the database
+// create a recycleview for AdminFragment1 that displays the businesses from the database
+// clicking on a business in the recycleview will display the business details in AdminR1Activity
+// when in "Επεξεργασία" the system checks for changes in the data and if there are and admin_r1_button gets clicked it saves the changes to the database

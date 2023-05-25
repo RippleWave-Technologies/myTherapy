@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".R3_R8.PhysicianR8Activity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/physician_r8_appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_theme_light_surfaceVariant"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/physician_r8_topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/physician_r8_app_bar_layout"
+            app:navigationIcon="@drawable/baseline_arrow_back_24"
+            app:title="Προσθήκη Επίσκεψης"
+            app:titleCentered="true"
+            tools:layout_editor_absoluteX="0dp" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <Button
+        android:id="@+id/physician_r8_Button"
+        style="@style/Widget.Material3.Button.IconButton.Filled"
+        android:layout_width="148dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="51dp"
+        android:drawableLeft="@drawable/baseline_check_24"
+        android:text="Προσθήκη"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/physician_r8_constraintLayout_fields" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/physician_r8_constraintLayout_fields"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/physician_r8_appBarLayout">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/physician_r8_textInputLayout_patient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ασθενής"
+            android:enabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/physician_r8_textInputEditText_patient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/physician_r8_textInputLayout_actions"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:hint="@string/select"
+            app:endIconDrawable="@drawable/baseline_create_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/physician_r8_textInputLayout_patient">
+
+            <AutoCompleteTextView
+                android:id="@+id/physician_r8_autoCompleteTextView_actions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/physician_r8_textInputLayout_date"
+            android:layout_width="245dp"
+            android:layout_height="56dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="22dp"
+            android:hint="ΗΗ/ΜΜ/ΕΕΕΕ"
+            android:enabled="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/physician_r8_textInputLayout_actions">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/physician_r8_textInputEditText_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/physician_r8_textInputLayout_time"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="90dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="22dp"
+            android:hint="Ώρα"
+            android:enabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/physician_r8_textInputLayout_actions">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/physician_r8_textInputEditText_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

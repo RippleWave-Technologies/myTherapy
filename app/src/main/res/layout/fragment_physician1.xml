@@ -54,7 +54,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="22dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text=""
+                android:text="tempText"
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -96,6 +96,17 @@
                 app:layout_constraintTop_toTopOf="@+id/physician_textView_company" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/physician_r8_Button_temp"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="tempGoToR8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/physician_constraintLayout_upper" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

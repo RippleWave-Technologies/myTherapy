@@ -12,17 +12,17 @@ import com.example.aic601project.R;
 
 import java.util.List;
 
-public class NewR5Adapter extends RecyclerView.Adapter<NewR5Adapter.NewR5Holder> {
+public class PhysicianFragment3R5NewAdapter extends RecyclerView.Adapter<PhysicianFragment3R5NewAdapter.NewR5Holder> {
 
-    private List<Temppatients> patientsList;
+    private List<tempPhysicianR5Patients> patientsList;
     private RecyclerViewClickListener listener;
 
-    public NewR5Adapter(List<Temppatients> patientsList, RecyclerViewClickListener listener) {
+    public PhysicianFragment3R5NewAdapter(List<tempPhysicianR5Patients> patientsList, RecyclerViewClickListener listener) {
         this.patientsList = patientsList;
         this.listener = listener;
     }
 
-    public void setFilteredList(List<Temppatients> filteredList){
+    public void setFilteredList(List<tempPhysicianR5Patients> filteredList){
         this.patientsList = filteredList;
         notifyDataSetChanged();
     }
@@ -54,7 +54,7 @@ public class NewR5Adapter extends RecyclerView.Adapter<NewR5Adapter.NewR5Holder>
 
     @Override
     public void onBindViewHolder(@NonNull NewR5Holder holder, int position) {
-        Temppatients patient = patientsList.get(position);
+        tempPhysicianR5Patients patient = patientsList.get(position);
         holder.nameView.setText(patientsList.get(position).getName());
         String subs = holder.nameView.getText().toString().substring(0,1);
         holder.iconView.setText(subs.toUpperCase());

@@ -36,6 +36,9 @@
             android:name=".R3_R8.PhysicianR4Activity"
             android:exported="false" />
         <activity
+            android:name=".R3_R8.PhysicianR8Activity"
+            android:exported="false" />
+        <activity
             android:name=".R9_R10.UserMainActivity"
             android:exported="false" />
 

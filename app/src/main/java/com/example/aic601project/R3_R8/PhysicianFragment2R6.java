@@ -156,3 +156,7 @@ public class PhysicianFragment2R6 extends Fragment {
         datePickerDialog.show();
     }
 }
+
+// TODO
+// when a date is selected, a recyclerview should show the appropriate appointments which it retrieves from the database
+// when an appointment is selected, a new screen with the appointment details should come up

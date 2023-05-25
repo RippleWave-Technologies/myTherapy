@@ -26,11 +26,11 @@ import java.util.List;
 public class PhysicianFragment3R5 extends Fragment {
 
     private RecyclerView recyclerView;
-    private List<Temppatients> patients;
-    private List<Temppatients> filteredList;
-    private NewR5Adapter patientsAdapter;
+    private List<tempPhysicianR5Patients> patients;
+    private List<tempPhysicianR5Patients> filteredList;
+    private PhysicianFragment3R5NewAdapter patientsAdapter;
     private SearchView searchView;
-    private NewR5Adapter.RecyclerViewClickListener listener;
+    private PhysicianFragment3R5NewAdapter.RecyclerViewClickListener listener;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -80,24 +80,24 @@ public class PhysicianFragment3R5 extends Fragment {
 
         patients = new ArrayList<>();
 
-        patients.add(new Temppatients("jfhdjhdf"));
-        patients.add(new Temppatients("ffjfhjhgjhfg"));
-        patients.add(new Temppatients("dhfjdfh"));
-        patients.add(new Temppatients("dfhhfjhf"));
-        patients.add(new Temppatients("euwdkleoe"));
-        patients.add(new Temppatients("oideen"));
-        patients.add(new Temppatients("jfhdjhdf"));
-        patients.add(new Temppatients("ffjfhjhgjhfg"));
-        patients.add(new Temppatients("dhfjdfh"));
-        patients.add(new Temppatients("dfhhfjhf"));
-        patients.add(new Temppatients("euwdkleoe"));
-        patients.add(new Temppatients("oideen"));
-        patients.add(new Temppatients("jfhdjhdf"));
-        patients.add(new Temppatients("ffjfhjhgjhfg"));
-        patients.add(new Temppatients("dhfjdfh"));
-        patients.add(new Temppatients("dfhhfjhf"));
-        patients.add(new Temppatients("euwdkleoe"));
-        patients.add(new Temppatients("oideen"));
+        patients.add(new tempPhysicianR5Patients("jfhdjhdf"));
+        patients.add(new tempPhysicianR5Patients("ffjfhjhgjhfg"));
+        patients.add(new tempPhysicianR5Patients("dhfjdfh"));
+        patients.add(new tempPhysicianR5Patients("dfhhfjhf"));
+        patients.add(new tempPhysicianR5Patients("euwdkleoe"));
+        patients.add(new tempPhysicianR5Patients("oideen"));
+        patients.add(new tempPhysicianR5Patients("jfhdjhdf"));
+        patients.add(new tempPhysicianR5Patients("ffjfhjhgjhfg"));
+        patients.add(new tempPhysicianR5Patients("dhfjdfh"));
+        patients.add(new tempPhysicianR5Patients("dfhhfjhf"));
+        patients.add(new tempPhysicianR5Patients("euwdkleoe"));
+        patients.add(new tempPhysicianR5Patients("oideen"));
+        patients.add(new tempPhysicianR5Patients("jfhdjhdf"));
+        patients.add(new tempPhysicianR5Patients("ffjfhjhgjhfg"));
+        patients.add(new tempPhysicianR5Patients("dhfjdfh"));
+        patients.add(new tempPhysicianR5Patients("dfhhfjhf"));
+        patients.add(new tempPhysicianR5Patients("euwdkleoe"));
+        patients.add(new tempPhysicianR5Patients("oideen"));
 
         recyclerView = rootView.findViewById(R.id.physician_r5_recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -105,7 +105,7 @@ public class PhysicianFragment3R5 extends Fragment {
         setOnClickListener();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        patientsAdapter = new NewR5Adapter(patients, listener);
+        patientsAdapter = new PhysicianFragment3R5NewAdapter(patients, listener);
         recyclerView.setAdapter(patientsAdapter);
         recyclerView.requestFocus();
 
@@ -121,7 +121,7 @@ public class PhysicianFragment3R5 extends Fragment {
             public boolean onQueryTextChange(String newText) {
 
                 filteredList = new ArrayList<>();
-                for (Temppatients p : patients) {
+                for (tempPhysicianR5Patients p : patients) {
                     if (p.getName().toLowerCase().contains(newText.toLowerCase()))
                     {
                         filteredList.add(p);
@@ -130,7 +130,7 @@ public class PhysicianFragment3R5 extends Fragment {
 
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(layoutManager);
-                patientsAdapter = new NewR5Adapter(filteredList, listener);
+                patientsAdapter = new PhysicianFragment3R5NewAdapter(filteredList, listener);
                 recyclerView.setAdapter(patientsAdapter);
 
                 return true;
@@ -138,30 +138,25 @@ public class PhysicianFragment3R5 extends Fragment {
         });
 
         FloatingActionButton button = rootView.findViewById(R.id.physician_r5_floatingActionButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent intent = new Intent(getApplicationContext(), PhysicianR3Acticity.class);
-                //startActivity(intent);
-                //requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
-            }
+        button.setOnClickListener(view -> {
+            //Intent intent = new Intent(getApplicationContext(), PhysicianR3Acticity.class);
+            //startActivity(intent);
+            //requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
         });
 
         return rootView;
     }
 
     private void setOnClickListener() {
-        listener = new NewR5Adapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Intent intent = new Intent(getContext(), PhysicianR4Activity.class);
-                startActivity(intent);
-                requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
-            }
+        listener = (v, position) -> {
+            Intent intent = new Intent(getContext(), PhysicianR4Activity.class);
+            startActivity(intent);
+            requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
         };
     }
 }
 
 // TODO
-// bottom bar comes up when searching
-// make textview grey
+// the physician_r5_recyclerView should get populated using the data on the database
+// fix physician_bottom_navigation_bar coming up when physician_r5_searchView gets clicked
+// the layout of the physician_r5_recyclerView does not have a pressed or clicked effect

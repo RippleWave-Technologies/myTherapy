@@ -27,20 +27,19 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <Button
         android:id="@+id/admin_r1_button"
         style="@style/Widget.Material3.Button.IconButton.Filled"
         android:layout_width="148dp"
         android:layout_height="65dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginBottom="51dp"
         android:drawableLeft="@drawable/baseline_check_24"
         android:enabled="false"
         android:onClick="addPhysio"
         android:text="@string/admin_addButton"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/admin_r1_constraintLayout_fields"
-        app:layout_constraintTop_toBottomOf="@+id/admin_r1_constraintLayout_fields"
         tools:ignore="RtlHardcoded" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -79,11 +79,7 @@ public class PhysicianR4Activity extends AppCompatActivity {
         LinearLayout editLayout = dialog.findViewById(R.id.layoutEdit);
         LinearLayout editLayout2 = dialog.findViewById(R.id.layoutEdit2);
         LinearLayout editLayout3 = dialog.findViewById(R.id.layoutEdit3);
-        editLayout.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
-                Toast.makeText(PhysicianR4Activity.this, "clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+        editLayout.setOnClickListener(v -> Toast.makeText(PhysicianR4Activity.this, "clicked", Toast.LENGTH_SHORT).show());
 
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -148,5 +144,9 @@ public class PhysicianR4Activity extends AppCompatActivity {
         super.onBackPressed();
         overridePendingTransition(R.anim.no_slide_in_or_out, R.anim.slide_out_from_top);
     }
-
 }
+
+// TODO
+// a physician_r4_app_bar_layout.xml file could be created for the right hand side icon of the physician_r4_appBarLayout
+// when in "Επεξεργασία" the system checks for changes in the data and if there are and physician_r4_EditButton gets clicked it saves the changes to the database
+// layout_physician_r4_bottom_sheet.xml should get populated with the patient's previous visits from the database
