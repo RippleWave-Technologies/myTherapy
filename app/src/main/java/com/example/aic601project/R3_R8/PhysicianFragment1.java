@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.aic601project.R;
 import com.example.aic601project.R1_R2.AdminR1Activity;
@@ -68,12 +69,21 @@ public class PhysicianFragment1 extends Fragment {
         // setOnClickListener for the physician_fragment1_Button_temporaryR4
         rootView.findViewById(R.id.physician_fragment1_Button_temporaryR4).setOnClickListener(v -> tempR4button());
 
+        // setOnClickListener for the physician_imageButton_notifications
+        rootView.findViewById(R.id.physician_imageButton_notifications).setOnClickListener(v -> startR7Activity());
+
         return rootView;
     }
 
     // method for physician_fragment1_Button_temporaryR4
     public void tempR4button() {
         startActivity(new Intent(getActivity(), PhysicianR4Activity.class));
+        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+    }
+
+    // method for physician_imageButton_notifications
+    public void startR7Activity() {
+        //startActivity(new Intent(getActivity(), PhysicianR7Activity.class));
         requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 }
