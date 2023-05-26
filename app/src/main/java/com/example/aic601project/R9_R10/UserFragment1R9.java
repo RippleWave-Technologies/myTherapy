@@ -4,9 +4,13 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -75,14 +79,6 @@ public class UserFragment1R9 extends Fragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
 
     @Override
@@ -148,15 +144,48 @@ public class UserFragment1R9 extends Fragment {
             }
         });
 
+
         return rootView;
 
     }
 
-   public void startNewActivity(){
+
+    //doesn't work
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        //Enabling options menu in this fragment
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+    }
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        //inflate menu
+        inflater.inflate(R.menu.top_app_bar_menu_user, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        //handle menu item clicks
+        int id = item.getItemId();
+
+        if(id == R.id.notif_bell){
+            Toast.makeText(getActivity(), "Notif bell clicked", Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    /**
+    public void startNewActivity(){
        Intent intent = new Intent(getActivity(), UserR9MainActivity.class);
        startActivity(intent);
        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
-   }
+   }**/
 
 
 

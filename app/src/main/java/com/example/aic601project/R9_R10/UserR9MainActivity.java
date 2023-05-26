@@ -54,8 +54,8 @@ public class UserR9MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_user1);
 
-        Toolbar toolbar = findViewById(R.id.user_R9_topAppBar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.user_R9_topAppBar);
+       // setSupportActionBar(toolbar);
 
 
         //assign variables to the textinputlayout

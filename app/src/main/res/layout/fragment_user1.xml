@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
 
-       <!--top app bar-->
+
        <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/user_constraintLayout_upper"
         android:layout_width="413dp"
