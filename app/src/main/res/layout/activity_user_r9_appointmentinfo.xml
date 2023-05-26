@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".R9_R10.UserAppointmentsInfoActivityR9">
+    tools:context=".R9_R10.UserR9AppointmentInfoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:id="@+id/user_topappBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:menu="@menu/top_app_bar_appointments_user"
+                app:menu="@menu/user_r9appointmentinfo_app_bar_layout"
                 android:navigationIcon="@drawable/baseline_arrow_back_24"
                 app:title="Πληροφορίες"
                 app:titleCentered="true" />
@@ -40,7 +40,7 @@
             android:layout_marginTop="74dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="110dp"
-            android:hint="@string/textView_physio"
+            android:hint="@string/user_physio"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/text_Time"
@@ -56,7 +56,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="40dp"
             android:ems="10"
-            android:hint="@string/services"
+            android:hint="@string/user_service"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
             android:layout_height="65dp"
             android:layout_marginStart="284dp"
             android:ems="10"
-            android:hint="@string/textView_time"
+            android:hint="@string/user_time"
             android:inputType="time"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/text_Date"
@@ -90,7 +90,7 @@
             android:backgroundTint="@color/md_theme_light_background"
             android:ems="10"
             android:inputType="text"
-            android:text="@string/appointment_state"
+            android:text="@string/user_appointmentState"
             android:textColor="#F80303"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -124,7 +124,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="40dp"
             android:ems="10"
-            android:hint="@string/textView_date"
+            android:hint="@string/user_date"
             android:inputType="date"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"

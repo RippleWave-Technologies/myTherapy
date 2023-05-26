@@ -11,183 +11,99 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-       <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/user_constraintLayout_upper"
-        android:layout_width="413dp"
-        android:layout_height="200dp"
-        android:background="@color/md_theme_light_surfaceVariant"
-        android:elevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/user_R9_appBarLayout"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/md_theme_light_surfaceVariant"
-            android:elevation="4dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/user_R9_topAppBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:menu="@menu/top_app_bar_menu_user" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <!--textViews on top app bar-->
-        <TextView
-            android:id="@+id/textView_company"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/company_name"
-            android:textColor="@color/black"
-            android:fontFamily="@font/roboto_bold"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/user_textView_welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:text="@string/user_welcome_message"
-            android:textColor="@color/black"
-            android:fontFamily="@font/roboto"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_company" />
-
-        <TextView
-            android:id="@+id/user_textView_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="22dp"
-            android:text="@string/user_name"
-            android:textColor="@color/black"
-            android:fontFamily="@font/roboto_bold"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_textView_welcome" />
-       </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_physio"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="335dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginTop="250dp"
-            android:textAlignment="textStart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:endIconDrawable="@drawable/baseline_map_24"
-            >
-
-            <AutoCompleteTextView
-                android:id="@+id/textView_physio"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp"
-                android:inputType="textAutoComplete"
-                android:completionThreshold="1"
-                android:hint="@string/textView_physio"
-
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_date"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="230dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginStart="30dp"
-            app:endIconDrawable="@drawable/baseline_calendar_month_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_physio"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_Date"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableRight="@drawable/baseline_calendar_month_24"
-                android:hint="@string/textView_date"
-                android:inputType="date"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/user_r9_textInputLayout_physio"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textAlignment="textStart"
+                app:endIconMode="none"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_physio">
+                app:layout_constraintTop_toTopOf="parent">
 
-            </com.google.android.material.textfield.TextInputEditText>
+                <AutoCompleteTextView
+                    android:id="@+id/user_r9_autoCompleteTextView_physio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:completionThreshold="1"
+                    android:hint="@string/user_physio"
+                    android:inputType="textAutoComplete"
+                    android:padding="10dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/user_r9_textInputLayout_date"
+                android:layout_width="230dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="22dp"
+                app:endIconDrawable="@drawable/baseline_calendar_month_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_r9_textInputLayout_physio">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_time"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="95dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="276dp"
-            android:layout_marginEnd="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout_date">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/user_r9_textInputEditText_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableRight="@drawable/baseline_calendar_month_24"
+                    android:hint="@string/user_date"
+                    android:inputType="date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_physio" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <AutoCompleteTextView
-                android:id="@+id/text_Time"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp"
-                android:inputType="time"
-                android:completionThreshold="1"
-                android:hint="@string/textView_time"
-                >
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/user_r9_textInputLayout_time"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="95dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="22dp"
+                app:endIconMode="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_r9_textInputLayout_physio">
 
-            </AutoCompleteTextView>
-        </com.google.android.material.textfield.TextInputLayout>
+                <AutoCompleteTextView
+                    android:id="@+id/user_r9_autoCompleteTextView_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:completionThreshold="1"
+                    android:hint="@string/user_time"
+                    android:inputType="time"
+                    android:padding="10dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textView_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="190dp"
-            android:text="@string/textView_clear"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.092"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_date"
-            app:layout_constraintVertical_bias="0.082" />
+            <TextView
+                android:id="@+id/user_r9_textView_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/clearForm"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_r9_textInputLayout_date" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/user_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="108dp"
-            android:text="@string/button"
+            android:id="@+id/user_r9_button"
+            style="@style/Widget.Material3.Button.IconButton.Filled"
+            android:layout_width="124dp"
+            android:layout_height="65dp"
+            android:layout_marginBottom="51dp"
+            android:text="@string/user_button"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout_time"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout_time" />
-
-
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
 

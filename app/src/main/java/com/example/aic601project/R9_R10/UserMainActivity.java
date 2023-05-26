@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.aic601project.R;
+import com.example.aic601project.R1_R2.AdminR1Activity;
 import com.example.aic601project.R3_R8.PhysicianFragment1;
 import com.example.aic601project.R3_R8.PhysicianFragment2R6;
 import com.example.aic601project.R3_R8.PhysicianFragment3R5;
@@ -46,6 +48,9 @@ public class UserMainActivity extends AppCompatActivity {
 
         // Set the initial fragment when the activity is created
         loadFragment(new UserFragment1R9());
+
+        // onClick listener for user_imageButton_notifications
+        findViewById(R.id.user_imageButton_notifications).setOnClickListener(v -> launchUserR9NotificationsActivity());
     }
 
     private void loadFragment(Fragment fragment) {
@@ -53,5 +58,11 @@ public class UserMainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction()
                 .replace(R.id.user_frameLayout, fragment)
                 .commit();
+    }
+
+    // method for user_imageButton_notifications
+    private void launchUserR9NotificationsActivity() {
+        startActivity(new Intent(this, UserR9NotificationsActivity.class));
+        overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 }

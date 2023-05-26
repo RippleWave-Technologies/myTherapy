@@ -8,6 +8,7 @@
     <string name="zipNo">Τ.Κ.</string>
     <string name="country">Χώρα</string>
     <string name="signIn">Είσοδος</string>
+    <string name="clearForm">Εκκαθάριση φόρμας</string>
     <string name="welcome_message">Καλώς ορίσατε,</string>
 
 
@@ -24,12 +25,19 @@
     <string name="admin_serviceCost">Κόστος ανα συνεδρία</string>
     <string name="admin_serviceDescription">Περιγραφή παροχής</string>
 
-    <string name="physician_user">Όνομα</string>
     <string name="physician_name">Όνομα</string>
     <string name="physician_lastName">Επώνυμο</string>
     <string name="physician_AMKA">ΑΜΚΑ</string>
     <string name="physician_appointment_history">Προηγούμενες επισκέψεις</string>
     <string name="physician_edit">Επεξεργασία</string>
+    <string name="physician_selectService">Ενέργειες επίσκεψης</string>
+
+    <string name="user_physio">Φυσιοθεραπευτήριο</string>
+    <string name="user_service">Υπηρεσία</string>
+    <string name="user_time">Ώρα</string>
+    <string name="user_date">Ημερομηνία</string>
+    <string name="user_appointmentState">Το ραντεβού δεν έχει επιβεβαιωθεί</string>
+    <string name="user_button">Υποβολή</string>
 
 
     <string name="menu_main_1admin">Χρήστης ΠΣΦ</string>
@@ -45,14 +53,4 @@
 
     <string name="user_welcome_message">Καλώς ορίσατε,</string>
     <string name="user_name">Όνομα ασθενή</string>
-    <string name="textView_physio">Φυσιοθεραπευτήριο</string>
-    <string name="textView_time">Ώρα</string>
-    <string name="textView_date">Ημερομηνία</string>
-    <string name="appointment_state">Το ραντεβού δεν έχει επιβεβαιωθεί</string>
-    <string name="services">Υπηρεσίες</string>
-    <string name="textView_clear">Εκκαθάριση φόρμας</string>
-    <string name="button">Υποβολή</string>
-    <string name="select">Ενέργειες επίσκεψης</string>
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

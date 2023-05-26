@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.aic601project.R;
 
-public class UserNotificationActivityR9 extends AppCompatActivity {
+public class UserR9AppointmentInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_activity_notification_r9);
+        setContentView(R.layout.activity_user_r9_appointmentinfo);
     }
 }

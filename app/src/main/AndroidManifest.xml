@@ -12,13 +12,10 @@
         android:theme="@style/Theme.AIC601project"
         tools:targetApi="31">
         <activity
-            android:name=".R9_R10.UserR9MainActivity"
+            android:name=".R9_R10.UserR9NotificationsActivity"
             android:exported="false" />
         <activity
-            android:name=".R9_R10.UserNotificationActivityR9"
-            android:exported="false" />
-        <activity
-            android:name=".R9_R10.UserAppointmentsInfoActivityR9"
+            android:name=".R9_R10.UserR9AppointmentInfoActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

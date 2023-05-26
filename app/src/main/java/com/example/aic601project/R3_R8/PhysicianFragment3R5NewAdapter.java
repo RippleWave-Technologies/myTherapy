@@ -14,15 +14,15 @@ import java.util.List;
 
 public class PhysicianFragment3R5NewAdapter extends RecyclerView.Adapter<PhysicianFragment3R5NewAdapter.NewR5Holder> {
 
-    private List<tempPhysicianR5Patients> patientsList;
+    private List<JavaTempPhysicianR5Patients> patientsList;
     private RecyclerViewClickListener listener;
 
-    public PhysicianFragment3R5NewAdapter(List<tempPhysicianR5Patients> patientsList, RecyclerViewClickListener listener) {
+    public PhysicianFragment3R5NewAdapter(List<JavaTempPhysicianR5Patients> patientsList, RecyclerViewClickListener listener) {
         this.patientsList = patientsList;
         this.listener = listener;
     }
 
-    public void setFilteredList(List<tempPhysicianR5Patients> filteredList){
+    public void setFilteredList(List<JavaTempPhysicianR5Patients> filteredList){
         this.patientsList = filteredList;
         notifyDataSetChanged();
     }
@@ -54,7 +54,7 @@ public class PhysicianFragment3R5NewAdapter extends RecyclerView.Adapter<Physici
 
     @Override
     public void onBindViewHolder(@NonNull NewR5Holder holder, int position) {
-        tempPhysicianR5Patients patient = patientsList.get(position);
+        JavaTempPhysicianR5Patients patient = patientsList.get(position);
         holder.nameView.setText(patientsList.get(position).getName());
         String subs = holder.nameView.getText().toString().substring(0,1);
         holder.iconView.setText(subs.toUpperCase());

@@ -77,7 +77,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
-            android:hint="@string/select"
+            android:hint="@string/physician_selectService"
             app:endIconDrawable="@drawable/baseline_create_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

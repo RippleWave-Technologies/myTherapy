@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".R9_R10.UserNotificationActivityR9">
+    tools:context=".R9_R10.UserR9NotificationsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/user_notifications"
+        android:id="@+id/user_r9notifications_appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/md_theme_light_surfaceVariant"
@@ -17,12 +17,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/user_topAppBar_notif"
+            android:id="@+id/user_r9notifications_topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/baseline_arrow_back_24"
             app:title="Ειδοποιήσεις"
-            app:menu="@menu/top_app_bar_notifications_user"
+            app:menu="@menu/user_r9notifications_app_bar_layout"
             app:titleCentered="true"/>
 
     </com.google.android.material.appbar.AppBarLayout>

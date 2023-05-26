@@ -1,10 +1,10 @@
 package com.example.aic601project.R3_R8;
 
-public class tempPhysicianR5Patients {
+public class JavaTempPhysicianR5Patients {
 
     private String name;
 
-    public tempPhysicianR5Patients(String name) {
+    public JavaTempPhysicianR5Patients(String name) {
         this.name = name;
     }
 

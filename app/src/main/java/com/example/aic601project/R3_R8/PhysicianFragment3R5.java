@@ -26,8 +26,8 @@ import java.util.List;
 public class PhysicianFragment3R5 extends Fragment {
 
     private RecyclerView recyclerView;
-    private List<tempPhysicianR5Patients> patients;
-    private List<tempPhysicianR5Patients> filteredList;
+    private List<JavaTempPhysicianR5Patients> patients;
+    private List<JavaTempPhysicianR5Patients> filteredList;
     private PhysicianFragment3R5NewAdapter patientsAdapter;
     private SearchView searchView;
     private PhysicianFragment3R5NewAdapter.RecyclerViewClickListener listener;
@@ -80,24 +80,24 @@ public class PhysicianFragment3R5 extends Fragment {
 
         patients = new ArrayList<>();
 
-        patients.add(new tempPhysicianR5Patients("jfhdjhdf"));
-        patients.add(new tempPhysicianR5Patients("ffjfhjhgjhfg"));
-        patients.add(new tempPhysicianR5Patients("dhfjdfh"));
-        patients.add(new tempPhysicianR5Patients("dfhhfjhf"));
-        patients.add(new tempPhysicianR5Patients("euwdkleoe"));
-        patients.add(new tempPhysicianR5Patients("oideen"));
-        patients.add(new tempPhysicianR5Patients("jfhdjhdf"));
-        patients.add(new tempPhysicianR5Patients("ffjfhjhgjhfg"));
-        patients.add(new tempPhysicianR5Patients("dhfjdfh"));
-        patients.add(new tempPhysicianR5Patients("dfhhfjhf"));
-        patients.add(new tempPhysicianR5Patients("euwdkleoe"));
-        patients.add(new tempPhysicianR5Patients("oideen"));
-        patients.add(new tempPhysicianR5Patients("jfhdjhdf"));
-        patients.add(new tempPhysicianR5Patients("ffjfhjhgjhfg"));
-        patients.add(new tempPhysicianR5Patients("dhfjdfh"));
-        patients.add(new tempPhysicianR5Patients("dfhhfjhf"));
-        patients.add(new tempPhysicianR5Patients("euwdkleoe"));
-        patients.add(new tempPhysicianR5Patients("oideen"));
+        patients.add(new JavaTempPhysicianR5Patients("jfhdjhdf"));
+        patients.add(new JavaTempPhysicianR5Patients("ffjfhjhgjhfg"));
+        patients.add(new JavaTempPhysicianR5Patients("dhfjdfh"));
+        patients.add(new JavaTempPhysicianR5Patients("dfhhfjhf"));
+        patients.add(new JavaTempPhysicianR5Patients("euwdkleoe"));
+        patients.add(new JavaTempPhysicianR5Patients("oideen"));
+        patients.add(new JavaTempPhysicianR5Patients("jfhdjhdf"));
+        patients.add(new JavaTempPhysicianR5Patients("ffjfhjhgjhfg"));
+        patients.add(new JavaTempPhysicianR5Patients("dhfjdfh"));
+        patients.add(new JavaTempPhysicianR5Patients("dfhhfjhf"));
+        patients.add(new JavaTempPhysicianR5Patients("euwdkleoe"));
+        patients.add(new JavaTempPhysicianR5Patients("oideen"));
+        patients.add(new JavaTempPhysicianR5Patients("jfhdjhdf"));
+        patients.add(new JavaTempPhysicianR5Patients("ffjfhjhgjhfg"));
+        patients.add(new JavaTempPhysicianR5Patients("dhfjdfh"));
+        patients.add(new JavaTempPhysicianR5Patients("dfhhfjhf"));
+        patients.add(new JavaTempPhysicianR5Patients("euwdkleoe"));
+        patients.add(new JavaTempPhysicianR5Patients("oideen"));
 
         recyclerView = rootView.findViewById(R.id.physician_r5_recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -121,7 +121,7 @@ public class PhysicianFragment3R5 extends Fragment {
             public boolean onQueryTextChange(String newText) {
 
                 filteredList = new ArrayList<>();
-                for (tempPhysicianR5Patients p : patients) {
+                for (JavaTempPhysicianR5Patients p : patients) {
                     if (p.getName().toLowerCase().contains(newText.toLowerCase()))
                     {
                         filteredList.add(p);

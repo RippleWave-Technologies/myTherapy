@@ -44,18 +44,13 @@ public class UserFragment1R9 extends Fragment {
 
     private Button button;
     private TextInputEditText date;
-    private AutoCompleteTextView physio;
-    private AutoCompleteTextView time;
+    private AutoCompleteTextView physio, time;
 
     //autocomplete textView Physio, the values for the PHYSIOS will be taken from the db
-    private static final String[] PHYSIOS = new String[]{
-            "Name1", "BName", "DName"
-    };
+    private static final String[] PHYSIOS = new String[]{ "Name1", "BName", "DName" };
 
-    //autocomplete textView Time, the values of the time will e taken from doctor's available times from the db (??)
-    private static final String[] APPOINTMENTS_HOURS_AVAILABLE = new String[]{
-            "9:00", "10:00", "11:00"
-    };
+    //autocomplete textView Time, the values of the time will be taken from doctor's available times from the db (??)
+    private static final String[] APPOINTMENTS_HOURS_AVAILABLE = new String[]{ "9:00", "10:00", "11:00" };
 
     public UserFragment1R9() {
         // Required empty public constructor
@@ -92,57 +87,42 @@ public class UserFragment1R9 extends Fragment {
 
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Inflate the layout for this fragment
-       View rootView = inflater.inflate(R.layout.fragment_user1, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_user1, container, false);
 
 
-       //the toast here works but it doesn't when it's called from the activity, which means that the activity isn't called successfully
-        button = rootView.findViewById(R.id.user_button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Button pressed!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        //the toast here works but it doesn't when it's called from the activity, which means that the activity isn't called successfully
+        button = rootView.findViewById(R.id.user_r9_button);
+        button.setOnClickListener(v -> Toast.makeText(getActivity(), "Button pressed!", Toast.LENGTH_SHORT).show());
 
         //pop-up calendar
-        date = rootView.findViewById(R.id.text_Date);
+        date = rootView.findViewById(R.id.user_r9_textInputEditText_date);
 
         final Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_WEEK);
 
-
-        date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                DatePickerDialog dialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        month = month + 1;
-                        String new_date = day + "/" + month + "/" + year;
-                        date.setText(new_date);
-                    }
-                }, year, month, day);
-                dialog.show();
-            }
+        date.setOnClickListener(v -> {
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), (view, year1, month1, dayOfMonth) -> {
+                month1 = month1 + 1;
+                String new_date = day + "/" + month1 + "/" + year1;
+                date.setText(new_date);
+            }, year, month, day);
+            dialog.show();
         });
 
         //autocomplete text view: Physio
-        physio = rootView.findViewById(R.id.textView_physio);
+        physio = rootView.findViewById(R.id.user_r9_autoCompleteTextView_physio);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, PHYSIOS);
         physio.setAdapter(adapter);
 
         //autocomplete text view: Time
-        time = rootView.findViewById(R.id.text_Time);
+        time = rootView.findViewById(R.id.user_r9_autoCompleteTextView_time);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, APPOINTMENTS_HOURS_AVAILABLE);
         time.setAdapter(adapter2);
@@ -150,48 +130,12 @@ public class UserFragment1R9 extends Fragment {
 
         // clickable text to clear the fields, void will clear all fields
         //how I clear the TextViews is kinda stupid, any better ideas?
-        TextView txtClear = (TextView) rootView.findViewById(R.id.textView_clear);
-
-        txtClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                physio.setText("");
-                time.setText("");
-                date.setText("");
-            }
+        ((TextView)(rootView.findViewById(R.id.user_r9_textView_clear))).setOnClickListener(v -> {
+            physio.setText("");
+            time.setText("");
+            date.setText("");
         });
 
-
         return rootView;
-
     }
-
-
-    //doesn't work
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        //inflate menu
-        inflater.inflate(R.menu.top_app_bar_menu_user, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        //handle menu item clicks
-        int id = item.getItemId();
-
-        if(id == R.id.notif_bell){
-            Toast.makeText(getActivity(), "Notif bell clicked", Toast.LENGTH_SHORT).show();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    /**
-    public void startNewActivity(){
-       Intent intent = new Intent(getActivity(), UserR9MainActivity.class);
-       startActivity(intent);
-       requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
-   }**/
-
-
-
 }
