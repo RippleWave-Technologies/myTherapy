@@ -16,11 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/physician_r5_search_view_bg"
+            app:queryBackground="@null"
             app:iconifiedByDefault="false"
             app:queryHint="Αναζήτηση ασθενών" />
 
@@ -30,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:importantForAccessibility="no"
-            android:src="@drawable/baseline_person_pin_24"
+            android:src="@drawable/baseline_account_circle_24"
             android:layout_alignBottom="@+id/physician_r5_searchView"
             android:layout_alignEnd="@+id/physician_r5_searchView"
             android:layout_alignTop="@+id/physician_r5_searchView"
