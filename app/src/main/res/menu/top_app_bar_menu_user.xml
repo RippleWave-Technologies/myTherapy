@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/notif_bell"
+        android:title="NotificationBell"
+        android:icon="@drawable/baseline_notifications_none_24"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/user_account"
+        android:title="Account"
+        android:icon="@drawable/baseline_account_circle_24"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/exit_arrow"
+        android:title="ExitArrow"
+        android:icon="@drawable/baseline_exit_to_app_24"
+        app:showAsAction="always"
+        />
+
+</menu>
