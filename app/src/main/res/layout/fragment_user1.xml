@@ -90,7 +90,7 @@
             android:layout_width="340dp"
             android:layout_height="60dp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="35dp"
             android:layout_marginTop="250dp"
             android:hint="@string/textView_physio"
             android:textAlignment="textStart"
@@ -104,6 +104,7 @@
                 android:id="@+id/textView_physio"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:padding="10dp"
                 android:hint="@string/textView_physio"
 
                 />
@@ -115,27 +116,28 @@
             android:layout_width="230dp"
             android:layout_height="60dp"
             android:layout_marginTop="50dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
             app:endIconDrawable="@drawable/baseline_calendar_month_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout_physio"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_Date"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:drawableRight="@drawable/baseline_calendar_month_24"
                 android:hint="@string/textView_date"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_physio">
 
-            </AutoCompleteTextView>
+            </com.google.android.material.textfield.TextInputEditText>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_time"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="95dp"
             android:layout_height="60dp"
             android:layout_marginStart="276dp"
@@ -148,6 +150,7 @@
                 android:id="@+id/text_Time"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:padding="10dp"
                 android:hint="@string/textView_time"
                 >
 
@@ -158,7 +161,7 @@
             android:id="@+id/textView_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
             android:layout_marginEnd="190dp"
             android:text="@string/textView_clear"
             android:textSize="15sp"
@@ -170,7 +173,7 @@
             app:layout_constraintVertical_bias="0.082" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/user_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="160dp"

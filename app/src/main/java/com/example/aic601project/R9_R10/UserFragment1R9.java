@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 
 import com.example.aic601project.R;
 import com.example.aic601project.R1_R2.AdminR1Activity;
@@ -28,6 +29,8 @@ public class UserFragment1R9 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button button;
 
     public UserFragment1R9() {
         // Required empty public constructor
@@ -67,7 +70,18 @@ public class UserFragment1R9 extends Fragment {
         //Inflate the layout for this fragment
        View rootView = inflater.inflate(R.layout.fragment_user1, container, false);
 
-       return rootView;
+
+        button = rootView.findViewById(R.id.user_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.print("Button clicked");
+            }
+        });
+
+
+        return rootView;
+
     }
 
    public void startActivity(){

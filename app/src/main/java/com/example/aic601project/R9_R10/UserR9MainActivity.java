@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +32,8 @@ public class UserR9MainActivity extends AppCompatActivity {
     private AutoCompleteTextView date;
     private AutoCompleteTextView physio;
     private AutoCompleteTextView time;
+
+    private Button button;
 
     private TextInputLayout textDate, textPhysio, textTime;
 
@@ -82,6 +85,14 @@ public class UserR9MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+       /** button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               System.out.println("Button clicked");
+            }
+        });**/
 
         //autocomplete text view: Physio
         physio = findViewById(R.id.textView_physio);
