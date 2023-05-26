@@ -1,5 +1,6 @@
 package com.example.aic601project.R9_R10;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,11 +9,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.aic601project.R;
 import com.example.aic601project.R1_R2.AdminR1Activity;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +39,19 @@ public class UserFragment1R9 extends Fragment {
     private String mParam2;
 
     private Button button;
+    private TextInputEditText date;
+    private AutoCompleteTextView physio;
+    private AutoCompleteTextView time;
+
+    //autocomplete textView Physio, the values for the PHYSIOS will be taken from the db
+    private static final String[] PHYSIOS = new String[]{
+            "Name1", "BName", "DName"
+    };
+
+    //autocomplete textView Time, the values of the time will e taken from doctor's available times from the db (??)
+    private static final String[] APPOINTMENTS_HOURS_AVAILABLE = new String[]{
+            "9:00", "10:00", "11:00"
+    };
 
     public UserFragment1R9() {
         // Required empty public constructor
@@ -70,12 +91,70 @@ public class UserFragment1R9 extends Fragment {
         //Inflate the layout for this fragment
        View rootView = inflater.inflate(R.layout.fragment_user1, container, false);
 
+
+       //the toast here works but it doesn't when it's called from the activity, which means that the activity isn't called
+        button = rootView.findViewById(R.id.user_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Button pressed!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        date = rootView.findViewById(R.id.text_Date);
+
+        final Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatePickerDialog dialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        month = month + 1;
+                        String new_date = day + "/" + month + "/" + year;
+                        date.setText(new_date);
+                    }
+                }, year, month, day);
+                dialog.show();
+            }
+        });
+
+        //autocomplete text view: Physio
+        physio = rootView.findViewById(R.id.textView_physio);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, PHYSIOS);
+        physio.setAdapter(adapter);
+
+        //autocomplete text view: Time
+        time = rootView.findViewById(R.id.text_Time);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, APPOINTMENTS_HOURS_AVAILABLE);
+        time.setAdapter(adapter2);
+
+
+        // clickable text to clear the fields, void will clear all fields
+        TextView txtClear = (TextView) rootView.findViewById(R.id.textView_clear);
+
+        txtClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         return rootView;
 
     }
 
-   public void startActivity(){
-       startActivity(new Intent(getActivity(), UserR9MainActivity.class));
+   public void startNewActivity(){
+       Intent intent = new Intent(getActivity(), UserR9MainActivity.class);
+       startActivity(intent);
        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
    }
 

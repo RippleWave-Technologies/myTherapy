@@ -92,7 +92,7 @@ public class UserR9MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               System.console().printf("Button clicked");
+               Toast.makeText(getBaseContext(), "Button pressed!", Toast.LENGTH_SHORT).show();
             }
         });
 
