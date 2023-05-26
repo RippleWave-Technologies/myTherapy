@@ -25,13 +25,15 @@ import java.util.Calendar;
 
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class UserR9MainActivity extends AppCompatActivity {
 
-    private AutoCompleteTextView date;
+    private TextInputEditText date;
     private AutoCompleteTextView physio;
     private AutoCompleteTextView time;
+    private TextView txtClear;
 
     private Button button;
 
@@ -86,13 +88,13 @@ public class UserR9MainActivity extends AppCompatActivity {
             }
         });
 
-       /** button = findViewById(R.id.button);
+        button = findViewById(R.id.user_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               System.out.println("Button clicked");
+               System.console().printf("Button clicked");
             }
-        });**/
+        });
 
         //autocomplete text view: Physio
         physio = findViewById(R.id.textView_physio);

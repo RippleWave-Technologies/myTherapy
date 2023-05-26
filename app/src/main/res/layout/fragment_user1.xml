@@ -87,12 +87,11 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_physio"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="340dp"
+            android:layout_width="335dp"
             android:layout_height="60dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
             android:layout_marginEnd="35dp"
             android:layout_marginTop="250dp"
-            android:hint="@string/textView_physio"
             android:textAlignment="textStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,6 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
+                android:inputType="textAutoComplete"
                 android:hint="@string/textView_physio"
 
                 />
@@ -128,6 +128,7 @@
                 android:layout_height="match_parent"
                 android:drawableRight="@drawable/baseline_calendar_month_24"
                 android:hint="@string/textView_date"
+                android:inputType="date"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_physio">
 
@@ -151,6 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
+                android:inputType="time"
                 android:hint="@string/textView_time"
                 >
 
@@ -176,7 +178,7 @@
             android:id="@+id/user_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="160dp"
+            android:layout_marginBottom="108dp"
             android:text="@string/button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout_time"

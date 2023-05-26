@@ -70,16 +70,6 @@ public class UserFragment1R9 extends Fragment {
         //Inflate the layout for this fragment
        View rootView = inflater.inflate(R.layout.fragment_user1, container, false);
 
-
-        button = rootView.findViewById(R.id.user_button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.print("Button clicked");
-            }
-        });
-
-
         return rootView;
 
     }
