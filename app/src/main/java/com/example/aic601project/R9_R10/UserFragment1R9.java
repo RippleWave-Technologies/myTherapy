@@ -79,6 +79,19 @@ public class UserFragment1R9 extends Fragment {
         return fragment;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        //Enabling options menu in this fragment
+        setHasOptionsMenu(true);
+
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+    }
+
 
 
     @Override
@@ -88,7 +101,7 @@ public class UserFragment1R9 extends Fragment {
        View rootView = inflater.inflate(R.layout.fragment_user1, container, false);
 
 
-       //the toast here works but it doesn't when it's called from the activity, which means that the activity isn't called
+       //the toast here works but it doesn't when it's called from the activity, which means that the activity isn't called successfully
         button = rootView.findViewById(R.id.user_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +110,7 @@ public class UserFragment1R9 extends Fragment {
             }
         });
 
+        //pop-up calendar
         date = rootView.findViewById(R.id.text_Date);
 
         final Calendar calendar = Calendar.getInstance();
@@ -135,12 +149,15 @@ public class UserFragment1R9 extends Fragment {
 
 
         // clickable text to clear the fields, void will clear all fields
+        //how I clear the TextViews is kinda stupid, any better ideas?
         TextView txtClear = (TextView) rootView.findViewById(R.id.textView_clear);
 
         txtClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                physio.setText("");
+                time.setText("");
+                date.setText("");
             }
         });
 
@@ -151,18 +168,6 @@ public class UserFragment1R9 extends Fragment {
 
 
     //doesn't work
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        //Enabling options menu in this fragment
-        setHasOptionsMenu(true);
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-    }
-
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
         //inflate menu
         inflater.inflate(R.menu.top_app_bar_menu_user, menu);
