@@ -5,10 +5,10 @@
 
     <item
         android:id="@+id/account"
-        android:title="User account icon"
         android:icon="@drawable/baseline_medical_services_24"
         app:showAsAction="always"
-        />
+        tools:ignore="MenuTitle">
+    </item>
 
 
 </menu>

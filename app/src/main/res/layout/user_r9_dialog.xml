@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/user_r9_dialog_box"
+        android:orientation="vertical">
+
+
+
+        <!--clickable text yes-->
+        <TextView
+            android:id="@+id/yes_textfield"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/roboto"
+            android:text="Ναι"
+            android:textColor="@color/teal_700"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/no_textfield"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/no_textfield"
+            app:layout_constraintTop_toTopOf="@+id/no_textfield" />
+
+        <!--clickable text no-->
+        <TextView
+            android:id="@+id/no_textfield"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/roboto"
+            android:text="Όχι"
+            android:textColor="@color/teal_700"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.78"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.905" />
+
+        <!--textView with text-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Υποβολή αίτησης;"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.144" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:fontFamily="@font/roboto"
+            android:text="Πρόκειται να κάνετε κράτηση ραντεβού. Είστε σίγουροι για αυτό;"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

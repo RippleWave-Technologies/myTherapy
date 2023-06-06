@@ -1,7 +1,10 @@
 package com.example.aic601project.R9_R10;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -24,6 +27,8 @@ import com.example.aic601project.R;
 import com.example.aic601project.R1_R2.AdminR1Activity;
 import com.google.android.material.textfield.TextInputEditText;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
 /**
@@ -45,6 +50,8 @@ public class UserFragment1R9 extends Fragment {
     private Button button;
     private TextInputEditText date;
     private AutoCompleteTextView physio, time;
+    private TextView yes_text; //for the dialog box
+    private TextView no_text; //for the dialog box
 
     //autocomplete textView Physio, the values for the PHYSIOS will be taken from the db
     private static final String[] PHYSIOS = new String[]{ "Name1", "BName", "DName" };
@@ -94,9 +101,43 @@ public class UserFragment1R9 extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_user1, container, false);
 
 
-        //the toast here works but it doesn't when it's called from the activity, which means that the activity isn't called successfully
+        //dialog box to appear when button is clicked
         button = rootView.findViewById(R.id.user_r9_button);
-        button.setOnClickListener(v -> Toast.makeText(getActivity(), "Button pressed!", Toast.LENGTH_SHORT).show());
+        View alertUserDialog = LayoutInflater.from(getActivity()).inflate(R.layout.user_r9_dialog, null);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+
+        alertDialog.setView(alertUserDialog);
+
+        final AlertDialog dialog2 = alertDialog.create();
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog2.show();
+
+            }
+        });
+
+        //for the items I search the alertUserDialog view
+        //when no is pressed in the dialog box
+        TextView noText = alertUserDialog.findViewById(R.id.no_textfield);
+        noText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog2.cancel();
+            }
+        });
+
+        //when yes is pressed in the dialog box
+        TextView yesText = alertUserDialog.findViewById(R.id.yes_textfield);
+        yesText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog2.cancel();
+                Toast.makeText(getActivity(), "Yes text pressed", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //pop-up calendar
         date = rootView.findViewById(R.id.user_r9_textInputEditText_date);
@@ -128,8 +169,7 @@ public class UserFragment1R9 extends Fragment {
         time.setAdapter(adapter2);
 
 
-        // clickable text to clear the fields, void will clear all fields
-        //how I clear the TextViews is kinda stupid, any better ideas?
+        // clickable text to clear the fields
         ((TextView)(rootView.findViewById(R.id.user_r9_textView_clear))).setOnClickListener(v -> {
             physio.setText("");
             time.setText("");

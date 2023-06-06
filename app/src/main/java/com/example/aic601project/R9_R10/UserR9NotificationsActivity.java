@@ -2,8 +2,11 @@ package com.example.aic601project.R9_R10;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -11,6 +14,8 @@ import com.google.android.material.appbar.MaterialToolbar;
 public class UserR9NotificationsActivity extends AppCompatActivity {
     // toolbar - admin_r1_topAppBar
     private MaterialToolbar toolbar;
+
+    private Button tempButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +25,16 @@ public class UserR9NotificationsActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
         toolbar = findViewById(R.id.user_r9notifications_topAppBar);
         setupToolbarWithBackButton();
+
+        //tempButton to check that the info screen works
+        tempButton = findViewById(R.id.user_notif_button);
+        tempButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(UserR9NotificationsActivity.this, UserR9AppointmentInfoActivity.class);
+                UserR9NotificationsActivity.this.startActivity(myIntent);
+            }
+        });
     }
 
     // sets up a toolbar where clicking the back button calls onBackPressed()
