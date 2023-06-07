@@ -1,5 +1,11 @@
 package com.example.aic601project.R1_R2;
 
+import java.util.Objects;
+
+import com.example.aic601project.R;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.textfield.TextInputLayout;
+
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,18 +13,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.aic601project.R;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.Objects;
 
 public class AdminR1Activity extends AppCompatActivity {
     // hI short for hasInput - logs whether a TextInputLayout has input
-    private final boolean[] hI = {false, false, false, false, false, false, false};
+    private final boolean[] hI = { false, false, false, false, false, false, false };
     // hNE short for hasNumberError - logs whether there is an AFM error
     private boolean hNE = false;
     // textInputLayoutArray - logs all TextInputLayouts to a TextInputLayout[]
@@ -39,9 +38,11 @@ public class AdminR1Activity extends AppCompatActivity {
         toolbar = findViewById(R.id.admin_r1_topAppBar);
         setupToolbarWithBackButton();
 
-        /* We can figure out what launched the activity using the putExtra key
+        /*
+         * We can figure out what launched the activity using the putExtra key
          * if key == 1 then activity was launched by admin_button_add
-         * if key == 2 then activity was launched by adminR1_button_users */
+         * if key == 2 then activity was launched by adminR1_button_users
+         */
         int key = getIntent().getIntExtra("key", 1);
         switch (key) {
             case 1:
@@ -55,7 +56,7 @@ public class AdminR1Activity extends AppCompatActivity {
     }
 
     // creates an int[] with the Ids of all TextInputLayouts
-    private TextInputLayout[] setTextInputLayoutArray(){
+    private TextInputLayout[] setTextInputLayoutArray() {
         TextInputLayout[] textInputLayoutArray = new TextInputLayout[7];
         textInputLayoutArray[0] = findViewById(R.id.admin_r1_textInputLayout_name);
         textInputLayoutArray[1] = findViewById(R.id.admin_r1_textInputLayout_ssn);
@@ -68,7 +69,7 @@ public class AdminR1Activity extends AppCompatActivity {
     }
 
     // sets up a toolbar where clicking the back button calls onBackPressed()
-    private void setupToolbarWithBackButton(){
+    private void setupToolbarWithBackButton() {
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
@@ -80,37 +81,44 @@ public class AdminR1Activity extends AppCompatActivity {
         overridePendingTransition(R.anim.no_slide_in_or_out, R.anim.slide_out_from_top);
     }
 
-    /* overrides the onCreateOptionsMenu because by calling setSupportActionBar
-    * the menu will be populated with standard system menu items */
+    /*
+     * overrides the onCreateOptionsMenu because by calling setSupportActionBar
+     * the menu will be populated with standard system menu items
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.admin_r1_app_bar_layout, menu);
         return true;
     }
 
-    // checks every TextInputLayout for changed text (and more) and calls enableButtonIfAllInputIsTrue
-    private void checkForInput(){
-        for (int i = 0; i <= 6; i++){
+    // checks every TextInputLayout for changed text (and more) and calls
+    // enableButtonIfAllInputIsTrue
+    private void checkForInput() {
+        for (int i = 0; i <= 6; i++) {
             final int index = i;
             Objects.requireNonNull(textInputLayoutArray[i].getEditText()).addTextChangedListener(new TextWatcher() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    if (index == 1){
+                    if (index == 1) {
                         checkAfm(charSequence);
                     }
                     hI[index] = !(charSequence.toString().isEmpty());
                     enableButtonIfAllInputIsTrue();
                 }
+
                 @Override
-                public void afterTextChanged(Editable editable) {}
+                public void afterTextChanged(Editable editable) {
+                }
             });
         }
     }
 
     // checks the validity of the AFM
-    private void checkAfm(CharSequence charSequence){
+    private void checkAfm(CharSequence charSequence) {
         if (charSequence.length() == 9) {
             int exponent = charSequence.length() - 1;
             int lastDigit = Integer.parseInt(Character.toString(charSequence.charAt(charSequence.length() - 1)));
@@ -138,14 +146,14 @@ public class AdminR1Activity extends AppCompatActivity {
     }
 
     // enables/disables all TextInputLayouts
-    private void fieldsEnableDisable(boolean enDis){
-        for (int i = 0; i <=6; i++){
+    private void fieldsEnableDisable(boolean enDis) {
+        for (int i = 0; i <= 6; i++) {
             textInputLayoutArray[i].setEnabled(enDis);
         }
     }
 
     // onClick for admin_r1_button Button
-    public void addPhysio(View v){
+    public void addPhysio(View v) {
         int key = getIntent().getIntExtra("key", 1);
         switch (key) {
             case 1:
@@ -159,7 +167,8 @@ public class AdminR1Activity extends AppCompatActivity {
                         changeLayoutForKey2Edit();
                         break;
                     case "Αποθήκευση":
-                        // make a method that checks whether new changes have been made and saves the data to the database
+                        // make a method that checks whether new changes have been made and saves the
+                        // data to the database
                         onBackPressed();
                         break;
                 }
@@ -168,7 +177,7 @@ public class AdminR1Activity extends AppCompatActivity {
     }
 
     // changes the layout to display user details
-    private void changeLayoutForKey2(){
+    private void changeLayoutForKey2() {
         // changes the toolbar title
         toolbar.setTitle("Πληροφορίες");
         // disables all TextInputLayout fields
@@ -183,7 +192,7 @@ public class AdminR1Activity extends AppCompatActivity {
     }
 
     // changes the layout edit user details
-    private void changeLayoutForKey2Edit(){
+    private void changeLayoutForKey2Edit() {
         // changes the toolbar title
         toolbar.setTitle("Επεξεργασία");
         // enables all TextInputLayout fields
@@ -200,7 +209,11 @@ public class AdminR1Activity extends AppCompatActivity {
 }
 
 // TODO
-// clicking admin_r1_button when in "Νέο Φυσιοθεραπευτηρίου" saves the data to the database
-// create a recycleview for AdminFragment1 that displays the businesses from the database
-// clicking on a business in the recycleview will display the business details in AdminR1Activity
-// when in "Επεξεργασία" the system checks for changes in the data and if there are and admin_r1_button gets clicked it saves the changes to the database
+// clicking admin_r1_button when in "Νέο Φυσιοθεραπευτηρίου" saves the data to
+// the database
+// create a recycleview for AdminFragment1 that displays the businesses from the
+// database
+// clicking on a business in the recycleview will display the business details
+// in AdminR1Activity
+// when in "Επεξεργασία" the system checks for changes in the data and if there
+// are and admin_r1_button gets clicked it saves the changes to the database

@@ -1,22 +1,20 @@
 package com.example.aic601project.R3_R8;
 
-import android.content.Intent;
-import android.os.Bundle;
-
-import androidx.appcompat.widget.SearchView;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.aic601project.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,7 +72,7 @@ public class PhysicianFragment3R5 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_physician3, container, false);
 
@@ -110,7 +108,7 @@ public class PhysicianFragment3R5 extends Fragment {
         recyclerView.requestFocus();
 
         searchView = rootView.findViewById((R.id.physician_r5_searchView));
-        /*searchView.clearFocus();*/
+        /* searchView.clearFocus(); */
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -122,8 +120,7 @@ public class PhysicianFragment3R5 extends Fragment {
 
                 filteredList = new ArrayList<>();
                 for (JavaTempPhysicianR5Patients p : patients) {
-                    if (p.getName().toLowerCase().contains(newText.toLowerCase()))
-                    {
+                    if (p.getName().toLowerCase().contains(newText.toLowerCase())) {
                         filteredList.add(p);
                     }
                 }
@@ -139,9 +136,11 @@ public class PhysicianFragment3R5 extends Fragment {
 
         FloatingActionButton button = rootView.findViewById(R.id.physician_r5_floatingActionButton);
         button.setOnClickListener(view -> {
-            //Intent intent = new Intent(getApplicationContext(), PhysicianR3Acticity.class);
-            //startActivity(intent);
-            //requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+            // Intent intent = new Intent(getApplicationContext(),
+            // PhysicianR3Acticity.class);
+            // startActivity(intent);
+            // requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom,
+            // R.anim.no_slide_in_or_out);
         });
 
         return rootView;
@@ -157,6 +156,9 @@ public class PhysicianFragment3R5 extends Fragment {
 }
 
 // TODO
-// the physician_r5_recyclerView should get populated using the data on the database
-// fix physician_bottom_navigation_bar coming up when physician_r5_searchView gets clicked
-// the layout of the physician_r5_recyclerView does not have a pressed or clicked effect
+// the physician_r5_recyclerView should get populated using the data on the
+// database
+// fix physician_bottom_navigation_bar coming up when physician_r5_searchView
+// gets clicked
+// the layout of the physician_r5_recyclerView does not have a pressed or
+// clicked effect

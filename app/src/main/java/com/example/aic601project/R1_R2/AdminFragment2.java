@@ -1,14 +1,13 @@
 package com.example.aic601project.R1_R2;
 
+import com.example.aic601project.R;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.fragment.app.Fragment;
-
-import com.example.aic601project.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,7 +58,7 @@ public class AdminFragment2 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_admin2, container, false);
 

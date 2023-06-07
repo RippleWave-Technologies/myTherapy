@@ -1,19 +1,18 @@
 package com.example.aic601project.R3_R8;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputLayout;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class PhysicianR4Activity extends AppCompatActivity {
     private MaterialToolbar toolbar;
-    //    inputFields
+    // inputFields
     private TextInputLayout textInputName;
     private TextInputLayout textInputLastName;
     private TextInputLayout textInputAMKA;
@@ -22,9 +21,9 @@ public class PhysicianR4Activity extends AppCompatActivity {
     private TextInputLayout textInputCity;
     private TextInputLayout textInputZip;
 
-    //    Buttons
+    // Buttons
     private Boolean physicianEditButtonIsClicked;
-    private Button physicianEditButton ;
+    private Button physicianEditButton;
     private Button physicianAppointmentsHistoryButton;
 
     @Override
@@ -36,11 +35,12 @@ public class PhysicianR4Activity extends AppCompatActivity {
         toolbar = findViewById(R.id.physician_r4_topAppBar);
         setupToolbarWithBackButton();
 
-        //        get all buttons ids
-//        physicianEditButton = findViewById(R.id.physician_r4_appointmentsHistoryButton);
+        // get all buttons ids
+        // physicianEditButton =
+        // findViewById(R.id.physician_r4_appointmentsHistoryButton);
         physicianEditButton = findViewById(R.id.physician_r4_EditButton);
 
-        //        get all TextInput ids.
+        // get all TextInput ids.
         textInputName = findViewById(R.id.physician_r4_textInputLayout_name);
         textInputLastName = findViewById(R.id.physician_r4_textInputLayout_lastName);
         textInputAMKA = findViewById(R.id.physician_r4_textInputLayout_amka);
@@ -54,13 +54,14 @@ public class PhysicianR4Activity extends AppCompatActivity {
         this.loadStartPhysicianInformationScreen();
     }
 
-    public void viewAppointmentsHistory(View v){
+    public void viewAppointmentsHistory(View v) {
         Intent i = new Intent(this, PhysicianR4AppointmentLogHistory.class);
         startActivity(i);
-//        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom,  R.anim.no_slide_in_or_out);
+        // requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom,
+        // R.anim.no_slide_in_or_out);
     }
 
-    private void loadStartPhysicianInformationScreen(){
+    private void loadStartPhysicianInformationScreen() {
         this.toolbar.setTitle("Πληροφορίες");
         this.physicianAppointmentsHistoryButton.setVisibility(View.VISIBLE);
         // check if edit button is clicked
@@ -72,7 +73,7 @@ public class PhysicianR4Activity extends AppCompatActivity {
 
     }
 
-    private void loadEditPhysicianInformationScreen(){
+    private void loadEditPhysicianInformationScreen() {
         this.toolbar.setTitle("Επεξεργασία");
 
         this.physicianAppointmentsHistoryButton.setVisibility(View.INVISIBLE);
@@ -84,15 +85,16 @@ public class PhysicianR4Activity extends AppCompatActivity {
         this.changeStatusOfTextInputField(true);
 
     }
-    public void physicianEditButtonClicked (View v){
-        if (physicianEditButtonIsClicked){
+
+    public void physicianEditButtonClicked(View v) {
+        if (physicianEditButtonIsClicked) {
             this.loadStartPhysicianInformationScreen();
-        }else{
+        } else {
             this.loadEditPhysicianInformationScreen();
         }
     }
 
-    private void changeStatusOfTextInputField(boolean status){
+    private void changeStatusOfTextInputField(boolean status) {
         textInputName.setEnabled(status);
         textInputLastName.setEnabled(status);
         textInputAMKA.setEnabled(status);
@@ -103,7 +105,7 @@ public class PhysicianR4Activity extends AppCompatActivity {
     }
 
     // sets up a toolbar where clicking the back button calls onBackPressed()
-    private void setupToolbarWithBackButton(){
+    private void setupToolbarWithBackButton() {
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }

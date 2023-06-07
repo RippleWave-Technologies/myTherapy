@@ -1,14 +1,16 @@
 package com.example.aic601project.R3_R8;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.aic601project.R;
+import com.google.android.material.appbar.MaterialToolbar;
+
+import android.content.Intent;
+import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.content.Intent;
-import android.os.Bundle;
-import com.example.aic601project.R;
-import com.google.android.material.appbar.MaterialToolbar;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PhysicianR4AppointmentLogHistory extends AppCompatActivity {
     private MaterialToolbar toolbar;
@@ -16,7 +18,6 @@ public class PhysicianR4AppointmentLogHistory extends AppCompatActivity {
     private List<JavaTempPhysicianR5Patients> patients;
     private PhysicianR4Adapter patientsAdapter;
     private PhysicianR4Adapter.RecyclerViewClickListener listener;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +52,13 @@ public class PhysicianR4AppointmentLogHistory extends AppCompatActivity {
         listener = (v, position) -> {
             Intent intent = new Intent(getApplicationContext(), AppointmentInformationView.class);
             startActivity(intent);
-//            requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+            // requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom,
+            // R.anim.no_slide_in_or_out);
         };
     }
 
     // sets up a toolbar where clicking the back button calls onBackPressed()
-    private void setupToolbarWithBackButton(){
+    private void setupToolbarWithBackButton() {
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }

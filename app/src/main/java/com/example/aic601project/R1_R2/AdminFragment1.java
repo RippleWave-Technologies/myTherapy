@@ -1,14 +1,13 @@
 package com.example.aic601project.R1_R2;
 
+import com.example.aic601project.R;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.fragment.app.Fragment;
-
-import com.example.aic601project.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,7 +58,7 @@ public class AdminFragment1 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_admin1, container, false);
 
@@ -79,11 +78,11 @@ public class AdminFragment1 extends Fragment {
     }
 
     // method for adminR1_button_users
-    public void viewUserData (){
+    public void viewUserData() {
         Intent i = new Intent(getActivity(), AdminR1Activity.class);
         i.putExtra("key", 2);
         startActivity(i);
-        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom,  R.anim.no_slide_in_or_out);
+        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 
 }

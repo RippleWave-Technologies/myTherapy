@@ -1,24 +1,20 @@
 package com.example.aic601project.R3_R8;
 
+import java.util.Calendar;
+import java.util.Locale;
+
+import com.example.aic601project.R;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
-
-import com.example.aic601project.MainActivity;
-import com.example.aic601project.R;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.Calendar;
-import java.util.Locale;
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,7 +69,7 @@ public class PhysicianFragment2R6 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_physician2, container, false);
 
@@ -82,6 +78,7 @@ public class PhysicianFragment2R6 extends Fragment {
             private String current = "";
             private String ddmmyyyy = "ΗΗΜΜΕΕΕΕ";
             private Calendar cal = Calendar.getInstance();
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().equals(current)) {
@@ -93,29 +90,31 @@ public class PhysicianFragment2R6 extends Fragment {
                     for (int i = 2; i <= cl && i < 6; i += 2) {
                         sel++;
                     }
-                    //Fix for pressing delete next to a forward slash
-                    if (clean.equals(cleanC)) sel--;
+                    // Fix for pressing delete next to a forward slash
+                    if (clean.equals(cleanC))
+                        sel--;
 
-                    if (clean.length() < 8){
+                    if (clean.length() < 8) {
                         clean = clean + ddmmyyyy.substring(clean.length());
-                    }else{
-                        //This part makes sure that when we finish entering numbers
-                        //the date is correct, fixing it otherwise
-                        int day  = Integer.parseInt(clean.substring(0,2));
-                        int mon  = Integer.parseInt(clean.substring(2,4));
-                        int year = Integer.parseInt(clean.substring(4,8));
+                    } else {
+                        // This part makes sure that when we finish entering numbers
+                        // the date is correct, fixing it otherwise
+                        int day = Integer.parseInt(clean.substring(0, 2));
+                        int mon = Integer.parseInt(clean.substring(2, 4));
+                        int year = Integer.parseInt(clean.substring(4, 8));
 
-                        if(mon > 12) mon = 12;
-                        cal.set(Calendar.MONTH, mon-1);
+                        if (mon > 12)
+                            mon = 12;
+                        cal.set(Calendar.MONTH, mon - 1);
 
-                        year = (year<1900)?1900:(year>2100)?2100:year;
+                        year = (year < 1900) ? 1900 : (year > 2100) ? 2100 : year;
                         cal.set(Calendar.YEAR, year);
                         // ^ first set year for the line below to work correctly
-                        //with leap years - otherwise, date e.g. 29/02/2012
-                        //would be automatically corrected to 28/02/2012
+                        // with leap years - otherwise, date e.g. 29/02/2012
+                        // would be automatically corrected to 28/02/2012
 
-                        day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
-                        clean = String.format("%02d%02d%02d",day, mon, year);
+                        day = (day > cal.getActualMaximum(Calendar.DATE)) ? cal.getActualMaximum(Calendar.DATE) : day;
+                        clean = String.format("%02d%02d%02d", day, mon, year);
                     }
 
                     clean = String.format("%s/%s/%s", clean.substring(0, 2),
@@ -128,10 +127,14 @@ public class PhysicianFragment2R6 extends Fragment {
                     date.setSelection(sel < current.length() ? sel : current.length());
                 }
             }
+
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
         });
 
         calendarBtn = rootView.findViewById(R.id.physician_r6_textInputLayout_calendarBtn);
@@ -149,7 +152,8 @@ public class PhysicianFragment2R6 extends Fragment {
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                 (view, year1, month1, dayOfMonth1) -> {
-                    String selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", dayOfMonth1, (month1 + 1), year1);
+                    String selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", dayOfMonth1,
+                            (month1 + 1), year1);
                     calendarBtn.getEditText().setText(selectedDate);
                 }, year, month, dayOfMonth);
 
@@ -158,5 +162,7 @@ public class PhysicianFragment2R6 extends Fragment {
 }
 
 // TODO
-// when a date is selected, a recyclerview should show the appropriate appointments which it retrieves from the database
-// when an appointment is selected, a new screen with the appointment details should come up
+// when a date is selected, a recyclerview should show the appropriate
+// appointments which it retrieves from the database
+// when an appointment is selected, a new screen with the appointment details
+// should come up

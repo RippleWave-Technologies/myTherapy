@@ -1,9 +1,10 @@
 package com.example.aic601project.R3_R8;
 
-import androidx.appcompat.app.AppCompatActivity;
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
+
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AppointmentInformationView extends AppCompatActivity {
     private MaterialToolbar toolbar;
@@ -20,7 +21,7 @@ public class AppointmentInformationView extends AppCompatActivity {
     }
 
     // sets up a toolbar where clicking the back button calls onBackPressed()
-    private void setupToolbarWithBackButton(){
+    private void setupToolbarWithBackButton() {
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
