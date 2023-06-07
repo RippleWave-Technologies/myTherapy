@@ -1,5 +1,8 @@
 package com.example.aic601project;
 
+import com.example.aic601project.R1_R2.AdminMainActivity;
+import com.example.aic601project.R3_R8.PhysicianMainActivity;
+import com.example.aic601project.R9_R10.UserMainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
