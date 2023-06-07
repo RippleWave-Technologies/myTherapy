@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/history1"
+        style="@style/Widget.AppCompat.TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerVertical="false"
+        android:height="52dp"
+        android:background="#F8F6F6"
+        android:defaultFocusHighlightEnabled="true"
+        android:drawableRight="@drawable/baseline_arrow_right_36"
+        android:focusable="auto"
+        android:fontFamily="@font/roboto"
+        android:lineSpacingExtra="12sp"
+        android:paddingLeft="22dp"
+        android:paddingTop="4dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#191C19"
+        android:textSize="34sp"
+        tools:text="HH/MM/EEEE" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/history1" />
+
+
+</RelativeLayout>

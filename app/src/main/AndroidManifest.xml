@@ -12,6 +12,12 @@
         android:theme="@style/Theme.AIC601project"
         tools:targetApi="31">
         <activity
+            android:name=".R3_R8.AppointmentInformationView"
+            android:exported="false" />
+        <activity
+            android:name=".R3_R8.PhysicianR4AppointmentLogHistory"
+            android:exported="false" />
+        <activity
             android:name=".R9_R10.UserR9NotificationsActivity"
             android:exported="false" />
         <activity
