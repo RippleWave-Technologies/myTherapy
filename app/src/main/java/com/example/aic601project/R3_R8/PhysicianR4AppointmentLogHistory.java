@@ -30,13 +30,10 @@ public class PhysicianR4AppointmentLogHistory extends AppCompatActivity {
 
         patients = new ArrayList<>();
 
-        patients.add(new JavaTempPhysicianR5Patients("22/6/454"));
-        patients.add(new JavaTempPhysicianR5Patients("22/6/454"));
-        patients.add(new JavaTempPhysicianR5Patients("22/6/454"));
-        patients.add(new JavaTempPhysicianR5Patients("22/6/454"));
-        patients.add(new JavaTempPhysicianR5Patients("22/6/454"));
-        patients.add(new JavaTempPhysicianR5Patients("22/6/454"));
-
+        patients.add(new JavaTempPhysicianR5Patients("HH/MM/EEEE          PAPANIKOLAOY                        100$"));
+        patients.add(new JavaTempPhysicianR5Patients("HH/MM/EEEE          PAPANIKOLAOY                        100$"));
+        patients.add(new JavaTempPhysicianR5Patients("HH/MM/EEEE          PAPANIKOLAOY                        100$"));
+        patients.add(new JavaTempPhysicianR5Patients("HH/MM/EEEE          PAPANIKOLAOY                        100$"));
         recyclerView = findViewById(R.id.physician_r4_appointmentsHistory);
         recyclerView.setHasFixedSize(true);
 
