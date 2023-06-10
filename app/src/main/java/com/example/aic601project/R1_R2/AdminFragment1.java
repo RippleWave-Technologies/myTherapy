@@ -1,20 +1,28 @@
 package com.example.aic601project.R1_R2;
 
+import com.example.aic601project.ModelClinicsList;
 import com.example.aic601project.R;
+import com.example.aic601project.RecyclerViewInterface;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AdminFragment1#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AdminFragment1 extends Fragment {
+public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
+    private final String ip = "temp";
+    ModelClinicsList clinicsList;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,8 +73,13 @@ public class AdminFragment1 extends Fragment {
         // setOnClickListener for the admin_fragment1_floatingActionButton
         rootView.findViewById(R.id.admin_fragment1_floatingActionButton).setOnClickListener(v -> addPhysioToList());
 
-        // setOnClickListener for the admin_fragment1_button_temp
-        rootView.findViewById(R.id.admin_fragment1_button_temp).setOnClickListener(v -> viewUserData());
+        // fetches the clinics from the myTherapy database
+        clinicsList = new ModelClinicsList(ip);
+        // initiates the RecyclerView
+        RecyclerView recyclerView = rootView.findViewById(R.id.admin_fragment1_recyclerView);
+        AdminFragment1Adapter adapter = new AdminFragment1Adapter(getActivity(), clinicsList.getClinics(), this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return rootView;
     }
@@ -77,12 +90,16 @@ public class AdminFragment1 extends Fragment {
         requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 
-    // method for adminR1_button_users
-    public void viewUserData() {
-        Intent i = new Intent(getActivity(), AdminR1Activity.class);
-        i.putExtra("key", 2);
-        startActivity(i);
-        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
-    }
+//    // method for adminR1_button_users
+//    public void viewUserData() {
+//        Intent i = new Intent(getActivity(), AdminR1Activity.class);
+//        i.putExtra("key", 2);
+//        startActivity(i);
+//        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+//    }
 
+    @Override
+    public void onItemClick(int position) {
+        Toast.makeText(getActivity(), clinicsList.getClinics().get(position).getPhysioName(), Toast.LENGTH_SHORT).show();
+    }
 }

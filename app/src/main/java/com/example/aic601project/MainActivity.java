@@ -11,7 +11,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private final String IP = "127.0.0.1";
+    private final String IP = "temp";
 
     private PatientList patientList;
 

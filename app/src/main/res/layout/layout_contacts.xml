@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contacts_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
@@ -13,7 +14,7 @@
         android:layout_marginLeft="10dp"
         android:layout_centerVertical="true"
         android:gravity="center"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="#00210C"
         android:background="@drawable/physician_r5_icon_contact_view_bg"
         tools:text="F"
@@ -26,7 +27,7 @@
         android:layout_toEndOf="@+id/iconview"
         android:layout_marginRight="10dp"
         android:layout_centerVertical="true"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="#191C19"
         tools:text="Name"
         />

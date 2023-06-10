@@ -48,7 +48,7 @@ public class PhysicianFragment3R5NewAdapter extends RecyclerView.Adapter<Physici
     @NonNull
     @Override
     public NewR5Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_physician_r5_patient, parent,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_contacts, parent,
                 false);
         return new NewR5Holder(view);
     }
