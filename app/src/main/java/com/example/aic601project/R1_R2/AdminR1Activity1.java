@@ -15,56 +15,43 @@ import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AdminR1Activity extends AppCompatActivity {
+public class AdminR1Activity1 extends AppCompatActivity {
     // hI short for hasInput - logs whether a TextInputLayout has input
     private final boolean[] hI = { false, false, false, false, false, false, false };
     // hNE short for hasNumberError - logs whether there is an AFM error
     private boolean hNE = false;
     // textInputLayoutArray - logs all TextInputLayouts to a TextInputLayout[]
     private TextInputLayout[] textInputLayoutArray;
-    // toolbar - admin_r1_topAppBar
+    // toolbar - admin_r1_1_topAppBar
     private MaterialToolbar toolbar;
-    // button - admin_r1_button
+    // button - admin_r1_1_button
     private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_r1);
-
+        setContentView(R.layout.activity_admin_r1_1);
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
+
         textInputLayoutArray = setTextInputLayoutArray();
-        button = findViewById(R.id.admin_r1_button);
-        toolbar = findViewById(R.id.admin_r1_topAppBar);
+        button = findViewById(R.id.admin_r1_1_button);
+        toolbar = findViewById(R.id.admin_r1_1_topAppBar);
         setupToolbarWithBackButton();
 
-        /*
-         * We can figure out what launched the activity using the putExtra key
-         * if key == 1 then activity was launched by admin_button_add
-         * if key == 2 then activity was launched by adminR1_button_users
-         */
-        int key = getIntent().getIntExtra("key", 1);
-        switch (key) {
-            case 1:
-                button.setEnabled(false);
-                checkForInput();
-                break;
-            case 2:
-                changeLayoutForKey2();
-                break;
-        }
+        button.setEnabled(false);
+        checkForInput();
     }
 
     // creates an int[] with the Ids of all TextInputLayouts
     private TextInputLayout[] setTextInputLayoutArray() {
         TextInputLayout[] textInputLayoutArray = new TextInputLayout[7];
-        textInputLayoutArray[0] = findViewById(R.id.admin_r1_textInputLayout_name);
-        textInputLayoutArray[1] = findViewById(R.id.admin_r1_textInputLayout_ssn);
-        textInputLayoutArray[2] = findViewById(R.id.admin_r1_textInputLayout_email);
-        textInputLayoutArray[3] = findViewById(R.id.admin_r1_textInputLayout_street);
-        textInputLayoutArray[4] = findViewById(R.id.admin_r1_textInputLayout_stNumber);
-        textInputLayoutArray[5] = findViewById(R.id.admin_r1_textInputLayout_city);
-        textInputLayoutArray[6] = findViewById(R.id.admin_r1_textInputLayout_zip);
+        textInputLayoutArray[0] = findViewById(R.id.admin_r1_1_textInputLayout_name);
+        textInputLayoutArray[1] = findViewById(R.id.admin_r1_1_textInputLayout_ssn);
+        textInputLayoutArray[2] = findViewById(R.id.admin_r1_1_textInputLayout_email);
+        textInputLayoutArray[3] = findViewById(R.id.admin_r1_1_textInputLayout_street);
+        textInputLayoutArray[4] = findViewById(R.id.admin_r1_1_textInputLayout_stNumber);
+        textInputLayoutArray[5] = findViewById(R.id.admin_r1_1_textInputLayout_city);
+        textInputLayoutArray[6] = findViewById(R.id.admin_r1_1_textInputLayout_zip);
         return textInputLayoutArray;
     }
 
@@ -103,9 +90,7 @@ public class AdminR1Activity extends AppCompatActivity {
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    if (index == 1) {
-                        checkAfm(charSequence);
-                    }
+                    if (index == 1) { checkAfm(charSequence); }
                     hI[index] = !(charSequence.toString().isEmpty());
                     enableButtonIfAllInputIsTrue();
                 }
@@ -130,81 +115,26 @@ public class AdminR1Activity extends AppCompatActivity {
             }
             if (((sum % 11) % 10) != lastDigit) {
                 textInputLayoutArray[1].setError(getString(R.string.admin_ssnError));
-                AdminR1Activity.this.hNE = true;
+                AdminR1Activity1.this.hNE = true;
             }
         } else {
             textInputLayoutArray[1].setErrorEnabled(false);
-            AdminR1Activity.this.hNE = false;
+            AdminR1Activity1.this.hNE = false;
         }
     }
 
-    // enables admin_r1_button if every TextInputLayout has input (and more)
+    // enables admin_r1_1_button if every TextInputLayout has input (and more)
     private void enableButtonIfAllInputIsTrue() {
         button.setEnabled(hI[0] && hI[1] && hI[2] && hI[3] && hI[4] && hI[5] && hI[6] && !(hNE)
                 && Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().length() == 9
                 && Objects.requireNonNull(textInputLayoutArray[6].getEditText()).getText().length() == 5);
     }
 
-    // enables/disables all TextInputLayouts
-    private void fieldsEnableDisable(boolean enDis) {
-        for (int i = 0; i <= 6; i++) {
-            textInputLayoutArray[i].setEnabled(enDis);
-        }
-    }
-
-    // onClick for admin_r1_button Button
+    // onClick for admin_r1_1_button Button
     public void addPhysio(View v) {
-        int key = getIntent().getIntExtra("key", 1);
-        switch (key) {
-            case 1:
-                // need to save the data to the database
-                Toast.makeText(AdminR1Activity.this, "Το Φυσιοθεραπευτήριο έχει προστεθεί", Toast.LENGTH_SHORT).show();
-                onBackPressed();
-                break;
-            case 2:
-                switch (button.getText().toString()) {
-                    case "Επεξεργασία":
-                        changeLayoutForKey2Edit();
-                        break;
-                    case "Αποθήκευση":
-                        // make a method that checks whether new changes have been made and saves the
-                        // data to the database
-                        onBackPressed();
-                        break;
-                }
-                break;
-        }
-    }
-
-    // changes the layout to display user details
-    private void changeLayoutForKey2() {
-        // changes the toolbar title
-        toolbar.setTitle("Πληροφορίες");
-        // disables all TextInputLayout fields
-        fieldsEnableDisable(false);
-        // disables the counter for physio_ssn and physio_zip
-        textInputLayoutArray[1].setCounterEnabled(false);
-        textInputLayoutArray[6].setCounterEnabled(false);
-        // sets the button to enabled, changes the text and removes the icon
-        button.setEnabled(true);
-        button.setText("Επεξεργασία");
-        button.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-    }
-
-    // changes the layout edit user details
-    private void changeLayoutForKey2Edit() {
-        // changes the toolbar title
-        toolbar.setTitle("Επεξεργασία");
-        // enables all TextInputLayout fields
-        fieldsEnableDisable(true);
-        // enables the counter for physio_ssn and physio_zip
-        textInputLayoutArray[1].setCounterEnabled(true);
-        textInputLayoutArray[6].setCounterEnabled(true);
-        // sets the button to disabled and changes the text
-        button.setEnabled(false);
-        button.setText("Αποθήκευση");
-
-        checkForInput();
+        // need to save the data to the database
+        Toast.makeText(AdminR1Activity1.this, "Το Φυσιοθεραπευτήριο έχει προστεθεί", Toast.LENGTH_SHORT).show();
+        onBackPressed();
     }
 }
 
@@ -212,8 +142,8 @@ public class AdminR1Activity extends AppCompatActivity {
 // clicking admin_r1_button when in "Νέο Φυσιοθεραπευτηρίου" saves the data to
 // the database
 // create a recycleview for AdminFragment1 that displays the businesses from the
-// database
+// database - done
 // clicking on a business in the recycleview will display the business details
-// in AdminR1Activity
+// in AdminR1Activity2 - done
 // when in "Επεξεργασία" the system checks for changes in the data and if there
-// are and admin_r1_button gets clicked it saves the changes to the database
+// are and admin_r1_button gets clicked it saves the changes to the database - almost done

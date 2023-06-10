@@ -8,10 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.aic601project.R;
-import com.example.aic601project.R1_R2.AdminR1Activity;
-import com.example.aic601project.R3_R8.PhysicianFragment1;
-import com.example.aic601project.R3_R8.PhysicianFragment2R6;
-import com.example.aic601project.R3_R8.PhysicianFragment3R5;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UserMainActivity extends AppCompatActivity {

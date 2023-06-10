@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".R1_R2.AdminR1Activity">
+    tools:context=".R1_R2.AdminR1Activity1">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/admin_r1_appBarLayout"
+        android:id="@+id/admin_r1_1_appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/md_theme_light_surfaceVariant"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/admin_r1_topAppBar"
+            android:id="@+id/admin_r1_1_topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/admin_r1_app_bar_layout"
@@ -28,7 +28,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <Button
-        android:id="@+id/admin_r1_button"
+        android:id="@+id/admin_r1_1_button"
         style="@style/Widget.Material3.Button.IconButton.Filled"
         android:layout_width="148dp"
         android:layout_height="65dp"
@@ -39,11 +39,11 @@
         android:text="@string/admin_addButton"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/admin_r1_constraintLayout_fields"
+        app:layout_constraintEnd_toEndOf="@+id/admin_r1_1_constraintLayout_fields"
         tools:ignore="RtlHardcoded" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/admin_r1_constraintLayout_fields"
+        android:id="@+id/admin_r1_1_constraintLayout_fields"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -52,10 +52,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_r1_appBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/admin_r1_1_appBarLayout">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_name"
+            android:id="@+id/admin_r1_1_textInputLayout_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/admin_namePhysio"
@@ -69,7 +69,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_ssn"
+            android:id="@+id/admin_r1_1_textInputLayout_ssn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -82,7 +82,7 @@
             app:errorIconDrawable="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_name">
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_1_textInputLayout_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -92,14 +92,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_email"
+            android:id="@+id/admin_r1_1_textInputLayout_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="108dp"
             android:hint="@string/admin_emailPhysio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_name">
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_1_textInputLayout_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -107,13 +107,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_street"
+            android:id="@+id/admin_r1_1_textInputLayout_street"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:hint="@string/street"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_email">
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_1_textInputLayout_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="200dp"
@@ -121,13 +121,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_stNumber"
+            android:id="@+id/admin_r1_1_textInputLayout_stNumber"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:hint="@string/stNumber"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_email">
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_1_textInputLayout_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -136,13 +136,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_city"
+            android:id="@+id/admin_r1_1_textInputLayout_city"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:hint="@string/city"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_street">
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_1_textInputLayout_street">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="200dp"
@@ -150,7 +150,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_zip"
+            android:id="@+id/admin_r1_1_textInputLayout_zip"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -158,7 +158,7 @@
             app:counterEnabled="true"
             app:counterMaxLength="5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_stNumber">
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_1_textInputLayout_stNumber">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -168,14 +168,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r1_textInputLayout_country"
+            android:id="@+id/admin_r1_1_textInputLayout_country"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:enabled="false"
             android:hint="@string/country"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r1_textInputLayout_city">
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_1_textInputLayout_city">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="200dp"

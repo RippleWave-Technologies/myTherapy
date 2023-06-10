@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -67,7 +66,7 @@ public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // inflates the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_admin1, container, false);
 
         // setOnClickListener for the admin_fragment1_floatingActionButton
@@ -75,6 +74,7 @@ public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
 
         // fetches the clinics from the myTherapy database
         clinicsList = new ModelClinicsList(ip);
+
         // initiates the RecyclerView
         RecyclerView recyclerView = rootView.findViewById(R.id.admin_fragment1_recyclerView);
         AdminFragment1Adapter adapter = new AdminFragment1Adapter(getActivity(), clinicsList.getClinics(), this);
@@ -86,20 +86,16 @@ public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
 
     // method for admin_fragment1_floatingActionButton
     public void addPhysioToList() {
-        startActivity(new Intent(getActivity(), AdminR1Activity.class));
+        startActivity(new Intent(getActivity(), AdminR1Activity1.class));
         requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 
-//    // method for adminR1_button_users
-//    public void viewUserData() {
-//        Intent i = new Intent(getActivity(), AdminR1Activity.class);
-//        i.putExtra("key", 2);
-//        startActivity(i);
-//        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
-//    }
-
+    // method for the RecyclerViewInterface / admin_fragment1_recyclerView
     @Override
     public void onItemClick(int position) {
-        Toast.makeText(getActivity(), clinicsList.getClinics().get(position).getPhysioName(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), AdminR1Activity2.class);
+        intent.putExtra("Clinic Info", clinicsList.getClinics().get(position));
+        startActivity(intent);
+        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 }

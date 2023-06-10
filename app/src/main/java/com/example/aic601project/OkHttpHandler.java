@@ -15,8 +15,8 @@ public class OkHttpHandler {
         StrictMode.setThreadPolicy(policy);
     }
 
-    public ArrayList<ModelClinics> fetchClinics(String url) throws Exception {
-        ArrayList<ModelClinics> clinics = new ArrayList<>();
+    public ArrayList<ModelClinic> fetchClinics(String url) throws Exception {
+        ArrayList<ModelClinic> clinics = new ArrayList<>();
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
         Request request = new Request.Builder().url(url).method("POST", body).build();
@@ -37,7 +37,7 @@ public class OkHttpHandler {
                 String postcode = clinicObject.getString("postcode");
                 String city = clinicObject.getString("city");
 
-                clinics.add(new ModelClinics(Integer.valueOf(key), name, email, address, Integer.valueOf(addressNumber), Integer.valueOf(postcode), city));
+                clinics.add(new ModelClinic(key, name, email, address, addressNumber, postcode, city));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -137,5 +137,4 @@ public class OkHttpHandler {
 
         return services;
     }
-
 }

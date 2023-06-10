@@ -38,6 +38,4 @@
         android:layout_below="@+id/iconview"
         android:layout_marginTop="10dp"
         />
-
-
 </RelativeLayout>

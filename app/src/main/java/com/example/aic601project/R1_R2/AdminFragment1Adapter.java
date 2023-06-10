@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aic601project.ModelClinics;
+import com.example.aic601project.ModelClinic;
 import com.example.aic601project.R;
 import com.example.aic601project.RecyclerViewInterface;
 
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 public class AdminFragment1Adapter extends RecyclerView.Adapter<AdminFragment1Adapter.MyViewHolder> {
     private final RecyclerViewInterface recyclerViewInterface;
     Context context;
-    ArrayList<ModelClinics> clinics;
+    ArrayList<ModelClinic> clinics;
 
-    public AdminFragment1Adapter(Context context, ArrayList<ModelClinics> clinics,
+    public AdminFragment1Adapter(Context context, ArrayList<ModelClinic> clinics,
                                  RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
         this.clinics = clinics;
@@ -52,14 +52,11 @@ public class AdminFragment1Adapter extends RecyclerView.Adapter<AdminFragment1Ad
             physioName = itemView.findViewById(R.id.name);
             physioName1Letter = itemView.findViewById(R.id.iconview);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (recyclerViewInterface != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            recyclerViewInterface.onItemClick(position);
-                        }
+            itemView.setOnClickListener(v -> {
+                if (recyclerViewInterface != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        recyclerViewInterface.onItemClick(position);
                     }
                 }
             });

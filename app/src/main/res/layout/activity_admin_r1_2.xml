@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".R1_R2.AdminR1Activity2">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/admin_r1_2_appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_theme_light_surfaceVariant"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/admin_r1_2_topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/admin_r1_app_bar_layout"
+            app:navigationIcon="@drawable/baseline_arrow_back_24"
+            app:title="Νέο Φυσιοθεραπευτήριο"
+            app:titleCentered="true" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <Button
+        android:id="@+id/admin_r1_2_button"
+        style="@style/Widget.Material3.Button.IconButton.Filled"
+        android:layout_width="148dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="51dp"
+        android:drawableLeft="@drawable/baseline_check_24"
+        android:enabled="true"
+        android:onClick="addPhysio"
+        android:text="@string/admin_addButton"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/admin_r1_2_constraintLayout_fields"
+        tools:ignore="RtlHardcoded" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/admin_r1_2_constraintLayout_fields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_r1_2_appBarLayout">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/admin_r1_2_textInputLayout_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/admin_namePhysio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/admin_r1_2_textInputLayout_ssn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:clickable="false"
+            android:hint="@string/admin_ssnPhysio"
+            app:counterEnabled="true"
+            app:counterMaxLength="9"
+            app:endIconCheckable="false"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_2_textInputLayout_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="9" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/admin_r1_2_textInputLayout_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="108dp"
+            android:hint="@string/admin_emailPhysio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_2_textInputLayout_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/admin_r1_2_textInputLayout_street"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:hint="@string/street"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_2_textInputLayout_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="200dp"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/admin_r1_2_textInputLayout_stNumber"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:hint="@string/stNumber"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_2_textInputLayout_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/admin_r1_2_textInputLayout_city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:hint="@string/city"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_2_textInputLayout_street">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="200dp"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/admin_r1_2_textInputLayout_zip"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:hint="@string/zipNo"
+            app:counterEnabled="true"
+            app:counterMaxLength="5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_2_textInputLayout_stNumber">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="5" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/admin_r1_2_textInputLayout_country"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:enabled="false"
+            android:hint="@string/country"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admin_r1_2_textInputLayout_city">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Ελλάδα"
+                tools:ignore="HardcodedText" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

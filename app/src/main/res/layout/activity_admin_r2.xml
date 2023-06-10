@@ -71,7 +71,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/admin_r2_textInputLayout_code"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             android:layout_marginTop="22dp"
             android:hint="@string/admin_serviceCode"
             app:boxBackgroundMode="outline"

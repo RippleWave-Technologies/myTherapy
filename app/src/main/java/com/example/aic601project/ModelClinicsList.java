@@ -3,7 +3,7 @@ package com.example.aic601project;
 import java.util.ArrayList;
 
 public class ModelClinicsList {
-    private ArrayList<ModelClinics> clinics;
+    private ArrayList<ModelClinic> clinics;
 
     public ModelClinicsList(String ip) {
         clinics = new ArrayList<>();
@@ -16,7 +16,7 @@ public class ModelClinicsList {
         }
     }
 
-    public ArrayList<ModelClinics> getClinics() {
+    public ArrayList<ModelClinic> getClinics() {
         return clinics;
     }
 }
