@@ -2,6 +2,8 @@ package com.example.aic601project.R1_R2;
 
 import java.util.Objects;
 
+import com.example.aic601project.MainActivity;
+import com.example.aic601project.OkHttpHandler;
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -26,12 +28,17 @@ public class AdminR1Activity1 extends AppCompatActivity {
     private MaterialToolbar toolbar;
     // button - admin_r1_1_button
     private Button button;
+    // String - used to get the ip from the MainActivity
+    private String ip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_r1_1);
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
+
+        // gets the IP from the MainActivity
+        ip = MainActivity.getIP();
 
         textInputLayoutArray = setTextInputLayoutArray();
         button = findViewById(R.id.admin_r1_1_button);
@@ -85,19 +92,15 @@ public class AdminR1Activity1 extends AppCompatActivity {
             final int index = i;
             Objects.requireNonNull(textInputLayoutArray[i].getEditText()).addTextChangedListener(new TextWatcher() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                }
-
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     if (index == 1) { checkAfm(charSequence); }
                     hI[index] = !(charSequence.toString().isEmpty());
                     enableButtonIfAllInputIsTrue();
                 }
-
                 @Override
-                public void afterTextChanged(Editable editable) {
-                }
+                public void afterTextChanged(Editable editable) { }
             });
         }
     }
@@ -132,18 +135,21 @@ public class AdminR1Activity1 extends AppCompatActivity {
 
     // onClick for admin_r1_1_button Button
     public void addPhysio(View v) {
-        // need to save the data to the database
+        String url = "http://" + ip + "/myTherapy/insertClinic.php";
+        try {
+            OkHttpHandler okHttpHandler = new OkHttpHandler();
+            okHttpHandler.insertClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[0].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[2].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[3].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[4].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[6].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[5].getEditText()).getText().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Toast.makeText(AdminR1Activity1.this, "Το Φυσιοθεραπευτήριο έχει προστεθεί", Toast.LENGTH_SHORT).show();
         onBackPressed();
     }
 }
-
-// TODO
-// clicking admin_r1_button when in "Νέο Φυσιοθεραπευτηρίου" saves the data to
-// the database
-// create a recycleview for AdminFragment1 that displays the businesses from the
-// database - done
-// clicking on a business in the recycleview will display the business details
-// in AdminR1Activity2 - done
-// when in "Επεξεργασία" the system checks for changes in the data and if there
-// are and admin_r1_button gets clicked it saves the changes to the database - almost done

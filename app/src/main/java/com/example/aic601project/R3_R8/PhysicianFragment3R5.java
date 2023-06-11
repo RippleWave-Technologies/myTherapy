@@ -154,11 +154,3 @@ public class PhysicianFragment3R5 extends Fragment {
         };
     }
 }
-
-// TODO
-// the physician_r5_recyclerView should get populated using the data on the
-// database
-// fix physician_bottom_navigation_bar coming up when physician_r5_searchView
-// gets clicked
-// the layout of the physician_r5_recyclerView does not have a pressed or
-// clicked effect

@@ -1,5 +1,6 @@
 package com.example.aic601project.R1_R2;
 
+import com.example.aic601project.MainActivity;
 import com.example.aic601project.ModelClinicsList;
 import com.example.aic601project.R;
 import com.example.aic601project.RecyclerViewInterface;
@@ -20,8 +21,10 @@ import androidx.recyclerview.widget.RecyclerView;
  * create an instance of this fragment.
  */
 public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
-    private final String ip = "temp";
+    // ModelClinicsList - used to get the clinics from the database
     ModelClinicsList clinicsList;
+    // String - used to get the ip from the MainActivity
+    private String ip;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,6 +71,9 @@ public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
             Bundle savedInstanceState) {
         // inflates the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_admin1, container, false);
+
+        // gets the IP from the MainActivity
+        ip = MainActivity.getIP();
 
         // setOnClickListener for the admin_fragment1_floatingActionButton
         rootView.findViewById(R.id.admin_fragment1_floatingActionButton).setOnClickListener(v -> addPhysioToList());

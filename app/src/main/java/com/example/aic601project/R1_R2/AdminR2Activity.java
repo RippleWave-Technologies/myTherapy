@@ -98,12 +98,3 @@ public class AdminR2Activity extends AppCompatActivity {
         }
     };
 }
-
-// TODO
-// clicking admin_r2_button when in "Νέα Παροχή" saves the data to the database
-// create a recycleview for AdminFragment2 that displays the services from the
-// database
-// clicking on a service in the recycleview will display the service details in
-// AdminR1Activity
-// when in "Επεξεργασία" the system checks for changes in the data and if there
-// are and admin_r2_button gets clicked it saves the changes to the database

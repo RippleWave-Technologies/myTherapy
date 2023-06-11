@@ -1,10 +1,12 @@
 package com.example.aic601project;
 
+import java.io.IOException;
 import java.util.*;
 
 import org.json.*;
 
 import android.os.*;
+import android.util.Log;
 
 import okhttp3.*;
 
@@ -13,37 +15,6 @@ public class OkHttpHandler {
     public OkHttpHandler() {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-    }
-
-    public ArrayList<ModelClinic> fetchClinics(String url) throws Exception {
-        ArrayList<ModelClinic> clinics = new ArrayList<>();
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-        RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
-        Request request = new Request.Builder().url(url).method("POST", body).build();
-        Response response = client.newCall(request).execute();
-        String data = response.body().string();
-
-        try {
-            JSONObject json = new JSONObject(data);
-            Iterator<String> keys = json.keys();
-            while (keys.hasNext()) {
-                String key = keys.next();
-                JSONObject clinicObject = json.getJSONObject(key);
-
-                String name = clinicObject.getString("name");
-                String email = clinicObject.getString("email");
-                String address = clinicObject.getString("address");
-                String addressNumber = clinicObject.getString("addressNumber");
-                String postcode = clinicObject.getString("postcode");
-                String city = clinicObject.getString("city");
-
-                clinics.add(new ModelClinic(key, name, email, address, addressNumber, postcode, city));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return clinics;
     }
 
     ArrayList<Patient> fetchPatients(String url) throws Exception {
@@ -137,4 +108,86 @@ public class OkHttpHandler {
 
         return services;
     }
+
+    public ArrayList<ModelClinic> fetchClinics(String url) throws Exception {
+        ArrayList<ModelClinic> clinics = new ArrayList<>();
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
+        Request request = new Request.Builder().url(url).method("POST", body).build();
+        Response response = client.newCall(request).execute();
+        String data = response.body().string();
+
+        try {
+            JSONObject json = new JSONObject(data);
+            Iterator<String> keys = json.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                JSONObject clinicObject = json.getJSONObject(key);
+
+                String name = clinicObject.getString("name");
+                String email = clinicObject.getString("email");
+                String address = clinicObject.getString("address");
+                String addressNumber = clinicObject.getString("addressNumber");
+                String postcode = clinicObject.getString("postcode");
+                String city = clinicObject.getString("city");
+
+                clinics.add(new ModelClinic(key, name, email, address, addressNumber, postcode, city));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return clinics;
+    }
+
+    public void insertClinic(String url, String afm, String name, String email, String address,
+                             String addressNumber, String postcode, String city) {
+        OkHttpClient client = new OkHttpClient();
+
+        Log.d("imtesting", "all data: " + afm + name + email + address + addressNumber + postcode + city);
+
+        // Create a FormBody with the parameters
+        RequestBody body = new FormBody.Builder()
+                .add("afm", afm)
+                .add("name", name)
+                .add("email", email)
+                .add("address", address)
+                .add("addressNumber", addressNumber)
+                .add("postcode", postcode)
+                .add("city", city)
+                .build();
+
+        // Create a POST request with the URL and body
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        // Send the request asynchronously
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // Handle any errors
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                // Handle the response if needed
+                // For example, you could check the response code
+                if (response.isSuccessful()) {
+                    // Request successful
+                    System.out.println("Clinic inserted successfully");
+                } else {
+                    // Request failed
+                    System.out.println("Failed to insert clinic");
+                }
+
+                // Close the response
+                response.close();
+            }
+        });
+    }
+
+    // Andreas TODO implement a method for updating the database
 }

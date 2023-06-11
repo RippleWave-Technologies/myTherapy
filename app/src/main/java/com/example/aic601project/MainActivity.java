@@ -11,7 +11,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private final String IP = "temp";
+    private static final String IP = "temp";
 
     private PatientList patientList;
 
@@ -39,5 +39,10 @@ public class MainActivity extends AppCompatActivity {
         } else if (selectedItemId == R.id.MainPage3) {
             startActivity(new Intent(this, UserMainActivity.class));
         }
+    }
+
+    // getter for the IP address
+    public static String getIP() {
+        return IP;
     }
 }

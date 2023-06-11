@@ -59,9 +59,3 @@ public class PhysicianR8Activity extends AppCompatActivity {
         return true;
     }
 }
-
-// TODO
-// the physician_r8_autoCompleteTextView_actions should be populated with the
-// services on the database
-// clicking on physician_r8_Button, an visit is confirmed and the appropriate
-// changes are made to the database

@@ -2,6 +2,7 @@ package com.example.aic601project.R1_R2;
 
 import java.util.Objects;
 
+import com.example.aic601project.MainActivity;
 import com.example.aic601project.ModelClinic;
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -28,12 +29,17 @@ public class AdminR1Activity2 extends AppCompatActivity {
     private MaterialToolbar toolbar;
     // button - admin_r1_2_button
     private Button button;
+    // String - used to get the ip from the MainActivity
+    private String ip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_r1_2);
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
+
+        // gets the IP from the MainActivity
+        ip = MainActivity.getIP();
 
         // gets the intent and the ModelClinic object from the previous activity
         Intent intent = getIntent();
@@ -45,15 +51,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
         toolbar = findViewById(R.id.admin_r1_2_topAppBar);
         setupToolbarWithBackButton();
 
-        // changes the toolbar title and disables all TextInputLayout fields
-        toolbar.setTitle("Πληροφορίες");
-        fieldsEnableDisable(false);
-        // disables the counter for physio_ssn and physio_zip
-        textInputLayoutArray[1].setCounterEnabled(false);
-        textInputLayoutArray[6].setCounterEnabled(false);
-        // changes the button's text and removes it's icon
-        button.setText("Επεξεργασία");
-        button.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        changeToViewLayout();
     }
 
     // creates a String[] with String values from the ModelClinic object
@@ -80,17 +78,26 @@ public class AdminR1Activity2 extends AppCompatActivity {
         textInputLayoutArray[5] = findViewById(R.id.admin_r1_2_textInputLayout_city);
         textInputLayoutArray[6] = findViewById(R.id.admin_r1_2_textInputLayout_zip);
 
-        for (int i = 0; i < 7; i++){
-            textInputLayoutArray[i].getEditText().setText(intentStringArray[i]);
-        }
-
+        for (int i = 0; i < 7; i++){ Objects.requireNonNull(textInputLayoutArray[i].getEditText()).setText(intentStringArray[i]); }
         return textInputLayoutArray;
     }
 
-    // sets up a toolbar where clicking the back button calls onBackPressed()
+    /*
+     * sets up a toolbar where clicking the back button calls onBackPressed() or
+     * changeToViewLayout() depending on the button's text
+     */
     private void setupToolbarWithBackButton() {
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        toolbar.setNavigationOnClickListener((View v) -> {
+            switch (button.getText().toString()) {
+                case "Επεξεργασία":
+                    onBackPressed();
+                    break;
+                case "Αποθήκευση":
+                    changeToViewLayout();
+                    break;
+            }
+        });
     }
 
     // overrides the default onBackPressed() function and includes an exit animation
@@ -136,12 +143,27 @@ public class AdminR1Activity2 extends AppCompatActivity {
 
         boolean newInput = false;
         for (int i = 0; i < 7; i++){
-            if (!textInputLayoutArray[i].getEditText().getText().toString().equals(intentStringArray[i])){
-                newInput = true;
-            }
+            String txt = Objects.requireNonNull(textInputLayoutArray[i].getEditText()).getText().toString();
+            if (!txt.equals(intentStringArray[i])){ newInput = true; }
         }
-
         button.setEnabled(allInput && newInput);
+    }
+
+    // onClick for admin_r1_2_button Button
+    public void addPhysio(View v) {
+        switch (button.getText().toString()) {
+            case "Επεξεργασία":
+                changeToEditLayout();
+                break;
+            case "Αποθήκευση":
+                updateClinicsData(ip);
+                onBackPressed();
+                break;
+        }
+    }
+
+    private void updateClinicsData(String ip) {
+        // Andreas TODO implement updateClinicsData
     }
 
     // enables/disables all TextInputLayouts
@@ -151,20 +173,22 @@ public class AdminR1Activity2 extends AppCompatActivity {
         }
     }
 
-    // onClick for admin_r1_2_button Button
-    public void addPhysio(View v) {
-        switch (button.getText().toString()) {
-            case "Επεξεργασία":
-                changeLayoutToEdit();
-                break;
-            case "Αποθήκευση":
-                onBackPressed();
-                break;
-        }
+    // changes to the view styled layout
+    private void changeToViewLayout() {
+        // changes the toolbar title and disables all TextInputLayout fields
+        toolbar.setTitle("Πληροφορίες");
+        fieldsEnableDisable(false);
+        // disables the counter for physio_ssn and physio_zip
+        textInputLayoutArray[1].setCounterEnabled(false);
+        textInputLayoutArray[6].setCounterEnabled(false);
+        // enables the button, changes it's text and removes it's icon
+        button.setEnabled(true);
+        button.setText("Επεξεργασία");
+        button.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
     }
 
-    // changes the layout edit user details
-    private void changeLayoutToEdit() {
+    // changes to the edit styled layout
+    private void changeToEditLayout() {
         // changes the toolbar title and enables all** TextInputLayout fields
         toolbar.setTitle("Επεξεργασία");
         fieldsEnableDisable(true);
