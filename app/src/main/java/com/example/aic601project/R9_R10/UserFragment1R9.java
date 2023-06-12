@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,15 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
+import com.example.aic601project.ModelClinic;
+import com.example.aic601project.OkHttpHandler;
 import com.example.aic601project.R;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -39,6 +45,7 @@ public class UserFragment1R9 extends Fragment {
     private AutoCompleteTextView physio, time;
     private TextView yes_text; //for the dialog box
     private TextView no_text; //for the dialog box
+    private OkHttpHandler okHttpHandler;
 
     //autocomplete textView Physio, the values for the PHYSIOS will be taken from the db
     private static final String[] PHYSIOS = new String[]{ "Name1", "BName", "DName" };
@@ -144,10 +151,28 @@ public class UserFragment1R9 extends Fragment {
         });
 
         //autocomplete text view: Physio
+
+        //Make the network request to fetch data
         physio = rootView.findViewById(R.id.user_r9_autoCompleteTextView_physio);
+
+        try{
+            ArrayList<ModelClinic> clinics = okHttpHandler.fetchClinics("http://your-domain.com/getClinics.php");
+            ArrayList<String> clinicNames = new ArrayList<>();
+            for(ModelClinic clinic: clinics){
+                clinicNames.add(clinic.getPhysioName());
+            }
+
+            //populate the dropdown menu with the retrieved clinic names
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, clinicNames);
+            physio.setAdapter(adapter);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        /** old code before the php files
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, PHYSIOS);
-        physio.setAdapter(adapter);
+        physio.setAdapter(adapter);**/
 
         //autocomplete text view: Time
         time = rootView.findViewById(R.id.user_r9_autoCompleteTextView_time);
