@@ -61,11 +61,11 @@
             android:id="@+id/shortcut_login_admin_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:text="shortcut"
-            app:layout_constraintBottom_toTopOf="@+id/login_admin_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_admin_parameter2" />
+            app:layout_constraintBottom_toBottomOf="@+id/login_admin_button"
+            app:layout_constraintStart_toStartOf="@+id/login_admin_parameter2"
+            app:layout_constraintTop_toTopOf="@+id/login_admin_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

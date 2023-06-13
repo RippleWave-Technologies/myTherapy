@@ -1,29 +1,30 @@
 <?php
-$data = array();
-$afm = $_GET["afm"];
-$name = $_GET["name"];
-$email = $_GET["email"];
-$address = $_GET["address"];
-$addressNumber = $_GET["addressNumber"];
-$postcode = $_GET["postcode"];
-$city = $_GET["city"];
+    $data = array();
+    $afm = $_POST["afm"];
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $address = $_POST["address"];
+    $addressNumber = $_POST["addressNumber"];
+    $postcode = $_POST["postcode"];
+    $city = $_POST["city"];
 
-$host = "localhost";
-$uname = "root";
-$pass = "";
-$dbname = "myTherapy";
+    // Database connection details
+    $host = "localhost";
+    $uname = "root";
+    $pass = "";
+    $dbname = "myTherapy";
 
-$dbh = mysqli_connect($host, $uname, $pass) or die("cannot connect");
-$dbh->set_charset("utf8");
+    $dbh = mysqli_connect($host, $uname, $pass) or die("cannot connect");
+    $dbh->set_charset("utf8");
 
-mysqli_select_db($dbh, $dbname);
+    mysqli_select_db($dbh, $dbname);
 
-$sql = "UPDATE therapy SET name='$name', email='$email', address='$address', 
-        addressNumber='$addressNumber', postcode='$postcode', city='$city' 
-        WHERE afm='$afm'";
+    $sql = "UPDATE therapy SET name='$name', email='$email', address='$address', 
+            addressNumber='$addressNumber', postcode='$postcode', city='$city' 
+            WHERE afm='$afm'";
 
-mysqli_query($dbh, $sql);
+    mysqli_query($dbh, $sql);
 
-header("Content-Type: application/json");
-mysqli_close($dbh);
+    header("Content-Type: application/json");
+    mysqli_close($dbh);
 ?>

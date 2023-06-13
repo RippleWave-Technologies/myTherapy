@@ -5,7 +5,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -20,7 +19,6 @@ public class PhysicianMainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         afm = intent.getStringExtra("AFM");
-        Log.d("PhysicianMainActivity", "AFM: " + afm);
 
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
         getWindow().setNavigationBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));

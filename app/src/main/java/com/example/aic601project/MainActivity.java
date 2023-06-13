@@ -1,19 +1,14 @@
 package com.example.aic601project;
 
-import com.example.aic601project.R1_R2.AdminMainActivity;
-import com.example.aic601project.R3_R8.PhysicianMainActivity;
-import com.example.aic601project.R9_R10.UserMainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String IP = "temp";
+    private static final String IP = "192.168.198.76";
 
     private PatientList patientList;
 
@@ -45,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
                                     .commit();
                             return true;
 
-//                        case R.id.MainPage3:
-//                            // Switch to LoginScreenUser.java
-//                            // Replace the current fragment with LoginScreenUser.java
-//                            getSupportFragmentManager().beginTransaction()
-//                                    .replace(R.id.main_frameLayout, new LoginUser())
-//                                    .commit();
-//                            return true;
+                        case R.id.MainPage3:
+                            // Switch to LoginScreenUser.java
+                            // Replace the current fragment with LoginScreenUser.java
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.main_frameLayout, new LoginUser())
+                                    .commit();
+                            return true;
 
                     }
                     return false;
@@ -66,19 +61,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction()
                 .replace(R.id.main_frameLayout, fragment)
                 .commit();
-    }
-
-    // onClick for main_button_goToActivity Button
-    public void goToOtherActivity(View v) {
-        int selectedItemId = ((BottomNavigationView) (findViewById(R.id.main_bottom_navigation_view)))
-                .getSelectedItemId();
-        if (selectedItemId == R.id.MainPage1) {
-            startActivity(new Intent(this, AdminMainActivity.class));
-        } else if (selectedItemId == R.id.MainPage2) {
-            startActivity(new Intent(this, PhysicianMainActivity.class));
-        } else if (selectedItemId == R.id.MainPage3) {
-            startActivity(new Intent(this, UserMainActivity.class));
-        }
     }
 
     // getter for the IP address

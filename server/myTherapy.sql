@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2023 at 07:40 AM
+-- Generation Time: Jun 14, 2023 at 12:42 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -61,7 +61,7 @@ CREATE TABLE `association` (
 --
 
 INSERT INTO `association` (`id`, `password`) VALUES
-('0001', '12345678');
+('001', '12345678');
 
 -- --------------------------------------------------------
 
@@ -114,6 +114,7 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`code`, `name`, `price`, `description`) VALUES
+('Example1', 'discordExample', 50, 'This is an example.'),
 ('SS1', 'testService1', 50, 'testDescription1.'),
 ('SS2', 'testService2', 60, 'testDescription2.'),
 ('SS3', 'testService3', 70, 'testDescription3.');
@@ -154,16 +155,21 @@ CREATE TABLE `therapy` (
   `address` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
   `addressNumber` varchar(8) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
   `postcode` varchar(5) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `city` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL
+  `city` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
+  `password` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `therapy`
 --
 
-INSERT INTO `therapy` (`afm`, `name`, `email`, `address`, `addressNumber`, `postcode`, `city`) VALUES
-('111111114', 'testClinic1', 'testClinic1@testing.com', 'testSt1', '20', '54453', 'Thessaloniki'),
-('121231410', 'testClinic2', 'testClinic2@testing.com', 'testSt2', '122', '54453', 'Thessaloniki');
+INSERT INTO `therapy` (`afm`, `name`, `email`, `address`, `addressNumber`, `postcode`, `city`, `password`) VALUES
+('111111114', 'testClinic1', 'testClinic1@testing.com', 'testSt1', '20', '54452', 'Thessaloniki', '12345678'),
+('121231410', 'testClinic2', 'testClinic2@testing.com', 'testSt2', '122', '54453', 'Thessaloniki', '12345678'),
+('121824195', 'testClinic3', 'testClinic3@testing.com', 'testSt3', '22', '54454', 'Thessaloniki', '12345678'),
+('178237123', 'testClinic4', 'testClinic4@testing.com', 'testSt4', '412', '54455', 'Thessaloniki', '12345678'),
+('342134120', 'testClinic5', 'testClinic5@testing.com', 'testSt5', '31', '54456', 'Thessaloniki', '12345678'),
+('451231245', 'testClinic6', 'testClinic6@testing.com', 'testSt6', '23', '54457', 'Thessaloniki', '12345678');
 
 --
 -- Indexes for dumped tables
