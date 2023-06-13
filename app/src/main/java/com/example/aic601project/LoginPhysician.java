@@ -13,17 +13,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.aic601project.R1_R2.AdminMainActivity;
+import com.example.aic601project.R3_R8.PhysicianMainActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LoginAdmin#newInstance} factory method to
+ * Use the {@link LoginPhysician#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginAdmin extends Fragment {
+public class LoginPhysician extends Fragment {
     TextInputLayout parameter1, parameter2;
     private Button button, shortcut;
     private String ip;
@@ -37,7 +37,7 @@ public class LoginAdmin extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public LoginAdmin() {
+    public LoginPhysician() {
         // Required empty public constructor
     }
 
@@ -47,11 +47,11 @@ public class LoginAdmin extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment LoginAdmin.
+     * @return A new instance of fragment LoginPhysician.
      */
     // TODO: Rename and change types and number of parameters
-    public static LoginAdmin newInstance(String param1, String param2) {
-        LoginAdmin fragment = new LoginAdmin();
+    public static LoginPhysician newInstance(String param1, String param2) {
+        LoginPhysician fragment = new LoginPhysician();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,19 +68,20 @@ public class LoginAdmin extends Fragment {
         }
     }
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // inflates the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_login_admin, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_login_physician, container, false);
 
         // gets the IP from the MainActivity
         ip = MainActivity.getIP();
 
-        button = rootView.findViewById(R.id.login_admin_button);
-        shortcut = rootView.findViewById(R.id.shortcut_login_admin_button);
+        button = rootView.findViewById(R.id.login_physician_button);
+        shortcut = rootView.findViewById(R.id.shortcut_login_physician_button);
 
-        parameter1 = rootView.findViewById(R.id.login_admin_parameter1);
-        parameter2 = rootView.findViewById(R.id.login_admin_parameter2);
+        parameter1 = rootView.findViewById(R.id.login_physician_parameter1);
+        parameter2 = rootView.findViewById(R.id.login_physician_parameter2);
 
         final boolean[] input = {false, false};
         Objects.requireNonNull(parameter1.getEditText()).addTextChangedListener(new TextWatcher() {
@@ -106,19 +107,19 @@ public class LoginAdmin extends Fragment {
             public void afterTextChanged(Editable s) { /* do nothing */ }
         });
 
-        button.setOnClickListener(view -> attemptAdminLogin());
+        button.setOnClickListener(view -> attemptPhysicianLogin());
         shortcut.setOnClickListener(view -> shortcutClick());
 
         return rootView;
     }
 
-    private void attemptAdminLogin() {
+    private void attemptPhysicianLogin() {
         int result = 0;
 
-        String url = "http://" + ip + "/myTherapy/loginAdmin.php";
+        String url = "http://" + ip + "/myTherapy/loginPhysician.php";
         try {
             OkHttpHandler okHttpHandler = new OkHttpHandler();
-            result = okHttpHandler.loginAdmin(url, Objects.requireNonNull(parameter1.getEditText()).getText().toString(),
+            result = okHttpHandler.loginPhysician(url, Objects.requireNonNull(parameter1.getEditText()).getText().toString(),
                     Objects.requireNonNull(parameter2.getEditText()).getText().toString());
         } catch (Exception e) {
             e.printStackTrace();
@@ -129,14 +130,15 @@ public class LoginAdmin extends Fragment {
             Objects.requireNonNull(parameter2.getEditText()).setText("");
             Toast.makeText(getContext(), "Login has failed", Toast.LENGTH_LONG).show();
         } else {
-            startActivity(new Intent(getContext(), AdminMainActivity.class));
-            requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+            Intent intent = new Intent(requireActivity(), PhysicianMainActivity.class);
+            intent.putExtra("AFM", parameter1.getEditText().getText().toString());
+            startActivity(intent);
         }
     }
 
     private void shortcutClick() {
-        Objects.requireNonNull(parameter1.getEditText()).setText("001");
+        Objects.requireNonNull(parameter1.getEditText()).setText("111111114");
         Objects.requireNonNull(parameter2.getEditText()).setText("12345678");
-        attemptAdminLogin();
+        attemptPhysicianLogin();
     }
 }

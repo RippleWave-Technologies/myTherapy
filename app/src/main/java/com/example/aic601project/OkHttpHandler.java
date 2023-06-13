@@ -182,4 +182,40 @@ public class OkHttpHandler {
         assert response.body() != null;
         return Integer.parseInt(response.body().string());
     }
+
+    public int loginPhysician(String url, String afm, String password) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        RequestBody body = new FormBody.Builder()
+                .add("afm", afm)
+                .add("password", password)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        assert response.body() != null;
+        return Integer.parseInt(response.body().string());
+    }
+
+    public int loginUser(String url, String amka, String password) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        RequestBody body = new FormBody.Builder()
+                .add("amka", amka)
+                .add("password", password)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        assert response.body() != null;
+        return Integer.parseInt(response.body().string());
+    }
 }

@@ -27,24 +27,24 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
         getWindow().setNavigationBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
 
-//        ((BottomNavigationView) (findViewById(R.id.main_bottom_navigation_view))).setOnNavigationItemSelectedListener(item -> {
-//                    switch (item.getItemId()) {
-//                        case R.id.MainPage1:
-//                            // Switch to LoginScreenAdmin.java
-//                            // Replace the current fragment with LoginScreenAdmin
-//                            getSupportFragmentManager().beginTransaction()
-//                                    .replace(R.id.main_frameLayout, new LoginAdmin())
-//                                    .commit();
-//                            return true;
-//
-//                        case R.id.MainPage2:
-//                            // Switch to LoginScreenPhysician.java
-//                            // Replace the current fragment with LoginScreenPhysician
-//                            getSupportFragmentManager().beginTransaction()
-//                                    .replace(R.id.main_frameLayout, new LoginPhysician())
-//                                    .commit();
-//                            return true;
-//
+        ((BottomNavigationView) (findViewById(R.id.main_bottom_navigation_view))).setOnNavigationItemSelectedListener(item -> {
+                    switch (item.getItemId()) {
+                        case R.id.MainPage1:
+                            // Switch to LoginScreenAdmin.java
+                            // Replace the current fragment with LoginScreenAdmin
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.main_frameLayout, new LoginAdmin())
+                                    .commit();
+                            return true;
+
+                        case R.id.MainPage2:
+                            // Switch to LoginScreenPhysician.java
+                            // Replace the current fragment with LoginScreenPhysician
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.main_frameLayout, new LoginPhysician())
+                                    .commit();
+                            return true;
+
 //                        case R.id.MainPage3:
 //                            // Switch to LoginScreenUser.java
 //                            // Replace the current fragment with LoginScreenUser.java
@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
 //                                    .replace(R.id.main_frameLayout, new LoginUser())
 //                                    .commit();
 //                            return true;
-//
-//                    }
-//                    return false;
-//                });
+
+                    }
+                    return false;
+                });
 
         // Set the initial fragment when the activity is created
         loadFragment(new LoginAdmin());
