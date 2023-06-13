@@ -185,6 +185,8 @@ public class AdminR1Activity2 extends AppCompatActivity {
         button.setEnabled(true);
         button.setText("Επεξεργασία");
         button.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        // sets the navigation icon to back
+        toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_24);
     }
 
     // changes to the edit styled layout
@@ -198,6 +200,8 @@ public class AdminR1Activity2 extends AppCompatActivity {
         // sets the button to disabled and changes the text
         button.setEnabled(false);
         button.setText("Αποθήκευση");
+        // sets the navigation icon to close
+        toolbar.setNavigationIcon(R.drawable.baseline_close_24);
 
         checkForInput();
     }

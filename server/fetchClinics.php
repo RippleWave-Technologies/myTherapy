@@ -1,6 +1,7 @@
 <?php
 	$data = array();
 
+	// Database connection details
 	$host="localhost";
 	$uname="root";
 	$pass="";
@@ -17,9 +18,7 @@
 	while ($row = mysqli_fetch_array($result)) {
         $name = $row["name"];
         $email = $row["email"];
-
         $address = $row["address"];
-
 		$addressNumber = $row["addressNumber"];
 		$postcode = $row["postcode"];
 		$city = $row["city"];
