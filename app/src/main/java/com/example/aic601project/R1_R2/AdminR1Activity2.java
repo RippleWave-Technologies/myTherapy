@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import com.example.aic601project.MainActivity;
 import com.example.aic601project.ModelClinic;
+import com.example.aic601project.OkHttpHandler;
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -15,6 +16,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -163,7 +165,22 @@ public class AdminR1Activity2 extends AppCompatActivity {
     }
 
     private void updateClinicsData(String ip) {
-        // Andreas TODO implement updateClinicsData
+        String url = "http://" + ip + "/myTherapy/updateClinic.php";
+        try {
+            OkHttpHandler okHttpHandler = new OkHttpHandler();
+            okHttpHandler.insertOrUpdateClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[0].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[2].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[3].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[4].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[6].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[5].getEditText()).getText().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Toast.makeText(AdminR1Activity2.this, "Τα στοιχεία ενημερώθηκαν", Toast.LENGTH_SHORT).show();
+        onBackPressed();
     }
 
     // enables/disables all TextInputLayouts

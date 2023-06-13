@@ -140,7 +140,7 @@ public class OkHttpHandler {
         return clinics;
     }
 
-    public void insertClinic(String url, String afm, String name, String email, String address,
+    public void insertOrUpdateClinic(String url, String afm, String name, String email, String address,
                              String addressNumber, String postcode, String city) {
         OkHttpClient client = new OkHttpClient();
 

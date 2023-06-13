@@ -138,7 +138,7 @@ public class AdminR1Activity1 extends AppCompatActivity {
         String url = "http://" + ip + "/myTherapy/insertClinic.php";
         try {
             OkHttpHandler okHttpHandler = new OkHttpHandler();
-            okHttpHandler.insertClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString(),
+            okHttpHandler.insertOrUpdateClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString(),
                     Objects.requireNonNull(textInputLayoutArray[0].getEditText()).getText().toString(),
                     Objects.requireNonNull(textInputLayoutArray[2].getEditText()).getText().toString(),
                     Objects.requireNonNull(textInputLayoutArray[3].getEditText()).getText().toString(),
