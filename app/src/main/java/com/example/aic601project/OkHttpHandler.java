@@ -6,7 +6,6 @@ import java.util.*;
 import org.json.*;
 
 import android.os.*;
-import android.util.Log;
 
 import okhttp3.*;
 
@@ -111,9 +110,13 @@ public class OkHttpHandler {
 
     public ArrayList<ModelClinic> fetchClinics(String url) throws Exception {
         ArrayList<ModelClinic> clinics = new ArrayList<>();
+
         OkHttpClient client = new OkHttpClient().newBuilder().build();
+
         RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
+
         Request request = new Request.Builder().url(url).method("POST", body).build();
+
         Response response = client.newCall(request).execute();
         String data = response.body().string();
 
@@ -141,12 +144,9 @@ public class OkHttpHandler {
     }
 
     public void insertOrUpdateClinic(String url, String afm, String name, String email, String address,
-                             String addressNumber, String postcode, String city) {
+                                     String addressNumber, String postcode, String city) throws IOException {
         OkHttpClient client = new OkHttpClient();
 
-        Log.d("imtesting", "all data: " + afm + name + email + address + addressNumber + postcode + city);
-
-        // Create a FormBody with the parameters
         RequestBody body = new FormBody.Builder()
                 .add("afm", afm)
                 .add("name", name)
@@ -157,37 +157,29 @@ public class OkHttpHandler {
                 .add("city", city)
                 .build();
 
-        // Create a POST request with the URL and body
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
                 .build();
 
-        // Send the request asynchronously
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                // Handle any errors
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                // Handle the response if needed
-                // For example, you could check the response code
-                if (response.isSuccessful()) {
-                    // Request successful
-                    System.out.println("Clinic inserted successfully");
-                } else {
-                    // Request failed
-                    System.out.println("Failed to insert clinic");
-                }
-
-                // Close the response
-                response.close();
-            }
-        });
+        Response response = client.newCall(request).execute();
     }
 
-    // Andreas TODO implement a method for updating the database
+    public int loginAdmin(String url, String id, String password) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        RequestBody body = new FormBody.Builder()
+                .add("id", id)
+                .add("password", password)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        assert response.body() != null;
+        return Integer.parseInt(response.body().string());
+    }
 }

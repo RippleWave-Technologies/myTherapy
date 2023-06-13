@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
     // ModelClinicsList - used to get the clinics from the database
     ModelClinicsList clinicsList;
-    // String - used to get the ip from the MainActivity
+    // String - used to get the ip address from the MainActivity
     private String ip;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -72,7 +72,7 @@ public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
         // inflates the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_admin1, container, false);
 
-        // gets the IP from the MainActivity
+        // gets the IP address from the MainActivity
         ip = MainActivity.getIP();
 
         // setOnClickListener for the admin_fragment1_floatingActionButton

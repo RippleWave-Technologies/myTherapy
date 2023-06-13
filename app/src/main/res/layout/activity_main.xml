@@ -22,10 +22,21 @@
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:onClick="goToOtherActivity"
         android:text="@string/signIn"
         app:layout_constraintBottom_toTopOf="@+id/main_bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/main_frameLayout"
+        android:layout_width="409dp"
+        android:layout_height="593dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_button_goToActivity"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
