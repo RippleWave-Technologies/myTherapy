@@ -1,6 +1,7 @@
 package com.example.aic601project.R3_R8;
 
 import com.example.aic601project.R;
+import com.example.aic601project.R9_R10.UserR9NotificationsActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -65,7 +66,16 @@ public class PhysicianFragment1 extends Fragment {
         // setOnClickListener for the physician_r8_Button_temp
         rootView.findViewById(R.id.physician_r8_Button_temp).setOnClickListener(v -> startR8Activity());
 
+        // onClick listener for user_imageButton_notifications
+        rootView.findViewById(R.id.physician_imageButton_notifications).setOnClickListener(v -> launchPhysicianR7NotificationsActivity());
+
         return rootView;
+    }
+
+    // method for physician_imageButton_notifications
+    private void launchPhysicianR7NotificationsActivity() {
+        startActivity(new Intent(getActivity(), PhysicianR7Activity1.class));
+        getActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 
     // method for physician_r8_Button_temp
