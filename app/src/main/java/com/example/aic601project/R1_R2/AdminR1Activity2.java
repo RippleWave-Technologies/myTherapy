@@ -29,8 +29,8 @@ public class AdminR1Activity2 extends AppCompatActivity {
     private TextInputLayout[] textInputLayoutArray;
     // toolbar - admin_r1_2_topAppBar
     private MaterialToolbar toolbar;
-    // button - admin_r1_2_button
-    private Button button;
+    // button - admin_r1_2_button, deleteButton - admin_r1_2_deleteButton
+    private Button button, deleteButton;
     // String - used to get the ip address from the MainActivity
     private String ip;
 
@@ -51,6 +51,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
         textInputLayoutArray = setTextInputLayoutArray(intentStringArray);
 
         button = findViewById(R.id.admin_r1_2_button);
+        deleteButton = findViewById(R.id.admin_r1_2_deleteButton);
         toolbar = findViewById(R.id.admin_r1_2_topAppBar);
         setupToolbarWithBackButton();
 
@@ -154,7 +155,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
     }
 
     // onClick for admin_r1_2_button Button
-    public void addPhysio(View v) {
+    public void addPhysio2(View v) {
         switch (button.getText().toString()) {
             case "Επεξεργασία":
                 changeToEditLayout();
@@ -164,6 +165,20 @@ public class AdminR1Activity2 extends AppCompatActivity {
                 onBackPressed();
                 break;
         }
+    }
+
+    // onClick for admin_r1_2_deleteButton Button
+    public void deletePhysio(View v){
+        String url = "http://" + ip + "/myTherapy/deleteClinic.php";
+        try {
+            OkHttpHandler okHttpHandler = new OkHttpHandler();
+            okHttpHandler.deleteClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Toast.makeText(AdminR1Activity2.this, "Το Φυσιοθεραπευτήριο έχει διαγραφεί.", Toast.LENGTH_LONG).show();
+        onBackPressed();
     }
 
     private void updateClinicsData(String ip) {
@@ -181,7 +196,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Toast.makeText(AdminR1Activity2.this, "Τα στοιχεία ενημερώθηκαν", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AdminR1Activity2.this, "Τα στοιχεία του Φυσιοθεραπευτηρίου έχουν ενημερωθεί.", Toast.LENGTH_SHORT).show();
         onBackPressed();
     }
 
@@ -194,6 +209,8 @@ public class AdminR1Activity2 extends AppCompatActivity {
 
     // changes to the view styled layout
     private void changeToViewLayout() {
+        // reverts any changes to the original input
+        revertToOriginalInput();
         // changes the toolbar title and disables all TextInputLayout fields
         toolbar.setTitle("Πληροφορίες");
         fieldsEnableDisable(false);
@@ -203,6 +220,8 @@ public class AdminR1Activity2 extends AppCompatActivity {
         // sets the button to enable and changes it's text
         button.setEnabled(true);
         button.setText("Επεξεργασία");
+        // sets the deleteButton to invisible
+        deleteButton.setVisibility(View.INVISIBLE);
         // sets the navigation icon to back
         toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_24);
     }
@@ -218,9 +237,17 @@ public class AdminR1Activity2 extends AppCompatActivity {
         // sets the button to disabled and changes it's text
         button.setEnabled(false);
         button.setText("Αποθήκευση");
+        // sets the deleteButton to visible
+        deleteButton.setVisibility(View.VISIBLE);
         // sets the navigation icon to close
         toolbar.setNavigationIcon(R.drawable.baseline_close_24);
 
         checkForInput();
+    }
+
+
+    // reverts any changes to the original input
+    private void revertToOriginalInput() {
+        for (int i = 0; i < 7; i++){ Objects.requireNonNull(textInputLayoutArray[i].getEditText()).setText(intentStringArray[i]); }
     }
 }

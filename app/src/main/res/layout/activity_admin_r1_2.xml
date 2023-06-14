@@ -34,11 +34,27 @@
         android:layout_height="65dp"
         android:layout_marginBottom="51dp"
         android:enabled="true"
-        android:onClick="addPhysio"
+        android:onClick="addPhysio2"
         android:text="@string/admin_addButton"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/admin_r1_2_constraintLayout_fields"
+        tools:ignore="RtlHardcoded" />
+
+    <Button
+        android:id="@+id/admin_r1_2_deleteButton"
+        style="@style/Widget.Material3.Button.IconButton.Filled"
+        android:layout_width="148dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="51dp"
+        android:enabled="true"
+        android:onClick="deletePhysio"
+        android:text="@string/admin_delButton"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:backgroundTint="@color/design_default_color_error"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/admin_r1_2_button"
         tools:ignore="RtlHardcoded" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

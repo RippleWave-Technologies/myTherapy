@@ -1,5 +1,6 @@
 package com.example.aic601project.R3_R8;
 
+import com.example.aic601project.MainActivity;
 import com.example.aic601project.R;
 import com.example.aic601project.R9_R10.UserR9NotificationsActivity;
 
@@ -66,9 +67,11 @@ public class PhysicianFragment1 extends Fragment {
         // setOnClickListener for the physician_r8_Button_temp
         rootView.findViewById(R.id.physician_r8_Button_temp).setOnClickListener(v -> startR8Activity());
 
-        // onClick listener for user_imageButton_notifications
+        // onClick listener for physician_imageButton_notifications
         rootView.findViewById(R.id.physician_imageButton_notifications).setOnClickListener(v -> launchPhysicianR7NotificationsActivity());
 
+        // onClick listener for physician_imageButton_exit
+        rootView.findViewById(R.id.physician_imageButton_exit).setOnClickListener(v -> goBackToLoginScreen());
         return rootView;
     }
 
@@ -82,5 +85,10 @@ public class PhysicianFragment1 extends Fragment {
     public void startR8Activity() {
         startActivity(new Intent(getActivity(), PhysicianR8Activity.class));
         requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+    }
+
+    private void goBackToLoginScreen() {
+        startActivity(new Intent(requireActivity(), MainActivity.class));
+        requireActivity().finish();
     }
 }

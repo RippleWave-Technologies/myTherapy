@@ -165,6 +165,21 @@ public class OkHttpHandler {
         Response response = client.newCall(request).execute();
     }
 
+    public void deleteClinic(String url, String afm) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = new FormBody.Builder()
+                .add("afm", afm)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        client.newCall(request).execute();
+    }
+
     public int loginAdmin(String url, String id, String password) throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 

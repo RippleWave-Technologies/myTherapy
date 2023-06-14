@@ -12,7 +12,8 @@
 
 	mysqli_select_db($dbh, $dbname);
 
-	$sql = "SELECT * FROM therapy";
+	// Prepare the SQL query
+	$sql = "SELECT * FROM therapy ORDER BY name";
 
 	$result = mysqli_query($dbh, $sql);
 	while ($row = mysqli_fetch_array($result)) {

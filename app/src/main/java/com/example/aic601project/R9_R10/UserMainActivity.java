@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.aic601project.MainActivity;
 import com.example.aic601project.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -50,6 +51,9 @@ public class UserMainActivity extends AppCompatActivity {
 
         // onClick listener for user_imageButton_notifications
         findViewById(R.id.user_imageButton_notifications).setOnClickListener(v -> launchUserR9NotificationsActivity());
+
+        // onClick listener for user_imageButton_exit
+        findViewById(R.id.user_imageButton_exit).setOnClickListener(v -> goBackToLoginScreen());
     }
 
     private void loadFragment(Fragment fragment) {
@@ -63,6 +67,11 @@ public class UserMainActivity extends AppCompatActivity {
     private void launchUserR9NotificationsActivity() {
         startActivity(new Intent(this, UserR9NotificationsActivity.class));
         overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+    }
+
+    private void goBackToLoginScreen() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
     public String getAmka() {

@@ -2,6 +2,16 @@
     <string name="app_name">AIC601project</string>
     <string name="company_name">myTherapy</string>
 
+    <string name="login">Σύνδεση</string>
+    <string name="adminLoginParameter1">ID διαχειριστή</string>
+    <string name="physicianLoginParameter1">ΑΦΜ χρήστη</string>
+    <string name="userLoginParameter1">ΑΜΚΑ χρήστη</string>
+    <string name="LoginParameter2">Κωδικός πρόσβασης</string>
+
+    <string name="logout">Απούνδεση</string>
+    <string name="profile">Προφίλ χρήστη</string>
+    <string name="notifications">Ειδοποιήσεις</string>
+
     <string name="street">Οδός</string>
     <string name="stNumber">Αριθμός</string>
     <string name="city">Πόλη</string>
@@ -18,6 +28,7 @@
     <string name="admin_ssnError">Μη έγκυρος αριθμός ΑΦΜ</string>
     <string name="admin_emailPhysio">Διεύθυνση email</string>
     <string name="admin_addButton">Προσθήκη</string>
+    <string name="admin_delButton">Διαγραφή</string>
     <string name="admin_viewUserData">Προβολή στοιχείων χρήστη</string>
 
     <string name="admin_service">Όνομα παροχής</string>

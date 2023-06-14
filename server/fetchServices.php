@@ -11,7 +11,7 @@
 
 	mysqli_select_db($dbh, $dbname);
 
-	$sql = "SELECT * FROM service";
+	$sql = "SELECT * FROM service BY name";
 
 	$result = mysqli_query($dbh, $sql);
 	while ($row = mysqli_fetch_array($result)) {

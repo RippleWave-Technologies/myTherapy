@@ -58,13 +58,14 @@
             app:layout_constraintTop_toBottomOf="@+id/user_textView_welcome" />
 
         <ImageButton
-            android:id="@+id/user_imageView_exit"
+            android:id="@+id/user_imageButton_exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:background="@null"
             android:src="@drawable/baseline_exit_to_app_24"
             android:foreground="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/logout"
             app:layout_constraintBottom_toBottomOf="@+id/user_textView_company"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/user_textView_company" />
@@ -77,8 +78,9 @@
             android:background="@null"
             android:src="@drawable/baseline_account_circle_24"
             android:foreground="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/profile"
             app:layout_constraintBottom_toBottomOf="@+id/user_textView_company"
-            app:layout_constraintEnd_toStartOf="@+id/user_imageView_exit"
+            app:layout_constraintEnd_toStartOf="@+id/user_imageButton_exit"
             app:layout_constraintTop_toTopOf="@+id/user_textView_company" />
 
         <ImageButton
@@ -89,6 +91,7 @@
             android:background="@null"
             android:foreground="?android:attr/selectableItemBackground"
             android:src="@drawable/baseline_notifications_24"
+            android:contentDescription="@string/notifications"
             app:layout_constraintBottom_toBottomOf="@+id/user_textView_company"
             app:layout_constraintEnd_toStartOf="@+id/user_imageView_account"
             app:layout_constraintTop_toTopOf="@+id/user_textView_company" />

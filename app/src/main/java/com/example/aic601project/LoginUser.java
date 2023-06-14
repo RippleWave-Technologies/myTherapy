@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.aic601project.R3_R8.PhysicianMainActivity;
+import com.example.aic601project.R9_R10.UserMainActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
@@ -130,9 +130,11 @@ public class LoginUser extends Fragment {
             Objects.requireNonNull(parameter2.getEditText()).setText("");
             Toast.makeText(getContext(), "Login has failed", Toast.LENGTH_LONG).show();
         } else {
-            Intent intent = new Intent(requireActivity(), PhysicianMainActivity.class);
+            Intent intent = new Intent(requireActivity(), UserMainActivity.class);
             intent.putExtra("AMKA", parameter1.getEditText().getText().toString());
             startActivity(intent);
+            requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+            requireActivity().finish();
         }
     }
 

@@ -62,7 +62,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/physician_textView_welcome" />
 
             <ImageButton
-                android:id="@+id/physician_imageView_exit"
+                android:id="@+id/physician_imageButton_exit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -71,10 +71,11 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="@+id/physician_textView_company"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/physician_textView_company" />
+                app:layout_constraintTop_toTopOf="@+id/physician_textView_company"
+                tools:ignore="ContentDescription" />
 
             <ImageButton
-                android:id="@+id/physician_imageView_account"
+                android:id="@+id/physician_imageButton_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -82,8 +83,9 @@
                 android:src="@drawable/baseline_account_circle_24"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="@+id/physician_textView_company"
-                app:layout_constraintEnd_toStartOf="@+id/physician_imageView_exit"
-                app:layout_constraintTop_toTopOf="@+id/physician_textView_company" />
+                app:layout_constraintEnd_toStartOf="@+id/physician_imageButton_exit"
+                app:layout_constraintTop_toTopOf="@+id/physician_textView_company"
+                tools:ignore="ContentDescription" />
 
             <ImageButton
                 android:id="@+id/physician_imageButton_notifications"
@@ -94,8 +96,9 @@
                 android:src="@drawable/baseline_notifications_24"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="@+id/physician_textView_company"
-                app:layout_constraintEnd_toStartOf="@+id/physician_imageView_account"
-                app:layout_constraintTop_toTopOf="@+id/physician_textView_company" />
+                app:layout_constraintEnd_toStartOf="@+id/physician_imageButton_account"
+                app:layout_constraintTop_toTopOf="@+id/physician_textView_company"
+                tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

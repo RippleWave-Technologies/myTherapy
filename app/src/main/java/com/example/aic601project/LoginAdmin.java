@@ -131,6 +131,7 @@ public class LoginAdmin extends Fragment {
         } else {
             startActivity(new Intent(getContext(), AdminMainActivity.class));
             requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+            requireActivity().finish();
         }
     }
 

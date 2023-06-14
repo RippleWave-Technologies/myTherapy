@@ -134,7 +134,7 @@ public class AdminR1Activity1 extends AppCompatActivity {
     }
 
     // onClick for admin_r1_1_button Button
-    public void addPhysio(View v) {
+    public void addPhysio1(View v) {
         String url = "http://" + ip + "/myTherapy/insertClinic.php";
         try {
             OkHttpHandler okHttpHandler = new OkHttpHandler();
@@ -149,7 +149,7 @@ public class AdminR1Activity1 extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Toast.makeText(AdminR1Activity1.this, "Το Φυσιοθεραπευτήριο έχει προστεθεί", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AdminR1Activity1.this, "Το Φυσιοθεραπευτήριο έχει προστεθεί.", Toast.LENGTH_LONG).show();
         onBackPressed();
     }
 }
