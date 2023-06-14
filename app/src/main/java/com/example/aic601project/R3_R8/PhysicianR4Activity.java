@@ -22,8 +22,6 @@ public class PhysicianR4Activity extends AppCompatActivity {
     private TextInputLayout textInputZip;
 
     // Buttons
-    private Boolean physicianEditButtonIsClicked;
-    private Button physicianEditButton;
     private Button physicianAppointmentsHistoryButton;
 
     @Override
@@ -34,11 +32,6 @@ public class PhysicianR4Activity extends AppCompatActivity {
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
         toolbar = findViewById(R.id.physician_r4_topAppBar);
         setupToolbarWithBackButton();
-
-        // get all buttons ids
-        // physicianEditButton =
-        // findViewById(R.id.physician_r4_appointmentsHistoryButton);
-        physicianEditButton = findViewById(R.id.physician_r4_EditButton);
 
         // get all TextInput ids.
         textInputName = findViewById(R.id.physician_r4_textInputLayout_name);
@@ -64,34 +57,10 @@ public class PhysicianR4Activity extends AppCompatActivity {
     private void loadStartPhysicianInformationScreen() {
         this.toolbar.setTitle("Πληροφορίες");
         this.physicianAppointmentsHistoryButton.setVisibility(View.VISIBLE);
-        // check if edit button is clicked
-        this.physicianEditButtonIsClicked = false;
-        this.physicianEditButton.setText("Επεξεργασία");
 
         // Set all textInputFields disable
         this.changeStatusOfTextInputField(false);
 
-    }
-
-    private void loadEditPhysicianInformationScreen() {
-        this.toolbar.setTitle("Επεξεργασία");
-
-        this.physicianAppointmentsHistoryButton.setVisibility(View.INVISIBLE);
-        // check if edit button is clicked
-        this.physicianEditButtonIsClicked = true;
-        this.physicianEditButton.setText("Αποθήκευση");
-
-        // Set all textInputFields disable
-        this.changeStatusOfTextInputField(true);
-
-    }
-
-    public void physicianEditButtonClicked(View v) {
-        if (physicianEditButtonIsClicked) {
-            this.loadStartPhysicianInformationScreen();
-        } else {
-            this.loadEditPhysicianInformationScreen();
-        }
     }
 
     private void changeStatusOfTextInputField(boolean status) {
