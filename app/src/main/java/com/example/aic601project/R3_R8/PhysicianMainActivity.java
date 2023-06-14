@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 public class PhysicianMainActivity extends AppCompatActivity {
-    String afm;
+    static String afm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +64,7 @@ public class PhysicianMainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public String getAfm() {
+    public static String getAfm() {
         return afm;
     }
 }

@@ -12,7 +12,7 @@ import com.example.aic601project.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UserMainActivity extends AppCompatActivity {
-    String amka;
+    static String amka;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +74,7 @@ public class UserMainActivity extends AppCompatActivity {
         finish();
     }
 
-    public String getAmka() {
+    public static String getAmka() {
         return amka;
     }
 }
