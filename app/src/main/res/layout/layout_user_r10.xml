@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/md_theme_light_onTertiary"
+    android:id="@+id/layoutEdit"
+    android:background="#E1E3DD"
+    android:orientation="horizontal"
+    android:padding="1dp"
+    android:radius="0dp">
+
+    <Button
+        android:id="@+id/R10history1"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="0dp"
+        android:backgroundTint="#E1E3DD"
+        android:drawableRight="@drawable/baseline_arrow_right_24"
+        android:text=""
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textColorLink="#E1E3DD"
+        android:textSize="18sp"
+        tools:ignore="SpeakableTextPresentCheck" />
+</LinearLayout>

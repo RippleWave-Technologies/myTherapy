@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String IP = "192.168.198.76";
+    private static final String IP = "temp";
 
     private PatientList patientList;
 
