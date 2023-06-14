@@ -1,6 +1,6 @@
 <?php
-    $amka = $_GET['amka'];
-    $afm = $_GET['afm'];
+    $amka = $_POST['amka'];
+    $afm = $_POST['afm'];
 
     // Database connection details
     $host = "localhost";

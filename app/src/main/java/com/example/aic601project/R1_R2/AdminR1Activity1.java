@@ -135,10 +135,12 @@ public class AdminR1Activity1 extends AppCompatActivity {
 
     // onClick for admin_r1_1_button Button
     public void addPhysio1(View v) {
+        int result = 0;
+
         String url = "http://" + ip + "/myTherapy/insertClinic.php";
         try {
             OkHttpHandler okHttpHandler = new OkHttpHandler();
-            okHttpHandler.insertOrUpdateClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString(),
+            result = okHttpHandler.insertOrUpdateClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString(),
                     Objects.requireNonNull(textInputLayoutArray[0].getEditText()).getText().toString(),
                     Objects.requireNonNull(textInputLayoutArray[2].getEditText()).getText().toString(),
                     Objects.requireNonNull(textInputLayoutArray[3].getEditText()).getText().toString(),
@@ -149,7 +151,13 @@ public class AdminR1Activity1 extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Toast.makeText(AdminR1Activity1.this, "Το Φυσιοθεραπευτήριο έχει προστεθεί.", Toast.LENGTH_LONG).show();
-        onBackPressed();
+        if (result == 0){
+            Toast.makeText(AdminR1Activity1.this, "Ανεπιτυχής προσθήκη! Το ΑΦΜ αυτό υπάρχει ήδη.", Toast.LENGTH_LONG).show();
+            onBackPressed();
+
+        } else {
+            Toast.makeText(AdminR1Activity1.this, "Το Φυσιοθεραπευτήριο έχει προστεθεί.", Toast.LENGTH_LONG).show();
+            onBackPressed();
+        }
     }
 }

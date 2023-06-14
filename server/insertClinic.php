@@ -25,15 +25,18 @@
 
     if (mysqli_num_rows($result) > 0) {
         // Row already exists
+        $response = 0;
         echo "AFM already exists in the database.";
     } else {
         // Row doesn't exist, create a new row
+        $response = 1;
         $sql = "INSERT INTO therapy (afm, name, email, address, addressNumber, postcode, city) 
                 VALUES ('$afm', '$name', '$email', '$address', '$addressNumber', '$postcode', '$city')";
     }
 
     mysqli_query($dbh, $sql);
 
-    header("Content-Type: application/json");
+    echo $response;
+
     mysqli_close($dbh);
 ?>

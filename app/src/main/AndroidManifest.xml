@@ -19,7 +19,7 @@
             android:name=".R3_R8.PhysicianR7Activity2"
             android:exported="false" />
         <activity
-            android:name=".R3_R8.PhysicianActivityR71Adapter"
+            android:name=".R3_R8.PhysicianR7Activity1Adapter"
             android:exported="false" />
         <activity
             android:name=".R3_R8.PhysicianR7Activity1"

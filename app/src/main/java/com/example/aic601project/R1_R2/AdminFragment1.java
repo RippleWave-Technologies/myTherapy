@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +26,12 @@ public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
     ModelClinicsList clinicsList;
     // String - used to get the ip address from the MainActivity
     private String ip;
+    // SwipeRefreshLayout - used to refresh the RecyclerView
+    SwipeRefreshLayout swipeRefreshLayout;
+    // RecyclerView - used to display the clinics
+    RecyclerView recyclerView;
+    // AdminFragment1Adapter - used to provide the data for the RecyclerView
+    AdminFragment1Adapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -82,10 +89,19 @@ public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
         clinicsList = new ModelClinicsList(ip);
 
         // initiates the RecyclerView
-        RecyclerView recyclerView = rootView.findViewById(R.id.admin_fragment1_recyclerView);
-        AdminFragment1Adapter adapter = new AdminFragment1Adapter(requireActivity(), clinicsList.getClinics(), this);
+        recyclerView = rootView.findViewById(R.id.admin_fragment1_recyclerView);
+        adapter = new AdminFragment1Adapter(requireActivity(), clinicsList.getClinics(), this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+
+        // initiates the SwipeRefreshLayout and sets the onRefreshListener
+        swipeRefreshLayout = rootView.findViewById(R.id.admin_fragment1_swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            clinicsList = new ModelClinicsList(ip);
+            adapter = new AdminFragment1Adapter(requireActivity(), clinicsList.getClinics(), this);
+            recyclerView.setAdapter(adapter);
+            swipeRefreshLayout.setRefreshing(false);
+        });
 
         return rootView;
     }

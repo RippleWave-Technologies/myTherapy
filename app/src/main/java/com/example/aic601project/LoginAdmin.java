@@ -123,13 +123,12 @@ public class LoginAdmin extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         if (result == 0){
             Objects.requireNonNull(parameter1.getEditText()).setText("");
             Objects.requireNonNull(parameter2.getEditText()).setText("");
             Toast.makeText(getContext(), "Login has failed", Toast.LENGTH_LONG).show();
         } else {
-            startActivity(new Intent(getContext(), AdminMainActivity.class));
+            startActivity(new Intent(requireActivity(), AdminMainActivity.class));
             requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
             requireActivity().finish();
         }

@@ -143,8 +143,8 @@ public class OkHttpHandler {
         return clinics;
     }
 
-    public void insertOrUpdateClinic(String url, String afm, String name, String email, String address,
-                                     String addressNumber, String postcode, String city) throws IOException {
+    public int insertOrUpdateClinic(String url, String afm, String name, String email, String address,
+                                    String addressNumber, String postcode, String city) throws IOException {
         OkHttpClient client = new OkHttpClient();
 
         RequestBody body = new FormBody.Builder()
@@ -163,9 +163,11 @@ public class OkHttpHandler {
                 .build();
 
         Response response = client.newCall(request).execute();
+        assert response.body() != null;
+        return Integer.parseInt(response.body().string());
     }
 
-    public void deleteClinic(String url, String afm) throws IOException {
+    public int deleteClinic(String url, String afm) throws IOException {
         OkHttpClient client = new OkHttpClient();
 
         RequestBody body = new FormBody.Builder()
@@ -177,7 +179,9 @@ public class OkHttpHandler {
                 .post(body)
                 .build();
 
-        client.newCall(request).execute();
+        Response response = client.newCall(request).execute();
+        assert response.body() != null;
+        return Integer.parseInt(response.body().string());
     }
 
     public int loginAdmin(String url, String id, String password) throws IOException {

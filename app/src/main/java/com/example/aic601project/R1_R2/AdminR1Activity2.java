@@ -169,18 +169,27 @@ public class AdminR1Activity2 extends AppCompatActivity {
 
     // onClick for admin_r1_2_deleteButton Button
     public void deletePhysio(View v){
+        int result = 0;
+
         String url = "http://" + ip + "/myTherapy/deleteClinic.php";
         try {
             OkHttpHandler okHttpHandler = new OkHttpHandler();
-            okHttpHandler.deleteClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString());
+            result = okHttpHandler.deleteClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        Toast.makeText(AdminR1Activity2.this, "Το Φυσιοθεραπευτήριο έχει διαγραφεί.", Toast.LENGTH_LONG).show();
-        onBackPressed();
+        if (result == 0){
+            Toast.makeText(AdminR1Activity2.this, "Το Φυσιοθεραπευτήριο αυτό έχει" +
+                    " προγραμματισμένα ραντεβού και δεν μπορεί να διαγραφεί.", Toast.LENGTH_LONG).show();
+
+        } else {
+            Toast.makeText(AdminR1Activity2.this, "Το Φυσιοθεραπευτήριο έχει διαγραφεί.", Toast.LENGTH_LONG).show();
+            onBackPressed();
+        }
     }
 
+    // updates the clinic's data in the database
     private void updateClinicsData(String ip) {
         String url = "http://" + ip + "/myTherapy/updateClinic.php";
         try {
