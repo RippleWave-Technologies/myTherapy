@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import com.example.aic601project.MainActivity;
 import com.example.aic601project.ModelClinic;
+import com.example.aic601project.OkHttpHandler;
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -15,6 +16,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,7 +31,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
     private MaterialToolbar toolbar;
     // button - admin_r1_2_button
     private Button button;
-    // String - used to get the ip from the MainActivity
+    // String - used to get the ip address from the MainActivity
     private String ip;
 
     @Override
@@ -47,6 +49,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
         intentStringArray = setIntentStringArray(clinic);
 
         textInputLayoutArray = setTextInputLayoutArray(intentStringArray);
+
         button = findViewById(R.id.admin_r1_2_button);
         toolbar = findViewById(R.id.admin_r1_2_topAppBar);
         setupToolbarWithBackButton();
@@ -117,7 +120,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
         return true;
     }
 
-    // checks every TextInputLayout for changed text (and more) and calls
+    // checks every TextInputLayout for changed text and calls
     // enableButtonIfAllInputIsTrue
     private void checkForInput() {
         for (int i = 0; i <= 6; i++) {
@@ -141,6 +144,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
         boolean allInput = (hI[0] && hI[1] && hI[2] && hI[3] && hI[4] && hI[5] && hI[6]
                 && Objects.requireNonNull(textInputLayoutArray[6].getEditText()).getText().length() == 5);
 
+        // checks if the input is different from the one passed in with the intent
         boolean newInput = false;
         for (int i = 0; i < 7; i++){
             String txt = Objects.requireNonNull(textInputLayoutArray[i].getEditText()).getText().toString();
@@ -163,7 +167,22 @@ public class AdminR1Activity2 extends AppCompatActivity {
     }
 
     private void updateClinicsData(String ip) {
-        // Andreas TODO implement updateClinicsData
+        String url = "http://" + ip + "/myTherapy/updateClinic.php";
+        try {
+            OkHttpHandler okHttpHandler = new OkHttpHandler();
+            okHttpHandler.insertOrUpdateClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[0].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[2].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[3].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[4].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[6].getEditText()).getText().toString(),
+                    Objects.requireNonNull(textInputLayoutArray[5].getEditText()).getText().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Toast.makeText(AdminR1Activity2.this, "Τα στοιχεία ενημερώθηκαν", Toast.LENGTH_SHORT).show();
+        onBackPressed();
     }
 
     // enables/disables all TextInputLayouts
@@ -181,10 +200,9 @@ public class AdminR1Activity2 extends AppCompatActivity {
         // disables the counter for physio_ssn and physio_zip
         textInputLayoutArray[1].setCounterEnabled(false);
         textInputLayoutArray[6].setCounterEnabled(false);
-        // enables the button, changes it's text and removes it's icon
+        // sets the button to enable and changes it's text
         button.setEnabled(true);
         button.setText("Επεξεργασία");
-        button.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         // sets the navigation icon to back
         toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_24);
     }
@@ -197,7 +215,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
         textInputLayoutArray[1].setEnabled(false);
         // enables the counter for physio_zip
         textInputLayoutArray[6].setCounterEnabled(true);
-        // sets the button to disabled and changes the text
+        // sets the button to disabled and changes it's text
         button.setEnabled(false);
         button.setText("Αποθήκευση");
         // sets the navigation icon to close

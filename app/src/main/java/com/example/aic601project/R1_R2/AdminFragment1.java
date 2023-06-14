@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
     // ModelClinicsList - used to get the clinics from the database
     ModelClinicsList clinicsList;
-    // String - used to get the ip from the MainActivity
+    // String - used to get the ip address from the MainActivity
     private String ip;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -72,7 +72,7 @@ public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
         // inflates the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_admin1, container, false);
 
-        // gets the IP from the MainActivity
+        // gets the IP address from the MainActivity
         ip = MainActivity.getIP();
 
         // setOnClickListener for the admin_fragment1_floatingActionButton
@@ -83,23 +83,23 @@ public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
 
         // initiates the RecyclerView
         RecyclerView recyclerView = rootView.findViewById(R.id.admin_fragment1_recyclerView);
-        AdminFragment1Adapter adapter = new AdminFragment1Adapter(getActivity(), clinicsList.getClinics(), this);
+        AdminFragment1Adapter adapter = new AdminFragment1Adapter(requireActivity(), clinicsList.getClinics(), this);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
         return rootView;
     }
 
     // method for admin_fragment1_floatingActionButton
     public void addPhysioToList() {
-        startActivity(new Intent(getActivity(), AdminR1Activity1.class));
+        startActivity(new Intent(requireActivity(), AdminR1Activity1.class));
         requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 
     // method for the RecyclerViewInterface / admin_fragment1_recyclerView
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(getActivity(), AdminR1Activity2.class);
+        Intent intent = new Intent(requireActivity(), AdminR1Activity2.class);
         intent.putExtra("Clinic Info", clinicsList.getClinics().get(position));
         startActivity(intent);
         requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);

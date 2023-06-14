@@ -28,7 +28,7 @@ public class AdminR1Activity1 extends AppCompatActivity {
     private MaterialToolbar toolbar;
     // button - admin_r1_1_button
     private Button button;
-    // String - used to get the ip from the MainActivity
+    // String - used to get the ip address from the MainActivity
     private String ip;
 
     @Override
@@ -37,19 +37,19 @@ public class AdminR1Activity1 extends AppCompatActivity {
         setContentView(R.layout.activity_admin_r1_1);
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
 
-        // gets the IP from the MainActivity
+        // gets the IP address from the MainActivity
         ip = MainActivity.getIP();
 
         textInputLayoutArray = setTextInputLayoutArray();
+
         button = findViewById(R.id.admin_r1_1_button);
         toolbar = findViewById(R.id.admin_r1_1_topAppBar);
         setupToolbarWithBackButton();
 
-        button.setEnabled(false);
         checkForInput();
     }
 
-    // creates an int[] with the Ids of all TextInputLayouts
+    // creates a TextInputLayout[] with the Ids of all TextInputLayouts
     private TextInputLayout[] setTextInputLayoutArray() {
         TextInputLayout[] textInputLayoutArray = new TextInputLayout[7];
         textInputLayoutArray[0] = findViewById(R.id.admin_r1_1_textInputLayout_name);
@@ -138,7 +138,7 @@ public class AdminR1Activity1 extends AppCompatActivity {
         String url = "http://" + ip + "/myTherapy/insertClinic.php";
         try {
             OkHttpHandler okHttpHandler = new OkHttpHandler();
-            okHttpHandler.insertClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString(),
+            okHttpHandler.insertOrUpdateClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString(),
                     Objects.requireNonNull(textInputLayoutArray[0].getEditText()).getText().toString(),
                     Objects.requireNonNull(textInputLayoutArray[2].getEditText()).getText().toString(),
                     Objects.requireNonNull(textInputLayoutArray[3].getEditText()).getText().toString(),

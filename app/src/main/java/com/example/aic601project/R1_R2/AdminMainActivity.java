@@ -41,7 +41,7 @@ public class AdminMainActivity extends AppCompatActivity {
                     return false;
                 });
 
-        // Set the initial fragment when the activity is created
+        // Set the initial fragment to AdminFragment1 when the activity is created
         loadFragment(new AdminFragment1());
     }
 

@@ -1,12 +1,9 @@
 <?php
     $data = array();
-    $afm = $_POST["afm"];
+    $code = $_POST["code"];
     $name = $_POST["name"];
-    $email = $_POST["email"];
-    $address = $_POST["address"];
-    $addressNumber = $_POST["addressNumber"];
-    $postcode = $_POST["postcode"];
-    $city = $_POST["city"];
+    $price = $_POST["price"];
+    $description = $_POST["description"];
 
     // Database connection details
     $host = "localhost";
@@ -19,9 +16,8 @@
 
     mysqli_select_db($dbh, $dbname);
 
-    $sql = "UPDATE therapy SET name='$name', email='$email', address='$address', 
-            addressNumber='$addressNumber', postcode='$postcode', city='$city' 
-            WHERE afm='$afm'";
+    $sql = "UPDATE service SET name='$name', price='$price', description='description' 
+            WHERE code='$code'";
 
     mysqli_query($dbh, $sql);
 

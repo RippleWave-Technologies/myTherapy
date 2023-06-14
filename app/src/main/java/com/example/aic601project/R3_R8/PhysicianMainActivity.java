@@ -3,21 +3,25 @@ package com.example.aic601project.R3_R8;
 import com.example.aic601project.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 public class PhysicianMainActivity extends AppCompatActivity {
-
+    String afm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_physician_main);
 
+        Intent intent = getIntent();
+        afm = intent.getStringExtra("AFM");
+
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
-        getWindow()
-                .setNavigationBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
 
         ((BottomNavigationView) (findViewById(R.id.physician_bottom_navigation_view)))
                 .setOnNavigationItemSelectedListener(item -> {
@@ -58,5 +62,9 @@ public class PhysicianMainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction()
                 .replace(R.id.physician_frameLayout, fragment)
                 .commit();
+    }
+
+    public String getAfm() {
+        return afm;
     }
 }

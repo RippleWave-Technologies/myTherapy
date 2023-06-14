@@ -11,11 +11,14 @@ import com.example.aic601project.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UserMainActivity extends AppCompatActivity {
-
+    String amka;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
+
+        Intent intent = getIntent();
+        amka = intent.getStringExtra("AMKA");
 
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
         getWindow().setNavigationBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
@@ -60,5 +63,9 @@ public class UserMainActivity extends AppCompatActivity {
     private void launchUserR9NotificationsActivity() {
         startActivity(new Intent(this, UserR9NotificationsActivity.class));
         overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+    }
+
+    public String getAmka() {
+        return amka;
     }
 }
