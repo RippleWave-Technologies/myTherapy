@@ -75,7 +75,7 @@ public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // inflates the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_admin1, container, false);
 

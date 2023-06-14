@@ -15,11 +15,12 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminR1Activity1 extends AppCompatActivity {
     // hI short for hasInput - logs whether a TextInputLayout has input
-    private final boolean[] hI = { false, false, false, false, false, false, false };
+    private final boolean[] hI = {false, false, false, false, false, false, false};
     // hNE short for hasNumberError - logs whether there is an AFM error
     private boolean hNE = false;
     // textInputLayoutArray - logs all TextInputLayouts to a TextInputLayout[]
@@ -92,15 +93,15 @@ public class AdminR1Activity1 extends AppCompatActivity {
             final int index = i;
             Objects.requireNonNull(textInputLayoutArray[i].getEditText()).addTextChangedListener(new TextWatcher() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    if (index == 1) { checkAfm(charSequence); }
+                    if (index == 1) {checkAfm(charSequence);}
                     hI[index] = !(charSequence.toString().isEmpty());
                     enableButtonIfAllInputIsTrue();
                 }
                 @Override
-                public void afterTextChanged(Editable editable) { }
+                public void afterTextChanged(Editable editable) {}
             });
         }
     }
@@ -151,7 +152,7 @@ public class AdminR1Activity1 extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (result == 0){
+        if (result == 0) {
             Toast.makeText(AdminR1Activity1.this, "Ανεπιτυχής προσθήκη! Το ΑΦΜ αυτό υπάρχει ήδη.", Toast.LENGTH_LONG).show();
             onBackPressed();
 

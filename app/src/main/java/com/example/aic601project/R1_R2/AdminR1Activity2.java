@@ -22,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminR1Activity2 extends AppCompatActivity {
     // hI short for hasInput - logs whether a TextInputLayout has input
-    private final boolean[] hI = { true, true, true, true, true, true, true };
+    private final boolean[] hI = {true, true, true, true, true, true, true};
     // textIntentInputLayoutArray - logs intent contents to a String[]
     private String[] intentStringArray;
     // textInputLayoutArray - logs all TextInputLayouts to a TextInputLayout[]
@@ -82,7 +82,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
         textInputLayoutArray[5] = findViewById(R.id.admin_r1_2_textInputLayout_city);
         textInputLayoutArray[6] = findViewById(R.id.admin_r1_2_textInputLayout_zip);
 
-        for (int i = 0; i < 7; i++){ Objects.requireNonNull(textInputLayoutArray[i].getEditText()).setText(intentStringArray[i]); }
+        for (int i = 0; i < 7; i++) {Objects.requireNonNull(textInputLayoutArray[i].getEditText()).setText(intentStringArray[i]);}
         return textInputLayoutArray;
     }
 
@@ -128,14 +128,14 @@ public class AdminR1Activity2 extends AppCompatActivity {
             final int index = i;
             Objects.requireNonNull(textInputLayoutArray[i].getEditText()).addTextChangedListener(new TextWatcher() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     hI[index] = !(charSequence.toString().isEmpty());
                     enableButtonIfAllInputIsTrue();
                 }
                 @Override
-                public void afterTextChanged(Editable editable) { }
+                public void afterTextChanged(Editable editable) {}
             });
         }
     }
@@ -147,9 +147,9 @@ public class AdminR1Activity2 extends AppCompatActivity {
 
         // checks if the input is different from the one passed in with the intent
         boolean newInput = false;
-        for (int i = 0; i < 7; i++){
+        for (int i = 0; i < 7; i++) {
             String txt = Objects.requireNonNull(textInputLayoutArray[i].getEditText()).getText().toString();
-            if (!txt.equals(intentStringArray[i])){ newInput = true; }
+            if (!txt.equals(intentStringArray[i])) {newInput = true;}
         }
         button.setEnabled(allInput && newInput);
     }
@@ -168,7 +168,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
     }
 
     // onClick for admin_r1_2_deleteButton Button
-    public void deletePhysio(View v){
+    public void deletePhysio(View v) {
         int result = 0;
 
         String url = "http://" + ip + "/myTherapy/deleteClinic.php";
@@ -179,7 +179,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (result == 0){
+        if (result == 0) {
             Toast.makeText(AdminR1Activity2.this, "Το Φυσιοθεραπευτήριο αυτό έχει" +
                     " προγραμματισμένα ραντεβού και δεν μπορεί να διαγραφεί.", Toast.LENGTH_LONG).show();
 
@@ -257,6 +257,6 @@ public class AdminR1Activity2 extends AppCompatActivity {
 
     // reverts any changes to the original input
     private void revertToOriginalInput() {
-        for (int i = 0; i < 7; i++){ Objects.requireNonNull(textInputLayoutArray[i].getEditText()).setText(intentStringArray[i]); }
+        for (int i = 0; i < 7; i++) {Objects.requireNonNull(textInputLayoutArray[i].getEditText()).setText(intentStringArray[i]);}
     }
 }
