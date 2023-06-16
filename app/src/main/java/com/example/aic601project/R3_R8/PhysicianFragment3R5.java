@@ -1,20 +1,24 @@
 package com.example.aic601project.R3_R8;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.example.aic601project.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.example.aic601project.MainActivity;
+import com.example.aic601project.Patient;
+import com.example.aic601project.PatientList;
+import com.example.aic601project.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,12 +27,14 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class PhysicianFragment3R5 extends Fragment {
 
+    private String ip;
     private RecyclerView recyclerView;
-    private List<JavaTempPhysicianR5Patients> patients;
-    private List<JavaTempPhysicianR5Patients> filteredList;
+    private PatientList patients;
+    private ArrayList<Patient> filteredList;
     private PhysicianFragment3R5NewAdapter patientsAdapter;
     private SearchView searchView;
     private PhysicianFragment3R5NewAdapter.RecyclerViewClickListener listener;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,30 +78,13 @@ public class PhysicianFragment3R5 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_physician3, container, false);
 
-        patients = new ArrayList<>();
+        ip = MainActivity.getIP();
 
-        patients.add(new JavaTempPhysicianR5Patients("jfhdjhdf"));
-        patients.add(new JavaTempPhysicianR5Patients("ffjfhjhgjhfg"));
-        patients.add(new JavaTempPhysicianR5Patients("dhfjdfh"));
-        patients.add(new JavaTempPhysicianR5Patients("dfhhfjhf"));
-        patients.add(new JavaTempPhysicianR5Patients("euwdkleoe"));
-        patients.add(new JavaTempPhysicianR5Patients("oideen"));
-        patients.add(new JavaTempPhysicianR5Patients("jfhdjhdf"));
-        patients.add(new JavaTempPhysicianR5Patients("ffjfhjhgjhfg"));
-        patients.add(new JavaTempPhysicianR5Patients("dhfjdfh"));
-        patients.add(new JavaTempPhysicianR5Patients("dfhhfjhf"));
-        patients.add(new JavaTempPhysicianR5Patients("euwdkleoe"));
-        patients.add(new JavaTempPhysicianR5Patients("oideen"));
-        patients.add(new JavaTempPhysicianR5Patients("jfhdjhdf"));
-        patients.add(new JavaTempPhysicianR5Patients("ffjfhjhgjhfg"));
-        patients.add(new JavaTempPhysicianR5Patients("dhfjdfh"));
-        patients.add(new JavaTempPhysicianR5Patients("dfhhfjhf"));
-        patients.add(new JavaTempPhysicianR5Patients("euwdkleoe"));
-        patients.add(new JavaTempPhysicianR5Patients("oideen"));
+        patients = new PatientList(ip);
 
         recyclerView = rootView.findViewById(R.id.physician_r5_recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -103,7 +92,7 @@ public class PhysicianFragment3R5 extends Fragment {
         setOnClickListener();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        patientsAdapter = new PhysicianFragment3R5NewAdapter(patients, listener);
+        patientsAdapter = new PhysicianFragment3R5NewAdapter(patients.getPatients(), listener);
         recyclerView.setAdapter(patientsAdapter);
         recyclerView.requestFocus();
 
@@ -119,7 +108,7 @@ public class PhysicianFragment3R5 extends Fragment {
             public boolean onQueryTextChange(String newText) {
 
                 filteredList = new ArrayList<>();
-                for (JavaTempPhysicianR5Patients p : patients) {
+                for (Patient p : patients.getPatients()) {
                     if (p.getName().toLowerCase().contains(newText.toLowerCase())) {
                         filteredList.add(p);
                     }
@@ -143,12 +132,21 @@ public class PhysicianFragment3R5 extends Fragment {
             // R.anim.no_slide_in_or_out);
         });
 
+        swipeRefreshLayout = rootView.findViewById(R.id.physician_r5_swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            patients = new PatientList(ip);
+            patientsAdapter = new PhysicianFragment3R5NewAdapter(patients.getPatients(), listener);
+            recyclerView.setAdapter(patientsAdapter);
+            swipeRefreshLayout.setRefreshing(false);
+        });
+
         return rootView;
     }
 
     private void setOnClickListener() {
         listener = (v, position) -> {
             Intent intent = new Intent(getContext(), PhysicianR4Activity.class);
+            intent.putExtra("patient", patients.getPatients().get(position));
             startActivity(intent);
             requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
         };

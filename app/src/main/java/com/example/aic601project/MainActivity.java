@@ -1,11 +1,12 @@
 package com.example.aic601project;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String IP = "temp";

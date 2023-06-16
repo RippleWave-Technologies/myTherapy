@@ -37,6 +37,12 @@
             android:layout_alignTop="@+id/physician_r5_searchView"
             />
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/physician_r5_swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/physician_r5_searchView">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/physician_r5_recyclerView"
             android:layout_width="match_parent"
@@ -58,8 +64,11 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
             android:layout_alignBottom="@+id/physician_r5_recyclerView"
-            android:layout_alignEnd="@+id/physician_r5_recyclerView"/>
-    </RelativeLayout>
+            android:layout_alignEnd="@+id/physician_r5_recyclerView"
+            />
 
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </RelativeLayout>
 
 </FrameLayout>

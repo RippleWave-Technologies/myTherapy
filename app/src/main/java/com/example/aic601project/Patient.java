@@ -1,16 +1,20 @@
 package com.example.aic601project;
 
-public class Patient {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Patient implements Parcelable {
     private String amka;
     private String name;
     private String surname;
     private String city;
     private String address;
-    private int addressNumber;
+    private String addressNumber;
     private String postcode;
-    private String password = "123455678";
 
-    public Patient(String amka, String name, String surname, String city, String address, int addressNumber,
+    public Patient(String amka, String name, String surname, String city, String address, String addressNumber,
             String postcode) {
         this.amka = amka;
         this.name = name;
@@ -20,6 +24,28 @@ public class Patient {
         this.addressNumber = addressNumber;
         this.postcode = postcode;
     }
+
+    protected Patient(Parcel in) {
+        amka = in.readString();
+        name = in.readString();
+        surname = in.readString();
+        city = in.readString();
+        address = in.readString();
+        addressNumber = in.readString();
+        postcode = in.readString();
+    }
+
+    public static final Creator<Patient> CREATOR = new Creator<Patient>() {
+        @Override
+        public Patient createFromParcel(Parcel in) {
+            return new Patient(in);
+        }
+
+        @Override
+        public Patient[] newArray(int size) {
+            return new Patient[size];
+        }
+    };
 
     // Getters and Setters
     public String getAmka() {
@@ -62,11 +88,11 @@ public class Patient {
         this.address = address;
     }
 
-    public int getAddressNumber() {
+    public String getAddressNumber() {
         return addressNumber;
     }
 
-    public void setAddressNumber(int addressNumber) {
+    public void setAddressNumber(String addressNumber) {
         this.addressNumber = addressNumber;
     }
 
@@ -78,11 +104,19 @@ public class Patient {
         this.postcode = postcode;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(amka);
+        parcel.writeString(name);
+        parcel.writeString(surname);
+        parcel.writeString(city);
+        parcel.writeString(address);
+        parcel.writeString(addressNumber);
+        parcel.writeString(postcode);
     }
 }

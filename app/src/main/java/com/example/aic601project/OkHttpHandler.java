@@ -1,13 +1,20 @@
 package com.example.aic601project;
 
+import android.os.StrictMode;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-import org.json.*;
-
-import android.os.*;
-
-import okhttp3.*;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class OkHttpHandler {
 
@@ -16,12 +23,12 @@ public class OkHttpHandler {
         StrictMode.setThreadPolicy(policy);
     }
 
-    ArrayList<Patient> fetchPatients(String url) throws Exception {
+    ArrayList<Patient> fetchClinicPatients(String url, String afm) throws Exception {
 
         ArrayList<Patient> patients = new ArrayList<>();
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
-        RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
+        RequestBody body = new FormBody.Builder().add("afm", afm).build();
         Request request = new Request.Builder().url(url).method("POST", body).build();
         Response response = client.newCall(request).execute();
         String data = response.body().string();
@@ -31,15 +38,16 @@ public class OkHttpHandler {
             Iterator<String> keys = json.keys();
             while (keys.hasNext()) {
                 String amka = keys.next();
+                JSONObject patientObject = json.getJSONObject(amka);
 
-                String name = json.get("name").toString();
-                String surname = json.get("surname").toString();
-                String city = json.get("city").toString();
-                String address = json.get("address").toString();
-                String addressNumber = json.get("addressNumber").toString();
-                String postcode = json.get("postcode").toString();
+                String name = patientObject.getString("name");
+                String surname = patientObject.getString("surname");
+                String city = patientObject.getString("city");
+                String address = patientObject.getString("address");
+                String addressNumber = patientObject.getString("addressNumber");
+                String postcode = patientObject.getString("postcode");
 
-                patients.add(new Patient(amka, name,surname,city, address, Integer.valueOf(addressNumber), postcode));
+                patients.add(new Patient(amka, name,surname,city, address, addressNumber, postcode));
             }
         } catch (JSONException e) {
             e.printStackTrace();
