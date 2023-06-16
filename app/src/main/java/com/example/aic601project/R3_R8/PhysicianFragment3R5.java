@@ -109,7 +109,7 @@ public class PhysicianFragment3R5 extends Fragment {
 
                 filteredList = new ArrayList<>();
                 for (Patient p : patients.getPatients()) {
-                    if (p.getName().toLowerCase().contains(newText.toLowerCase())) {
+                    if (p.getName().toLowerCase().contains(newText.toLowerCase()) || p.getSurname().toLowerCase().contains(newText.toLowerCase())) {
                         filteredList.add(p);
                     }
                 }
