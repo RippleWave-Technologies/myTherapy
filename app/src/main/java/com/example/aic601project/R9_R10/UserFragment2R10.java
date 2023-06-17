@@ -77,7 +77,13 @@ public class UserFragment2R10 extends Fragment {
 
         // Create the list of List_Item objects
         itemList = new ArrayList<>();
-
+        itemList.add(new R10ListItem("2023-06-03", "Παπανικολάου", "42$"));
+        itemList.add(new R10ListItem("2023-06-04", "Παπαγεωργίου", "24$"));
+        itemList.add(new R10ListItem("2023-06-05", "Παπανικολάου", "12$"));
+        itemList.add(new R10ListItem("2023-06-05", "Παπανικολάου", "12$"));
+        itemList.add(new R10ListItem("2023-06-05", "Παπανικολάου", "12$"));
+        itemList.add(new R10ListItem("2023-06-05", "Παπανικολάου", "12$"));
+        itemList.add(new R10ListItem("2023-06-05", "Παπανικολάου", "12$"));
 
 
         // Create the adapter with the list of items

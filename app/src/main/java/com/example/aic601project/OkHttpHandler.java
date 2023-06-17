@@ -245,30 +245,4 @@ public class OkHttpHandler {
         assert response.body() != null;
         return Integer.parseInt(response.body().string());
     }
-    public ArrayList<R10ListItem> fetchClinics(String url) throws Exception {
-
-        ArrayList<R10ListItem> information = new ArrayList<>();
-
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-        RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
-        Request request = new Request.Builder().url(url).method("POST", body).build();
-        Response response = client.newCall(request).execute();
-        String data = response.body().string();
-
-        try {
-            JSONObject json = new JSONObject(data);
-            Iterator<String> keys = json.keys();
-            while (keys.hasNext()) {
-                String name = json.get("name").toString();
-                String price = json.get("price").toString();
-                String date = json.get("date").toString();
-
-                information.add(new R10ListItem(date,name, price));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return information;
-    }
 }
