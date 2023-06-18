@@ -2,9 +2,11 @@ package com.example.aic601project.R3_R8;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -16,7 +18,11 @@ import com.example.aic601project.MainActivity;
 import com.example.aic601project.Patient;
 import com.example.aic601project.PatientList;
 import com.example.aic601project.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
 import java.util.ArrayList;
 
@@ -33,8 +39,13 @@ public class PhysicianFragment3R5 extends Fragment {
     private ArrayList<Patient> filteredList;
     private PhysicianFragment3R5NewAdapter patientsAdapter;
     private SearchView searchView;
+    private ImageView searchViewImage;
     private PhysicianFragment3R5NewAdapter.RecyclerViewClickListener listener;
-    SwipeRefreshLayout swipeRefreshLayout;
+    private FloatingActionButton button;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private BottomNavigationView bottomBar;
+    private final String TAG = "PhysicianFragment3R5";
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,6 +85,28 @@ public class PhysicianFragment3R5 extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        //For preventing the bottom navigation bar and the add button
+        //to going up when the keyboard is showing
+        KeyboardVisibilityEvent.setEventListener(
+                getActivity(),
+                new KeyboardVisibilityEventListener() {
+                    @Override
+                    public void onVisibilityChanged(boolean isOpen) {
+                        Log.d(TAG,"onVisibilityChanged: Keyboard visibility changed");
+                        if(isOpen){
+                            Log.d(TAG, "onVisibilityChanged: Keyboard is open");
+                            bottomBar.setVisibility(View.GONE);
+                            button.setVisibility(View.GONE);
+                            Log.d(TAG, "onVisibilityChanged: NavBar got Invisible");
+                        }else{
+                            Log.d(TAG, "onVisibilityChanged: Keyboard is closed");
+                            bottomBar.setVisibility(View.VISIBLE);
+                            button.setVisibility(View.VISIBLE);
+                            Log.d(TAG, "onVisibilityChanged: NavBar got Visible");
+                        }
+                    }
+                });
     }
 
     @Override
@@ -85,6 +118,13 @@ public class PhysicianFragment3R5 extends Fragment {
         ip = MainActivity.getIP();
 
         patients = new PatientList(ip);
+        filteredList = new ArrayList<>();
+        for (Patient p : patients.getPatients()) {
+            filteredList.add(p);
+        }
+
+        bottomBar = getActivity().findViewById(R.id.physician_bottom_navigation_view);
+        button = rootView.findViewById(R.id.physician_r5_floatingActionButton);
 
         recyclerView = rootView.findViewById(R.id.physician_r5_recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -96,8 +136,9 @@ public class PhysicianFragment3R5 extends Fragment {
         recyclerView.setAdapter(patientsAdapter);
         recyclerView.requestFocus();
 
+        searchViewImage = rootView.findViewById((R.id.physician_r5_imageview_icon));
         searchView = rootView.findViewById((R.id.physician_r5_searchView));
-        /* searchView.clearFocus(); */
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -107,6 +148,7 @@ public class PhysicianFragment3R5 extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
 
+                searchViewImage.setVisibility(View.GONE);
                 filteredList = new ArrayList<>();
                 for (Patient p : patients.getPatients()) {
                     if (p.getName().toLowerCase().contains(newText.toLowerCase()) || p.getSurname().toLowerCase().contains(newText.toLowerCase())) {
@@ -119,11 +161,13 @@ public class PhysicianFragment3R5 extends Fragment {
                 patientsAdapter = new PhysicianFragment3R5NewAdapter(filteredList, listener);
                 recyclerView.setAdapter(patientsAdapter);
 
+                if(newText.length()==0)
+                    searchViewImage.setVisibility(View.VISIBLE);
+
                 return true;
             }
         });
 
-        FloatingActionButton button = rootView.findViewById(R.id.physician_r5_floatingActionButton);
         button.setOnClickListener(view -> {
             // Intent intent = new Intent(getApplicationContext(),
             // PhysicianR3Acticity.class);
@@ -146,7 +190,7 @@ public class PhysicianFragment3R5 extends Fragment {
     private void setOnClickListener() {
         listener = (v, position) -> {
             Intent intent = new Intent(getContext(), PhysicianR4Activity.class);
-            intent.putExtra("patient", patients.getPatients().get(position));
+            intent.putExtra("patient", filteredList.get(position));
             startActivity(intent);
             requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
         };
