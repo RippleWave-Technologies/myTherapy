@@ -3,14 +3,14 @@ package com.example.aic601project;
 public class Appointment {
     private String date;
     private String amka;
-    private String name;
+    private String afm;
     private String status;
     private String service;
 
-    public Appointment(String date, String amka, String name, String status, String service) {
+    public Appointment(String date, String amka, String afm, String status, String service) {
         this.date = date;
         this.amka = amka;
-        this.name = name;
+        this.afm = afm;
         this.status = status;
         this.service = service;
     }
@@ -34,12 +34,12 @@ public class Appointment {
         this.amka = amka;
     }
 
-    public String getName() {
-        return name;
+    public String getAFM() {
+        return afm;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAFM(String afm) {
+        this.afm = afm;
     }
 
     public String getStatus() {

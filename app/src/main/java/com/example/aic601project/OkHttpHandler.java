@@ -56,7 +56,7 @@ public class OkHttpHandler {
         return patients;
     }
 
-    ArrayList<Appointment> fetchAppoinments(String url) throws Exception {
+    ArrayList<Appointment> fetchCompletedAppoinments(String url) throws Exception {
 
         ArrayList<Appointment> appoinments = new ArrayList<>();
 
@@ -76,8 +76,10 @@ public class OkHttpHandler {
                 String afm = json.get("afm").toString();
                 String status = json.get("status").toString();
                 String service = json.get("service").toString();
+                if (status.equals("3")){
+                    appoinments.add(new Appointment(date, amka,afm,status, service));
+                }
 
-                appoinments.add(new Appointment(date, amka,afm,status, service));
             }
         } catch (JSONException e) {
             e.printStackTrace();

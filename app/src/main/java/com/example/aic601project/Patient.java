@@ -5,6 +5,10 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import com.example.aic601project.R3_R8.AppointmentInformationView;
+
+import java.util.ArrayList;
+
 public class Patient implements Parcelable {
     private String amka;
     private String name;
@@ -13,6 +17,8 @@ public class Patient implements Parcelable {
     private String address;
     private String addressNumber;
     private String postcode;
+
+    private ArrayList<Appointment> completedAppointments;
 
     public Patient(String amka, String name, String surname, String city, String address, String addressNumber,
             String postcode) {
@@ -23,6 +29,11 @@ public class Patient implements Parcelable {
         this.address = address;
         this.addressNumber = addressNumber;
         this.postcode = postcode;
+
+        CompletedAppointmentListFromPatient comApp = new CompletedAppointmentListFromPatient(MainActivity.getIP(), this);
+
+        this.completedAppointments = comApp.getAppointments();
+
     }
 
     protected Patient(Parcel in) {
@@ -107,6 +118,10 @@ public class Patient implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public ArrayList<Appointment> getCompletedAppointments(){
+        return this.completedAppointments;
     }
 
     @Override

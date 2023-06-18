@@ -1,5 +1,7 @@
 package com.example.aic601project.R3_R8;
 
+import com.example.aic601project.ModelClinic;
+import com.example.aic601project.Patient;
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -21,6 +23,7 @@ public class PhysicianR4Activity extends AppCompatActivity {
     private TextInputLayout textInputCity;
     private TextInputLayout textInputZip;
 
+    private Patient patient;
     // Buttons
     private Button physicianAppointmentsHistoryButton;
 
@@ -32,6 +35,9 @@ public class PhysicianR4Activity extends AppCompatActivity {
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
         toolbar = findViewById(R.id.physician_r4_topAppBar);
         setupToolbarWithBackButton();
+
+        Intent intent = getIntent();
+        patient = intent.getParcelableExtra("patient");
 
         // get all TextInput ids.
         textInputName = findViewById(R.id.physician_r4_textInputLayout_name);
@@ -49,16 +55,16 @@ public class PhysicianR4Activity extends AppCompatActivity {
 
     public void viewAppointmentsHistory(View v) {
         Intent i = new Intent(this, PhysicianR4AppointmentLogHistory.class);
+        i.putExtra("appointments", patient.getCompletedAppointments());
         startActivity(i);
-        // requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom,
-        // R.anim.no_slide_in_or_out);
     }
 
     private void loadStartPhysicianInformationScreen() {
         this.toolbar.setTitle("Πληροφορίες");
         this.physicianAppointmentsHistoryButton.setVisibility(View.VISIBLE);
 
-        // Set all textInputFields disable
+        this.setPatientInformation();
+        // Set all textInputFields disabled
         this.changeStatusOfTextInputField(false);
 
     }
@@ -73,6 +79,15 @@ public class PhysicianR4Activity extends AppCompatActivity {
         textInputZip.setEnabled(status);
     }
 
+    private void setPatientInformation(){
+        textInputName.getEditText().setText(patient.getName());
+        textInputLastName.getEditText().setText(patient.getSurname());
+        textInputAMKA.getEditText().setText(patient.getAmka());
+        textInputStreet.getEditText().setText(patient.getAddress());
+        textInputStNumber.getEditText().setText(patient.getAddressNumber());
+        textInputCity.getEditText().setText(patient.getCity());
+        textInputZip.getEditText().setText(patient.getPostcode());
+    }
     // sets up a toolbar where clicking the back button calls onBackPressed()
     private void setupToolbarWithBackButton() {
         setSupportActionBar(toolbar);
