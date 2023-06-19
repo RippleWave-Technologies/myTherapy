@@ -61,7 +61,7 @@
             android:name=".R1_R2.AdminR2Activity"
             android:exported="false" />
         <activity
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustNothing"
             android:name=".R3_R8.PhysicianMainActivity"
             android:exported="false" />
         <activity
