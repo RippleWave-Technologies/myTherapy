@@ -158,6 +158,15 @@ public class PhysicianFragment3R5 extends Fragment {
             // R.anim.no_slide_in_or_out);
         });
 
+        // Adds the intent to lead to the PatientR3Activity class
+        FloatingActionButton button = rootView.findViewById(R.id.physician_r5_floatingActionButton);
+        button.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), PatientR3Activity.class);
+            startActivity(intent);
+            requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+        });
+
+
         swipeRefreshLayout = rootView.findViewById(R.id.physician_r5_swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(() -> {
             patients = new PatientList(ip);

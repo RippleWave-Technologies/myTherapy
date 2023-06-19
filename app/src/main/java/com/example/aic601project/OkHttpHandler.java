@@ -194,6 +194,32 @@ public class OkHttpHandler {
         return Integer.parseInt(response.body().string());
     }
 
+    public int insertPatient(String url, String amka, String name, String surname, String address,
+                             String addressNumber, String city, String postcode, String clinic) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = new FormBody.Builder()
+                .add("amka", amka)
+                .add("name", name)
+                .add("surname", surname)
+                .add("address", address)
+                .add("addressNumber", addressNumber)
+                .add("city", city)
+                .add("postcode", postcode)
+                .add("clinic",clinic)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        assert response.body() != null;
+        return Integer.parseInt(response.body().string());
+    }
+
+
     public int loginAdmin(String url, String id, String password) throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
