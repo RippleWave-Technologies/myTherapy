@@ -63,14 +63,6 @@
     <string name="user_welcome_message">Καλώς ορίσατε,</string>
     <string name="user_name">Όνομα ασθενή</string>
     <string name="appointmentLog">Προηγούμενες επισκέψεις</string>
-
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="patient_name">Όνομα Ασθενή</string>
-    <string name="patient_surname">Επώνυμο Ασθενή</string>
-    <string name="patient_amka">ΑΜΚΑ Ασθενή</string>
-    <string name="patient_street">Οδός</string>
-    <string name="patient_streetno">Αριθμός</string>
-    <string name="patient_city">Πόλη</string>
-    <string name="patient_zip">Τ.Κ</string>
-    <string name="patient_addbutton">Προσθήκη</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
