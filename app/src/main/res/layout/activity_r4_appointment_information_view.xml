@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".R3_R8.AppointmentInformationView">
+    tools:context=".R3_R8.R4AppointmentInformationView">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/physician_r4_appBarLayout"

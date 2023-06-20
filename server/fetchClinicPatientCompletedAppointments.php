@@ -1,7 +1,4 @@
 <?php
-    $amka = $_POST['amka'];
-    $afm = $_POST['afm'];
-
     // Database connection details
     $host = "localhost";
     $uname = "root";
@@ -18,7 +15,7 @@
         FROM appointment 
         INNER JOIN patient ON appointment.amka = patient.amka 
         INNER JOIN service ON appointment.service = service.code 
-        WHERE appointment.amka = '$amka' AND appointment.afm = '$afm' AND appointment.status = 3";
+        WHERE appointment.status = 3";
 
     $result = mysqli_query($dbh, $query);
 
@@ -26,17 +23,20 @@
     if (mysqli_num_rows($result) > 0) {
         // Fetch the rows and store them in an array
         $data = array();
+
         while ($row = mysqli_fetch_assoc($result)) {
-            $data[] = array(
+
+            $arr = array(
                 'amka' => $row['amka'],
                 'afm' => $row['afm'],
-                'date' => $row['date'],
-                'status' => $row['status'],
                 'name' => $row['name'],
                 'surname' => $row['surname'],
                 'serviceCode' => $row['code'],
                 'serviceName' => $row['service_name']
             );
+
+            $data[$row['date']] = $arr;
+
         }
 
         // Convert the array to JSON

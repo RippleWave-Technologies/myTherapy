@@ -28,7 +28,7 @@
             android:name=".R3_R8.PhysicianR7Activity1"
             android:exported="false" />
         <activity
-            android:name=".R3_R8.AppointmentInformationView"
+            android:name=".R3_R8.R4AppointmentInformationView"
             android:exported="false" />
         <activity
             android:name=".R3_R8.PhysicianR4AppointmentLogHistory"
