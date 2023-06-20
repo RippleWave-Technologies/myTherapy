@@ -5,24 +5,34 @@ import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.aic601project.Appointment;
+import com.example.aic601project.MainActivity;
+import com.example.aic601project.ModelAppointment;
 import com.example.aic601project.ModelClinic;
+import com.example.aic601project.ModelClinicsList;
 import com.example.aic601project.OkHttpHandler;
 import com.example.aic601project.R;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,16 +52,30 @@ public class UserFragment1R9 extends Fragment {
 
     private Button button;
     private TextInputEditText date;
+    private Spinner nearbyClinics;
     private AutoCompleteTextView physio, time;
     private TextView yes_text; //for the dialog box
     private TextView no_text; //for the dialog box
+    private TextView userName_topAppBar; //search in the activity user main
     private OkHttpHandler okHttpHandler;
+    private ModelAppointment requestedAppointment;
+
+    private String selectedPhysioAFM;
+    private String selectedDate;
+    private String selectedTime;
+    private String myIP = MainActivity.getIP();
+    private String userAMKA = UserMainActivity.getAmka();
+    private String userPostCode;
+    private String userName;
+    private String selectedClinicName;
 
     //autocomplete textView Physio, the values for the PHYSIOS will be taken from the db
-    private static final String[] PHYSIOS = new String[]{ "Name1", "BName", "DName" };
+    private ModelClinicsList physioList;
+    //private static final String[] PHYSIOS = new String[]{"Name1", "BName", "DName"};
 
     //autocomplete textView Time, the values of the time will be taken from doctor's available times from the db (??)
-    private static final String[] APPOINTMENTS_HOURS_AVAILABLE = new String[]{ "9:00", "10:00", "11:00" };
+    private static final String[] APPOINTMENTS_HOURS = new String[]{"9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
+            "13:00", "13:30", "14:00", "14:30", "15:00"};
 
     public UserFragment1R9() {
         // Required empty public constructor
@@ -94,8 +118,88 @@ public class UserFragment1R9 extends Fragment {
         //Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_user1, container, false);
 
+        //autocomplete text view: Physio
+        physio = rootView.findViewById(R.id.user_r9_autoCompleteTextView_physio);
 
-        //dialog box to appear when button is clicked
+        //retrieve the names of the clinics from the OkHttpHandler
+        physioList = new ModelClinicsList(myIP);
+        ArrayList<ModelClinic> clinics = physioList.getClinics();
+
+        ArrayList<String> clinicNames = new ArrayList<>();
+
+        //extract clinic names and add them to the ArrayList
+        for (ModelClinic clinic : clinics) {
+            clinicNames.add(clinic.getPhysioName());
+        }
+
+        //Initialize and set up the ArrayAdapter for the physio textView
+        ArrayAdapter<String> physioAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, clinicNames);
+        physio.setAdapter(physioAdapter);
+
+        //when an item is Clicked I want to keep the AFM to associate with the appointment
+        physio.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedClinicName = (String) parent.getItemAtPosition(position);
+
+                //find the corresponding ModelClinic object
+                ModelClinic selectedClinic = null;
+                for (ModelClinic clinic : clinics) {
+                    if (clinic.getPhysioName().equals(selectedClinicName)) {
+                        selectedClinic = clinic;
+                        break;
+                    }
+                }
+
+                if (selectedClinic != null) {
+                    selectedPhysioAFM = selectedClinic.getPhysioAFM();
+                }
+
+            }
+        });
+
+
+        //autocomplete text view: Time
+        time = rootView.findViewById(R.id.user_r9_autoCompleteTextView_time);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, APPOINTMENTS_HOURS);
+        time.setAdapter(adapter2);
+
+
+        //set an OnItemClickedListener to get the selected time
+        time.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedTime = (String) parent.getItemAtPosition(position);
+            }
+        });
+
+        //pop-up calendar
+        date = rootView.findViewById(R.id.user_r9_textInputEditText_date);
+
+        final Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        date.setOnClickListener(v -> {
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), (view, year1, month1, dayOfMonth) -> {
+                month1 = month1 + 1;
+                //we retrieve the selected date in selectedDate
+                selectedDate = year1 + "-" + String.format("%02d", month1) + "-" + String.format("%02d", dayOfMonth);
+                date.setText(selectedDate);
+                Log.d("Selected date: ", selectedDate);
+            }, year, month, day);
+            dialog.show();
+        });
+
+        // clickable text to clear the fields
+        ((TextView) (rootView.findViewById(R.id.user_r9_textView_clear))).setOnClickListener(v -> {
+            clearText(physio, time, date);
+        });
+
+
+        // dialog box to appear when button is clicked
         button = rootView.findViewById(R.id.user_r9_button);
         View alertUserDialog = LayoutInflater.from(getActivity()).inflate(R.layout.user_r9_dialog, null);
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
@@ -129,65 +233,70 @@ public class UserFragment1R9 extends Fragment {
             @Override
             public void onClick(View v) {
                 dialog2.cancel();
-                Toast.makeText(getActivity(), "Yes text pressed", Toast.LENGTH_SHORT).show();
+
+                if (selectedTime != null && selectedDate != null && selectedPhysioAFM != null) {
+                    //combine the time and date into a single string with the correct format
+                    String combinedDateTime = selectedDate + " " + selectedTime + ":00";
+                    //passing the String combinedDateTime and selectedPhysioAFM to a method that will create the appointment object
+                    requestedAppointment = createAppointment(combinedDateTime, selectedPhysioAFM);
+
+                    try {
+                        insertApppointment(requestedAppointment);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    //in case the user hasn't filled all necessary text fields
+                    Toast.makeText(getActivity(), "Παρακαλώ εισάγετε όλα τα πεδία.", Toast.LENGTH_SHORT).show();
+                }
             }
-        });
-
-        //pop-up calendar
-        date = rootView.findViewById(R.id.user_r9_textInputEditText_date);
-
-        final Calendar calendar = Calendar.getInstance();
-        final int year = calendar.get(Calendar.YEAR);
-        final int month = calendar.get(Calendar.MONTH);
-        final int day = calendar.get(Calendar.DAY_OF_WEEK);
-
-        date.setOnClickListener(v -> {
-            DatePickerDialog dialog = new DatePickerDialog(getActivity(), (view, year1, month1, dayOfMonth) -> {
-                month1 = month1 + 1;
-                String new_date = day + "/" + month1 + "/" + year1;
-                date.setText(new_date);
-            }, year, month, day);
-            dialog.show();
-        });
-
-        //autocomplete text view: Physio
-
-        //Make the network request to fetch data
-        physio = rootView.findViewById(R.id.user_r9_autoCompleteTextView_physio);
-
-        try{
-            ArrayList<ModelClinic> clinics = okHttpHandler.fetchClinics("http://your-domain.com/getClinics.php");
-            ArrayList<String> clinicNames = new ArrayList<>();
-            for(ModelClinic clinic: clinics){
-                clinicNames.add(clinic.getPhysioName());
-            }
-
-            //populate the dropdown menu with the retrieved clinic names
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, clinicNames);
-            physio.setAdapter(adapter);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-        /** old code before the php files
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, PHYSIOS);
-        physio.setAdapter(adapter);**/
-
-        //autocomplete text view: Time
-        time = rootView.findViewById(R.id.user_r9_autoCompleteTextView_time);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, APPOINTMENTS_HOURS_AVAILABLE);
-        time.setAdapter(adapter2);
-
-
-        // clickable text to clear the fields
-        ((TextView)(rootView.findViewById(R.id.user_r9_textView_clear))).setOnClickListener(v -> {
-            physio.setText("");
-            time.setText("");
-            date.setText("");
         });
 
         return rootView;
+    }
+
+    public ModelAppointment createAppointment(String dateTime, String selectedPhysioAFM) {
+        String amka = userAMKA;
+        String afm = selectedPhysioAFM;
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar new_calendar = Calendar.getInstance();
+        try {
+            new_calendar.setTime(dateFormat.parse(dateTime));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Date selectedDateTime = new_calendar.getTime();
+        String formattedDateTime = dateFormat.format(selectedDateTime);
+
+        String status = "1";
+        String service = "uAS";
+
+        return new ModelAppointment(amka, afm, formattedDateTime, status, service);
+
+    }
+
+    public void insertApppointment(ModelAppointment appointment) throws IOException {
+        int result = 0;
+        //create the url for the php file
+        String url = "http://" + myIP + "/myTherapy/insertClinicPatientRequestedAppointment.php";
+
+        okHttpHandler = new OkHttpHandler();
+
+        result = okHttpHandler.insertClinicPatientRequestedAppointment(url, appointment.getDate(), appointment.getAmka(), appointment.getAfm());
+
+        if(result == 0){
+            Toast.makeText(getActivity(),"Η ώρα και η ημέρα που ζητήσατε ήδη υπάρχει, παρακαλώ διαλέξτε εκ νέου", Toast.LENGTH_SHORT ).show();
+            clearText(physio, time, date);
+        }else{
+            Toast.makeText(getActivity(), "Το ραντεβού σας εκχωρήθηκε επιτυχώς", Toast.LENGTH_SHORT).show();
+            clearText(physio, time, date);
+        }
+    }
+
+    public void clearText(AutoCompleteTextView physio, AutoCompleteTextView time, TextInputEditText date){
+        physio.setText("");
+        time.setText("");
+        date.setText("");
     }
 }

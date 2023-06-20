@@ -1,6 +1,7 @@
 package com.example.aic601project;
 
 import android.os.StrictMode;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -232,6 +233,26 @@ public class OkHttpHandler {
         Response response = client.newCall(request).execute();
         assert response.body() != null;
         return Integer.parseInt(response.body().string());
+    }
+
+    public int insertClinicPatientRequestedAppointment(String url, String date, String amka, String afm) throws IOException{
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = new FormBody.Builder()
+                .add("date", date)
+                .add("amka", amka)
+                .add("afm", afm)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        assert response.body() != null;
+        return Integer.parseInt(response.body().string());
+
     }
 
     public int loginAdmin(String url, String id, String password) throws IOException {
