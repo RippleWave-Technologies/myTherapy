@@ -20,6 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
             <TextView
                 android:id="@+id/physician_textView_company"
                 android:layout_width="wrap_content"
@@ -80,8 +81,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:background="@null"
-                android:src="@drawable/baseline_account_circle_24"
                 android:foreground="?android:attr/selectableItemBackground"
+                android:src="@drawable/baseline_account_circle_24"
                 app:layout_constraintBottom_toBottomOf="@+id/physician_textView_company"
                 app:layout_constraintEnd_toStartOf="@+id/physician_imageButton_exit"
                 app:layout_constraintTop_toTopOf="@+id/physician_textView_company"
@@ -93,8 +94,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:background="@null"
-                android:src="@drawable/baseline_notifications_24"
                 android:foreground="?android:attr/selectableItemBackground"
+                android:src="@drawable/baseline_notifications_24"
                 app:layout_constraintBottom_toBottomOf="@+id/physician_textView_company"
                 app:layout_constraintEnd_toStartOf="@+id/physician_imageButton_account"
                 app:layout_constraintTop_toTopOf="@+id/physician_textView_company"
@@ -102,16 +103,35 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-            android:id="@+id/physician_r8_Button_temp"
-            style="@style/Widget.MaterialComponents.Button"
+
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:text="tempGoToR8"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:text="Ενημερώση προηγούμενων ραντεβού"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/physician_constraintLayout_upper" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/physician_fragment1_swipeRefreshLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/physician_fragment1_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -1,6 +1,7 @@
 package com.example.aic601project;
 
 import android.os.StrictMode;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -151,6 +152,48 @@ public class OkHttpHandler {
         }
 
         return clinics;
+    }
+
+    public ArrayList<ModelAppointmentPFragment1> fetchClinicConfirmedAppointmentsPastCurrent(String url, String afm) throws IOException {
+        ArrayList<ModelAppointmentPFragment1> appointments = new ArrayList<>();
+
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        RequestBody body = new FormBody.Builder()
+                .add("afm", afm)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        String data = response.body().string();
+
+        Log.d("imtestingrn", "im in1");
+        try {
+            JSONObject json = new JSONObject(data);
+            Iterator<String> keys = json.keys();
+            Log.d("imtestingrn", "im in2");
+            while (keys.hasNext()) {
+                Log.d("imtestingrn", "im in3");
+                String key = keys.next();
+                JSONObject clinicObject = json.getJSONObject(key);
+
+                String name = clinicObject.getString("name");
+                String surname = clinicObject.getString("surname");
+                String date = clinicObject.getString("date");
+
+                Log.d("imtestingrn", key + " " + name + " " + surname + " " + date);
+
+                appointments.add(new ModelAppointmentPFragment1(key, name, surname, date));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return appointments;
     }
 
     public int insertOrUpdateClinic(String url, String afm, String name, String email, String address,
