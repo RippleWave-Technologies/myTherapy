@@ -1,7 +1,6 @@
 package com.example.aic601project;
 
 import android.os.StrictMode;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -95,8 +94,11 @@ public class OkHttpHandler {
         ArrayList<ModelService> services = new ArrayList<>();
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
+
         RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
+
         Request request = new Request.Builder().url(url).method("POST", body).build();
+
         Response response = client.newCall(request).execute();
         String data = response.body().string();
 
@@ -104,13 +106,14 @@ public class OkHttpHandler {
             JSONObject json = new JSONObject(data);
             Iterator<String> keys = json.keys();
             while (keys.hasNext()) {
-                String code = keys.next();
+                String key = keys.next();
+                JSONObject clinicObject = json.getJSONObject(key);
 
-                String name = json.get("name").toString();
-                String price = json.get("price").toString();
-                String description = json.get("description").toString();
+                String name = clinicObject.getString("name");
+                String price = clinicObject.getString("price");
+                String description = clinicObject.getString("description");
 
-                services.add(new ModelService(code, name, price, description));
+                services.add(new ModelService(key, name, price, description));
             }
         } catch (JSONException e) {
             e.printStackTrace();

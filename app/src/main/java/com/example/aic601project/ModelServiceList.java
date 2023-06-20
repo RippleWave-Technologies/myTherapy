@@ -15,5 +15,8 @@ public class ModelServiceList {
         }
     }
 
+    public ArrayList<ModelService> getServices() {
+        return services;
+    }
 
 }

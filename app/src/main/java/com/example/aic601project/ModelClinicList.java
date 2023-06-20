@@ -2,10 +2,10 @@ package com.example.aic601project;
 
 import java.util.ArrayList;
 
-public class ModelClinicsList {
+public class ModelClinicList {
     private ArrayList<ModelClinic> clinics;
 
-    public ModelClinicsList(String ip) {
+    public ModelClinicList(String ip) {
         clinics = new ArrayList<>();
         String url = "http://" + ip + "/myTherapy/fetchClinics.php";
         try {

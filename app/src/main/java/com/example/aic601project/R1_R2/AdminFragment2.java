@@ -1,6 +1,9 @@
 package com.example.aic601project.R1_R2;
 
+import com.example.aic601project.MainActivity;
+import com.example.aic601project.ModelServiceList;
 import com.example.aic601project.R;
+import com.example.aic601project.RecyclerViewInterface;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,13 +11,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AdminFragment2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AdminFragment2 extends Fragment {
+public class AdminFragment2 extends Fragment implements RecyclerViewInterface {
+
+    // ModelServiceList - used to get the services from the database
+    ModelServiceList servicesList;
+    // String - used to get the ip address from the MainActivity
+    private String ip;
+    // SwipeRefreshLayout - used to refresh the RecyclerView
+    SwipeRefreshLayout swipeRefreshLayout;
+    // RecyclerView - used to display the clinics
+    RecyclerView recyclerView;
+    // AdminFragment2Adapter - used to provide the data for the RecyclerView
+    AdminFragment2Adapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,18 +76,48 @@ public class AdminFragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // inflates the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_admin2, container, false);
 
-        // setOnClickListener for the admin_fragment2_floatingActionButton
-        rootView.findViewById(R.id.admin_fragment2_floatingActionButton).setOnClickListener(v -> addPhysioToList());
+        // gets the IP address from the MainActivity
+        ip = MainActivity.getIP();
+
+        // setOnClickListener for the admin_fragment1_floatingActionButton
+        rootView.findViewById(R.id.admin_fragment2_floatingActionButton).setOnClickListener(v -> addServiceToList());
+
+        // fetches the clinics from the myTherapy database
+        servicesList = new ModelServiceList(ip);
+
+        // initiates the RecyclerView
+        recyclerView = rootView.findViewById(R.id.admin_fragment2_recyclerView);
+        adapter = new AdminFragment2Adapter(requireActivity(), servicesList.getServices(), this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+
+        // initiates the SwipeRefreshLayout and sets the onRefreshListener
+        swipeRefreshLayout = rootView.findViewById(R.id.admin_fragment2_swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            servicesList = new ModelServiceList(ip);
+            adapter = new AdminFragment2Adapter(requireActivity(), servicesList.getServices(), this);
+            recyclerView.setAdapter(adapter);
+            swipeRefreshLayout.setRefreshing(false);
+        });
 
         return rootView;
     }
 
     // method for admin_fragment2_floatingActionButton
-    public void addPhysioToList() {
+    public void addServiceToList() {
         startActivity(new Intent(getActivity(), AdminR2Activity.class));
+        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+    }
+
+    // method for the RecyclerViewInterface / admin_fragment2_recyclerView
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(requireActivity(), AdminR1Activity2.class);
+//        intent.putExtra("Service Info", servicesList.getServices().get(position));
+        startActivity(intent);
         requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 }

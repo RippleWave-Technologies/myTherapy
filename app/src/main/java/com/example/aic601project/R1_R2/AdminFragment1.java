@@ -1,7 +1,7 @@
 package com.example.aic601project.R1_R2;
 
 import com.example.aic601project.MainActivity;
-import com.example.aic601project.ModelClinicsList;
+import com.example.aic601project.ModelClinicList;
 import com.example.aic601project.R;
 import com.example.aic601project.RecyclerViewInterface;
 
@@ -22,8 +22,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
  * create an instance of this fragment.
  */
 public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
-    // ModelClinicsList - used to get the clinics from the database
-    ModelClinicsList clinicsList;
+    // ModelClinicList - used to get the clinics from the database
+    ModelClinicList clinicsList;
     // String - used to get the ip address from the MainActivity
     private String ip;
     // SwipeRefreshLayout - used to refresh the RecyclerView
@@ -86,7 +86,7 @@ public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
         rootView.findViewById(R.id.admin_fragment1_floatingActionButton).setOnClickListener(v -> addPhysioToList());
 
         // fetches the clinics from the myTherapy database
-        clinicsList = new ModelClinicsList(ip);
+        clinicsList = new ModelClinicList(ip);
 
         // initiates the RecyclerView
         recyclerView = rootView.findViewById(R.id.admin_fragment1_recyclerView);
@@ -97,7 +97,7 @@ public class AdminFragment1 extends Fragment implements RecyclerViewInterface {
         // initiates the SwipeRefreshLayout and sets the onRefreshListener
         swipeRefreshLayout = rootView.findViewById(R.id.admin_fragment1_swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(() -> {
-            clinicsList = new ModelClinicsList(ip);
+            clinicsList = new ModelClinicList(ip);
             adapter = new AdminFragment1Adapter(requireActivity(), clinicsList.getClinics(), this);
             recyclerView.setAdapter(adapter);
             swipeRefreshLayout.setRefreshing(false);

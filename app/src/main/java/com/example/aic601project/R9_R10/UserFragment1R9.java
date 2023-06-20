@@ -19,11 +19,10 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.aic601project.Appointment;
 import com.example.aic601project.MainActivity;
 import com.example.aic601project.ModelAppointment;
 import com.example.aic601project.ModelClinic;
-import com.example.aic601project.ModelClinicsList;
+import com.example.aic601project.ModelClinicList;
 import com.example.aic601project.OkHttpHandler;
 import com.example.aic601project.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -70,11 +69,11 @@ public class UserFragment1R9 extends Fragment {
     private String selectedClinicName;
 
     //autocomplete textView Physio, the values for the PHYSIOS will be taken from the db
-    private ModelClinicsList physioList;
+    private ModelClinicList physioList;
     //private static final String[] PHYSIOS = new String[]{"Name1", "BName", "DName"};
 
     //autocomplete textView Time, the values of the time will be taken from doctor's available times from the db (??)
-    private static final String[] APPOINTMENTS_HOURS = new String[]{"9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
+    private static final String[] APPOINTMENTS_HOURS = new String[]{"09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
             "13:00", "13:30", "14:00", "14:30", "15:00"};
 
     public UserFragment1R9() {
@@ -122,7 +121,7 @@ public class UserFragment1R9 extends Fragment {
         physio = rootView.findViewById(R.id.user_r9_autoCompleteTextView_physio);
 
         //retrieve the names of the clinics from the OkHttpHandler
-        physioList = new ModelClinicsList(myIP);
+        physioList = new ModelClinicList(myIP);
         ArrayList<ModelClinic> clinics = physioList.getClinics();
 
         ArrayList<String> clinicNames = new ArrayList<>();
