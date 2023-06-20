@@ -75,11 +75,10 @@ public class OkHttpHandler {
 
                 String amka = json.get("amka").toString();
                 String afm = json.get("afm").toString();
-                String status = json.get("status").toString();
-                String service = json.get("service").toString();
-                if (status.equals("3")){
-                    appoinments.add(new Appointment(date, amka,afm,status, service));
-                }
+                String service = json.get("serviceName").toString();
+                String lastName = json.get("surname").toString();
+
+                appoinments.add(new Appointment(date, amka,afm,"3", service,lastName));
 
             }
         } catch (JSONException e) {

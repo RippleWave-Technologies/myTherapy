@@ -6,17 +6,21 @@ public class Appointment {
     private String afm;
     private String status;
     private String service;
+    private String lastName;
 
-    public Appointment(String date, String amka, String afm, String status, String service) {
+    public Appointment(String date, String amka, String afm, String status, String service, String lastName) {
         this.date = date;
         this.amka = amka;
         this.afm = afm;
         this.status = status;
         this.service = service;
+        this.lastName = lastName;
     }
 
 
-
+    public String getLastName(){
+        return this.lastName;
+    }
     //Getters and Setters
     public String getDate() {
         return date;

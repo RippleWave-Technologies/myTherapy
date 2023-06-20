@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import com.example.aic601project.R3_R8.AppointmentInformationView;
-
 import java.util.ArrayList;
 
 public class Patient implements Parcelable {

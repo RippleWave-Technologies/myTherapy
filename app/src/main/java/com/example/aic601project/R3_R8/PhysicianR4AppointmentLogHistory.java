@@ -3,11 +3,14 @@ package com.example.aic601project.R3_R8;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.aic601project.Appointment;
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +22,7 @@ public class PhysicianR4AppointmentLogHistory extends AppCompatActivity {
     private PhysicianR4Adapter patientsAdapter;
     private PhysicianR4Adapter.RecyclerViewClickListener listener;
 
+    private ArrayList<Appointment> completedAppointments ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +32,16 @@ public class PhysicianR4AppointmentLogHistory extends AppCompatActivity {
         toolbar = findViewById(R.id.physician_r4_topAppBar);
         setupToolbarWithBackButton();
 
+
+        Intent intent = getIntent();
+        completedAppointments = intent.getParcelableExtra("appointments");
+
         patients = new ArrayList<>();
 
-        patients.add(new JavaTempPhysicianR5Patients("HH/MM/EEEE          PAPANIKOLAOY                        100$"));
-        patients.add(new JavaTempPhysicianR5Patients("HH/MM/EEEE          PAPANIKOLAOY                        100$"));
-        patients.add(new JavaTempPhysicianR5Patients("HH/MM/EEEE          PAPANIKOLAOY                        100$"));
-        patients.add(new JavaTempPhysicianR5Patients("HH/MM/EEEE          PAPANIKOLAOY                        100$"));
+        for (Appointment app : completedAppointments) {
+            patients.add(new JavaTempPhysicianR5Patients(app.getDate() + "                                " + app.getService()));
+        }
+
         recyclerView = findViewById(R.id.physician_r4_appointmentsHistory);
         recyclerView.setHasFixedSize(true);
 
@@ -47,10 +55,9 @@ public class PhysicianR4AppointmentLogHistory extends AppCompatActivity {
 
     private void setOnClickListener() {
         listener = (v, position) -> {
-            Intent intent = new Intent(getApplicationContext(), AppointmentInformationView.class);
+            Intent intent = new Intent(getApplicationContext(), R4AppointmentInformationView.class);
             startActivity(intent);
-            // requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom,
-            // R.anim.no_slide_in_or_out);
+            intent.putExtra("appointment", (Parcelable) completedAppointments.get(position));
         };
     }
 
