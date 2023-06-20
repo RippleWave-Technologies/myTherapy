@@ -27,17 +27,19 @@ import java.util.HashMap;
  */
 public class PhysicianFragment1 extends Fragment implements RecyclerViewInterface  {
     // ModelAppointmentList - used to get the appointments from the database
-    ModelAppointmentList appointmentList;
+    private ModelAppointmentList appointmentList;
     // String - used to get the ip address from the MainActivity and the AFM from the PhysicianMainActivity
     private String ip, afm;
     // SwipeRefreshLayout - used to refresh the RecyclerView
-    SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
     // RecyclerView - used to display the clinics
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     // PhysicianFragment1Adapter - used to provide the data for the RecyclerView
-    PhysicianFragment1Adapter adapter;
+    private PhysicianFragment1Adapter adapter;
 
-    HashMap<ModelAppointment, ModelPatient> appointmentData;
+    private HashMap<ModelAppointment, ModelPatient> appointmentData;
+    private ArrayList<ModelAppointment> appointments;
+    private ArrayList<ModelPatient> patients;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -100,9 +102,8 @@ public class PhysicianFragment1 extends Fragment implements RecyclerViewInterfac
         appointmentList = new ModelAppointmentList(ip, afm, "PhysicianFragment1");
         appointmentData = appointmentList.getAppointmentData();
 
-        ArrayList<ModelAppointment> appointments = new ArrayList<>();
-        ArrayList<ModelPatient> patients = new ArrayList<>();
-
+        appointments = new ArrayList<>();
+        patients = new ArrayList<>();
 
         for(ModelAppointment appointment: appointmentData.keySet()) {
             ModelPatient patient = appointmentData.get(appointment);
@@ -119,7 +120,19 @@ public class PhysicianFragment1 extends Fragment implements RecyclerViewInterfac
         // initiates the SwipeRefreshLayout and sets the onRefreshListener
         swipeRefreshLayout = rootView.findViewById(R.id.physician_fragment1_swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(() -> {
+            // fetches the appropriate appointments from the myTherapy database
             appointmentList = new ModelAppointmentList(ip, afm, "PhysicianFragment1");
+            appointmentData = appointmentList.getAppointmentData();
+
+            appointments = new ArrayList<>();
+            patients = new ArrayList<>();
+
+
+            for(ModelAppointment appointment: appointmentData.keySet()) {
+                ModelPatient patient = appointmentData.get(appointment);
+                appointments.add(appointment);
+                patients.add(patient);
+            }
             adapter = new PhysicianFragment1Adapter(requireActivity(), appointments, patients, this);
             recyclerView.setAdapter(adapter);
             swipeRefreshLayout.setRefreshing(false);
@@ -144,8 +157,12 @@ public class PhysicianFragment1 extends Fragment implements RecyclerViewInterfac
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(requireActivity(), PhysicianR8Activity.class);
-//        // !!! fix data sent in the intent
-//        intent.putExtra("Clinic Info", appointmentList.getAppointments().get(position));
+
+        intent.putExtra("amka", patients.get(position).getAmka());
+        intent.putExtra("name", patients.get(position).getName());
+        intent.putExtra("surname", patients.get(position).getSurname());
+        intent.putExtra("date", appointments.get(position).getDate());
+
         startActivity(intent);
         requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }

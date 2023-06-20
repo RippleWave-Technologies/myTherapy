@@ -31,16 +31,24 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <Button
-        android:id="@+id/physician_r8_Button"
-        style="@style/Widget.Material3.Button.IconButton.Filled"
-        android:layout_width="148dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="51dp"
-        android:drawableLeft="@drawable/baseline_check_24"
-        android:text="Προσθήκη"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/physician_r8_Button_reject"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="95dp"
+        android:text="Απόρριψη"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/physician_r8_constraintLayout_fields" />
+        app:layout_constraintEnd_toStartOf="@+id/physician_r8_Button_accept" />
+
+    <Button
+        android:id="@+id/physician_r8_Button_accept"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_marginEnd="25dp"
+        android:text="Αποδοχή"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/physician_r8_Button_reject" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,7 +105,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="22dp"
-            android:hint="ΗΗ/ΜΜ/ΕΕΕΕ"
+            android:hint="ΕΕΕΕ/ΜΜ/ΗΗ"
             android:enabled="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/physician_r8_textInputLayout_actions">

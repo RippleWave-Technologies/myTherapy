@@ -181,7 +181,7 @@ public class OkHttpHandler {
                 String key = keys.next();
                 JSONObject clinicObject = json.getJSONObject(key);
 
-                String amka = key.substring(0, 10);
+                String amka = key.substring(0, 11);
                 String date = key.substring(11);
 
                 String name = clinicObject.getString("name");
@@ -310,5 +310,26 @@ public class OkHttpHandler {
         Response response = client.newCall(request).execute();
         assert response.body() != null;
         return Integer.parseInt(response.body().string());
+    }
+
+    public void updateClinicPatientRequestedOrConfirmedAppointments(String url, String amka,
+                                                                    String afm, String date, String act,
+                                                                    String service) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        RequestBody body = new FormBody.Builder()
+                .add("amka", amka)
+                .add("afm", afm)
+                .add("date", date)
+                .add("act", act)
+                .add("service", service)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        client.newCall(request).execute();
     }
 }
