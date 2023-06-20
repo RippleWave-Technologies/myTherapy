@@ -1,12 +1,12 @@
 package com.example.aic601project;
 
-public class Service {
+public class ModelService {
     private String code;
     private String name;
     private String price;
     private String discription;
 
-    public Service(String code, String name, String price, String discription) {
+    public ModelService(String code, String name, String price, String discription) {
         this.code = code;
         this.name = name;
         this.price = price;

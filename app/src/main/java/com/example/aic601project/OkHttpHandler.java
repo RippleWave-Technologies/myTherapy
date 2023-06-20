@@ -57,9 +57,9 @@ public class OkHttpHandler {
         return patients;
     }
 
-    ArrayList<ModelAppointment> fetchCompletedAppoinments(String url) throws Exception {
+    ArrayList<Appointment> fetchCompletedAppoinments(String url) throws Exception {
 
-        ArrayList<ModelAppointment> appoinments = new ArrayList<>();
+        ArrayList<Appointment> appoinments = new ArrayList<>();
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
@@ -75,11 +75,6 @@ public class OkHttpHandler {
 
                 String amka = json.get("amka").toString();
                 String afm = json.get("afm").toString();
-                String status = json.get("status").toString();
-                String service = json.get("service").toString();
-                if (status.equals("3")){
-                    appoinments.add(new ModelAppointment(date, amka,afm,status, service));
-                }
                 String service = json.get("serviceName").toString();
                 String lastName = json.get("surname").toString();
 
@@ -94,9 +89,9 @@ public class OkHttpHandler {
     }
 
 
-    ArrayList<Service> fetchServices(String url) throws Exception {
+    ArrayList<ModelService> fetchServices(String url) throws Exception {
 
-        ArrayList<Service> services = new ArrayList<>();
+        ArrayList<ModelService> services = new ArrayList<>();
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
@@ -114,7 +109,7 @@ public class OkHttpHandler {
                 String price = json.get("price").toString();
                 String description = json.get("description").toString();
 
-                services.add(new Service(code, name, price, description));
+                services.add(new ModelService(code, name, price, description));
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class ModelPatient implements Parcelable {
     private String amka, name, surname, address, addressNumber, city, postCode;
 
-    private ArrayList<ModelAppointment> completedAppointments;
+    private ArrayList<Appointment> completedAppointments;
 
     public ModelPatient(String amka, String name, String surname, String city, String address, String addressNumber,
                         String postCode) {
@@ -112,7 +112,7 @@ public class ModelPatient implements Parcelable {
         return 0;
     }
 
-    public ArrayList<ModelAppointment> getCompletedAppointments(){
+    public ArrayList<Appointment> getCompletedAppointments(){
         return this.completedAppointments;
     }
 
