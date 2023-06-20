@@ -8,23 +8,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aic601project.Patient;
+import com.example.aic601project.ModelPatient;
 import com.example.aic601project.R;
 
 import java.util.ArrayList;
 
-public class PhysicianFragment3R5NewAdapter extends RecyclerView.Adapter<PhysicianFragment3R5NewAdapter.NewR5Holder> {
+public class PhysicianFragment3R5Adapter extends RecyclerView.Adapter<PhysicianFragment3R5Adapter.NewR5Holder> {
 
-    private ArrayList<Patient> patientsList;
+    private ArrayList<ModelPatient> patientsList;
     private RecyclerViewClickListener listener;
 
-    public PhysicianFragment3R5NewAdapter(ArrayList<Patient> patientsList,
-                                          RecyclerViewClickListener listener) {
+    public PhysicianFragment3R5Adapter(ArrayList<ModelPatient> patientsList,
+                                       RecyclerViewClickListener listener) {
         this.patientsList = patientsList;
         this.listener = listener;
     }
 
-    public void setFilteredList(ArrayList<Patient> filteredList) {
+    public void setFilteredList(ArrayList<ModelPatient> filteredList) {
         this.patientsList = filteredList;
         notifyDataSetChanged();
     }
@@ -57,7 +57,7 @@ public class PhysicianFragment3R5NewAdapter extends RecyclerView.Adapter<Physici
 
     @Override
     public void onBindViewHolder(@NonNull NewR5Holder holder, int position) {
-        //Patient patient = patientsList.get(position);
+        //ModelPatient patient = patientsList.get(position);
         String str = patientsList.get(position).getSurname() + " " + patientsList.get(position).getName();
         holder.nameView.setText(str);
         String subs = holder.nameView.getText().toString().substring(0, 1);

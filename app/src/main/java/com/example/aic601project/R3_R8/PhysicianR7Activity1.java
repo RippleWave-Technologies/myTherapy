@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.aic601project.Patient;
 import com.example.aic601project.PatientR7;
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;

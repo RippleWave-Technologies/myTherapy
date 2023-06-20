@@ -4,10 +4,10 @@ import static com.example.aic601project.R3_R8.PhysicianMainActivity.getAfm;
 
 import java.util.ArrayList;
 
-public class PatientList {
-    private ArrayList<Patient> patients;
+public class ModelPatientList {
+    private ArrayList<ModelPatient> patients;
 
-    public PatientList(String ip) {
+    public ModelPatientList(String ip) {
         patients = new ArrayList<>();
         String url = "http://" + ip + "/myTherapy/fetchClinicPatients.php";
         try {
@@ -18,7 +18,7 @@ public class PatientList {
         }
     }
 
-    public ArrayList<Patient> getPatients() {
+    public ArrayList<ModelPatient> getPatients() {
         return patients;
     }
 }

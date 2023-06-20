@@ -11,11 +11,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     private static final String IP = "temp";
 
-    private PatientList patientList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        patientList = new PatientList(IP);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

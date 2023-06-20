@@ -1,13 +1,13 @@
 package com.example.aic601project;
 
 import android.os.StrictMode;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import okhttp3.FormBody;
@@ -24,9 +24,9 @@ public class OkHttpHandler {
         StrictMode.setThreadPolicy(policy);
     }
 
-    ArrayList<Patient> fetchClinicPatients(String url, String afm) throws Exception {
+    ArrayList<ModelPatient> fetchClinicPatients(String url, String afm) throws Exception {
 
-        ArrayList<Patient> patients = new ArrayList<>();
+        ArrayList<ModelPatient> patients = new ArrayList<>();
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         RequestBody body = new FormBody.Builder().add("afm", afm).build();
@@ -48,7 +48,7 @@ public class OkHttpHandler {
                 String addressNumber = patientObject.getString("addressNumber");
                 String postcode = patientObject.getString("postcode");
 
-                patients.add(new Patient(amka, name,surname,city, address, addressNumber, postcode));
+                patients.add(new ModelPatient(amka, name,surname,city, address, addressNumber, postcode));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -57,9 +57,9 @@ public class OkHttpHandler {
         return patients;
     }
 
-    ArrayList<Appointment> fetchCompletedAppoinments(String url) throws Exception {
+    ArrayList<ModelAppointment> fetchCompletedAppoinments(String url) throws Exception {
 
-        ArrayList<Appointment> appoinments = new ArrayList<>();
+        ArrayList<ModelAppointment> appoinments = new ArrayList<>();
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
@@ -78,7 +78,7 @@ public class OkHttpHandler {
                 String status = json.get("status").toString();
                 String service = json.get("service").toString();
                 if (status.equals("3")){
-                    appoinments.add(new Appointment(date, amka,afm,status, service));
+                    appoinments.add(new ModelAppointment(date, amka,afm,status, service));
                 }
 
             }
@@ -110,7 +110,7 @@ public class OkHttpHandler {
                 String price = json.get("price").toString();
                 String description = json.get("description").toString();
 
-                services.add(new Service(code,name, price, description));
+                services.add(new Service(code, name, price, description));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -154,8 +154,8 @@ public class OkHttpHandler {
         return clinics;
     }
 
-    public ArrayList<ModelAppointmentPFragment1> fetchClinicConfirmedAppointmentsPastCurrent(String url, String afm) throws IOException {
-        ArrayList<ModelAppointmentPFragment1> appointments = new ArrayList<>();
+    public HashMap<ModelAppointment, ModelPatient> fetchClinicConfirmedAppointmentsPastCurrent(String url, String afm) throws IOException {
+        HashMap<ModelAppointment, ModelPatient> appointmentData = new HashMap<>();
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
@@ -171,29 +171,27 @@ public class OkHttpHandler {
         Response response = client.newCall(request).execute();
         String data = response.body().string();
 
-        Log.d("imtestingrn", "im in1");
         try {
             JSONObject json = new JSONObject(data);
             Iterator<String> keys = json.keys();
-            Log.d("imtestingrn", "im in2");
             while (keys.hasNext()) {
-                Log.d("imtestingrn", "im in3");
                 String key = keys.next();
                 JSONObject clinicObject = json.getJSONObject(key);
 
+                String amka = key.substring(0, 10);
+                String date = key.substring(11);
+
                 String name = clinicObject.getString("name");
                 String surname = clinicObject.getString("surname");
-                String date = clinicObject.getString("date");
 
-                Log.d("imtestingrn", key + " " + name + " " + surname + " " + date);
-
-                appointments.add(new ModelAppointmentPFragment1(key, name, surname, date));
+                appointmentData.put(new ModelAppointment(amka, "", date, "", ""),
+                        new ModelPatient(amka, name, surname, "", "", "", ""));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return appointments;
+        return appointmentData;
     }
 
     public int insertOrUpdateClinic(String url, String afm, String name, String email, String address,

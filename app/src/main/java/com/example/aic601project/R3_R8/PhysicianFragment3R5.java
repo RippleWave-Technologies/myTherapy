@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.aic601project.MainActivity;
-import com.example.aic601project.Patient;
-import com.example.aic601project.PatientList;
+import com.example.aic601project.ModelPatient;
+import com.example.aic601project.ModelPatientList;
 import com.example.aic601project.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -34,12 +34,12 @@ public class PhysicianFragment3R5 extends Fragment {
 
     private String ip;
     private RecyclerView recyclerView;
-    private PatientList patients;
-    private ArrayList<Patient> filteredList;
-    private PhysicianFragment3R5NewAdapter patientsAdapter;
+    private ModelPatientList patients;
+    private ArrayList<ModelPatient> filteredList;
+    private PhysicianFragment3R5Adapter patientsAdapter;
     private SearchView searchView;
     private ImageView searchViewImage;
-    private PhysicianFragment3R5NewAdapter.RecyclerViewClickListener listener;
+    private PhysicianFragment3R5Adapter.RecyclerViewClickListener listener;
     private FloatingActionButton button;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -92,9 +92,9 @@ public class PhysicianFragment3R5 extends Fragment {
 
         ip = MainActivity.getIP();
 
-        patients = new PatientList(ip);
+        patients = new ModelPatientList(ip);
         filteredList = new ArrayList<>();
-        for (Patient p : patients.getPatients()) {
+        for (ModelPatient p : patients.getPatients()) {
             filteredList.add(p);
         }
 
@@ -106,7 +106,7 @@ public class PhysicianFragment3R5 extends Fragment {
         setOnClickListener();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        patientsAdapter = new PhysicianFragment3R5NewAdapter(patients.getPatients(), listener);
+        patientsAdapter = new PhysicianFragment3R5Adapter(patients.getPatients(), listener);
         recyclerView.setAdapter(patientsAdapter);
         recyclerView.requestFocus();
 
@@ -132,7 +132,7 @@ public class PhysicianFragment3R5 extends Fragment {
 
                 searchViewImage.setVisibility(View.GONE);
                 filteredList = new ArrayList<>();
-                for (Patient p : patients.getPatients()) {
+                for (ModelPatient p : patients.getPatients()) {
                     if (p.getName().toLowerCase().contains(newText.toLowerCase()) || p.getSurname().toLowerCase().contains(newText.toLowerCase())) {
                         filteredList.add(p);
                     }
@@ -140,7 +140,7 @@ public class PhysicianFragment3R5 extends Fragment {
 
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(layoutManager);
-                patientsAdapter = new PhysicianFragment3R5NewAdapter(filteredList, listener);
+                patientsAdapter = new PhysicianFragment3R5Adapter(filteredList, listener);
                 recyclerView.setAdapter(patientsAdapter);
 
                 if(newText.length()==0)
@@ -160,8 +160,8 @@ public class PhysicianFragment3R5 extends Fragment {
 
         swipeRefreshLayout = rootView.findViewById(R.id.physician_r5_swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(() -> {
-            patients = new PatientList(ip);
-            patientsAdapter = new PhysicianFragment3R5NewAdapter(patients.getPatients(), listener);
+            patients = new ModelPatientList(ip);
+            patientsAdapter = new PhysicianFragment3R5Adapter(patients.getPatients(), listener);
             recyclerView.setAdapter(patientsAdapter);
             swipeRefreshLayout.setRefreshing(false);
         });

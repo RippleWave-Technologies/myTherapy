@@ -5,30 +5,22 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import com.example.aic601project.R3_R8.AppointmentInformationView;
-
 import java.util.ArrayList;
 
-public class Patient implements Parcelable {
-    private String amka;
-    private String name;
-    private String surname;
-    private String city;
-    private String address;
-    private String addressNumber;
-    private String postcode;
+public class ModelPatient implements Parcelable {
+    private String amka, name, surname, address, addressNumber, city, postCode;
 
-    private ArrayList<Appointment> completedAppointments;
+    private ArrayList<ModelAppointment> completedAppointments;
 
-    public Patient(String amka, String name, String surname, String city, String address, String addressNumber,
-            String postcode) {
+    public ModelPatient(String amka, String name, String surname, String city, String address, String addressNumber,
+                        String postCode) {
         this.amka = amka;
         this.name = name;
         this.surname = surname;
         this.city = city;
         this.address = address;
         this.addressNumber = addressNumber;
-        this.postcode = postcode;
+        this.postCode = postCode;
 
         CompletedAppointmentListFromPatient comApp = new CompletedAppointmentListFromPatient(MainActivity.getIP(), this);
 
@@ -36,25 +28,25 @@ public class Patient implements Parcelable {
 
     }
 
-    protected Patient(Parcel in) {
+    protected ModelPatient(Parcel in) {
         amka = in.readString();
         name = in.readString();
         surname = in.readString();
         city = in.readString();
         address = in.readString();
         addressNumber = in.readString();
-        postcode = in.readString();
+        postCode = in.readString();
     }
 
-    public static final Creator<Patient> CREATOR = new Creator<Patient>() {
+    public static final Creator<ModelPatient> CREATOR = new Creator<ModelPatient>() {
         @Override
-        public Patient createFromParcel(Parcel in) {
-            return new Patient(in);
+        public ModelPatient createFromParcel(Parcel in) {
+            return new ModelPatient(in);
         }
 
         @Override
-        public Patient[] newArray(int size) {
-            return new Patient[size];
+        public ModelPatient[] newArray(int size) {
+            return new ModelPatient[size];
         }
     };
 
@@ -108,11 +100,11 @@ public class Patient implements Parcelable {
     }
 
     public String getPostcode() {
-        return postcode;
+        return postCode;
     }
 
     public void setPostcode(String postcode) {
-        this.postcode = postcode;
+        this.postCode = postcode;
     }
 
     @Override
@@ -120,7 +112,7 @@ public class Patient implements Parcelable {
         return 0;
     }
 
-    public ArrayList<Appointment> getCompletedAppointments(){
+    public ArrayList<ModelAppointment> getCompletedAppointments(){
         return this.completedAppointments;
     }
 
@@ -132,6 +124,6 @@ public class Patient implements Parcelable {
         parcel.writeString(city);
         parcel.writeString(address);
         parcel.writeString(addressNumber);
-        parcel.writeString(postcode);
+        parcel.writeString(postCode);
     }
 }

@@ -5,16 +5,16 @@ import com.example.aic601project.R3_R8.PhysicianMainActivity;
 import java.util.ArrayList;
 
 public class CompletedAppointmentListFromPatient {
-    private ArrayList<Appointment> appointments;
+    private ArrayList<ModelAppointment> appointments;
 
-    public CompletedAppointmentListFromPatient(String ip, Patient patient) {
+    public CompletedAppointmentListFromPatient(String ip, ModelPatient patient) {
         String url = "http://" + ip + "/myTherapy/fetchAppointments.php";
         try {
             OkHttpHandler okHttpHandler = new OkHttpHandler();
-            ArrayList<Appointment> tempApp = okHttpHandler.fetchCompletedAppoinments(url);
+            ArrayList<ModelAppointment> tempApp = okHttpHandler.fetchCompletedAppoinments(url);
 
-            for (Appointment app : tempApp){
-                if(app.getAFM().equals(PhysicianMainActivity.getAfm()) && app.getAmka().equals(patient.getAmka())){
+            for (ModelAppointment app : tempApp){
+                if(app.getAfm().equals(PhysicianMainActivity.getAfm()) && app.getAmka().equals(patient.getAmka())){
                     appointments.add(app);
                 }
             }
@@ -23,7 +23,7 @@ public class CompletedAppointmentListFromPatient {
         }
     }
 
-    public ArrayList<Appointment> getAppointments(){
+    public ArrayList<ModelAppointment> getAppointments(){
         return  this.appointments;
     }
 }

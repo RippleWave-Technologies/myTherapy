@@ -1,7 +1,6 @@
 package com.example.aic601project.R3_R8;
 
-import com.example.aic601project.ModelClinic;
-import com.example.aic601project.Patient;
+import com.example.aic601project.ModelPatient;
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -23,7 +22,7 @@ public class PhysicianR4Activity extends AppCompatActivity {
     private TextInputLayout textInputCity;
     private TextInputLayout textInputZip;
 
-    private Patient patient;
+    private ModelPatient patient;
     // Buttons
     private Button physicianAppointmentsHistoryButton;
 

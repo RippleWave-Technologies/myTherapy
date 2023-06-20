@@ -1,7 +1,9 @@
 package com.example.aic601project.R3_R8;
 
 import com.example.aic601project.MainActivity;
-import com.example.aic601project.ModelAppointmentListPFragment1;
+import com.example.aic601project.ModelAppointment;
+import com.example.aic601project.ModelAppointmentList;
+import com.example.aic601project.ModelPatient;
 import com.example.aic601project.R;
 import com.example.aic601project.RecyclerViewInterface;
 
@@ -15,14 +17,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PhysicianFragment1#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class PhysicianFragment1 extends Fragment implements RecyclerViewInterface  {
-    // ModelAppointmentListPFragment1 - used to get the appointments from the database
-    ModelAppointmentListPFragment1 appointmentList;
+    // ModelAppointmentList - used to get the appointments from the database
+    ModelAppointmentList appointmentList;
     // String - used to get the ip address from the MainActivity and the AFM from the PhysicianMainActivity
     private String ip, afm;
     // SwipeRefreshLayout - used to refresh the RecyclerView
@@ -31,6 +36,8 @@ public class PhysicianFragment1 extends Fragment implements RecyclerViewInterfac
     RecyclerView recyclerView;
     // PhysicianFragment1Adapter - used to provide the data for the RecyclerView
     PhysicianFragment1Adapter adapter;
+
+    HashMap<ModelAppointment, ModelPatient> appointmentData;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -90,19 +97,30 @@ public class PhysicianFragment1 extends Fragment implements RecyclerViewInterfac
         afm = PhysicianMainActivity.getAfm();
 
         // fetches the appropriate appointments from the myTherapy database
-        appointmentList = new ModelAppointmentListPFragment1(ip, afm);
+        appointmentList = new ModelAppointmentList(ip, afm, "PhysicianFragment1");
+        appointmentData = appointmentList.getAppointmentData();
+
+        ArrayList<ModelAppointment> appointments = new ArrayList<>();
+        ArrayList<ModelPatient> patients = new ArrayList<>();
+
+
+        for(ModelAppointment appointment: appointmentData.keySet()) {
+            ModelPatient patient = appointmentData.get(appointment);
+            appointments.add(appointment);
+            patients.add(patient);
+        }
 
         // initiates the RecyclerView
         recyclerView = rootView.findViewById(R.id.physician_fragment1_recyclerView);
-        adapter = new PhysicianFragment1Adapter(requireActivity(), appointmentList.getAppointments(), this);
+        adapter = new PhysicianFragment1Adapter(requireActivity(), appointments, patients, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
         // initiates the SwipeRefreshLayout and sets the onRefreshListener
         swipeRefreshLayout = rootView.findViewById(R.id.physician_fragment1_swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(() -> {
-            appointmentList = new ModelAppointmentListPFragment1(ip, afm);
-            adapter = new PhysicianFragment1Adapter(requireActivity(), appointmentList.getAppointments(), this);
+            appointmentList = new ModelAppointmentList(ip, afm, "PhysicianFragment1");
+            adapter = new PhysicianFragment1Adapter(requireActivity(), appointments, patients, this);
             recyclerView.setAdapter(adapter);
             swipeRefreshLayout.setRefreshing(false);
         });

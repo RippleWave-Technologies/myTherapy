@@ -27,11 +27,10 @@
 
 		$arr = array(
 			"name" => $name,
-			"surname" => $surname,
-			"date" => $date
+			"surname" => $surname
 		);
 
-		$data[$row['amka']] = $arr;
+		$data[$amka.$date] = $arr;
 	}
 
 	header("Content-Type: application/json");

@@ -8,7 +8,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aic601project.ModelAppointmentPFragment1;
+import com.example.aic601project.ModelAppointment;
+import com.example.aic601project.ModelPatient;
 import com.example.aic601project.R;
 import com.example.aic601project.RecyclerViewInterface;
 
@@ -17,12 +18,14 @@ import java.util.ArrayList;
 public class PhysicianFragment1Adapter extends RecyclerView.Adapter<com.example.aic601project.R3_R8.PhysicianFragment1Adapter.MyViewHolder> {
     private final RecyclerViewInterface recyclerViewInterface;
     Context context;
-    ArrayList<ModelAppointmentPFragment1> appointments;
+    ArrayList<ModelAppointment> appointments;
+    ArrayList<ModelPatient> patients;
 
-    public PhysicianFragment1Adapter(Context context, ArrayList<ModelAppointmentPFragment1> appointments,
-                                 RecyclerViewInterface recyclerViewInterface) {
+    public PhysicianFragment1Adapter(Context context, ArrayList<ModelAppointment> appointments, ArrayList<ModelPatient> patients,
+                                     RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
         this.appointments = appointments;
+        this.patients = patients;
         this.recyclerViewInterface = recyclerViewInterface;
     }
 
@@ -35,8 +38,9 @@ public class PhysicianFragment1Adapter extends RecyclerView.Adapter<com.example.
 
     @Override
     public void onBindViewHolder(com.example.aic601project.R3_R8.PhysicianFragment1Adapter.MyViewHolder holder, int position) {
-        holder.date.setText(appointments.get(position).getAptDate().substring(0, appointments.get(position).getAptDate().length() - 3));
-        holder.name.setText(appointments.get(position).getAptSurname().concat(" " + appointments.get(position).getAptName()));
+        String nameSurname = patients.get(position).getName().concat(" " + patients.get(position).getSurname());
+        holder.name.setText(nameSurname);
+        holder.date.setText(appointments.get(position).getDate().substring(0, 16));
     }
 
     @Override
