@@ -15,14 +15,14 @@ import com.example.aic601project.RecyclerViewInterface;
 
 import java.util.ArrayList;
 
-public class PhysicianFragment1Adapter extends RecyclerView.Adapter<com.example.aic601project.R3_R8.PhysicianFragment1Adapter.MyViewHolder> {
+public class PhysicianFragment1And2Adapter extends RecyclerView.Adapter<PhysicianFragment1And2Adapter.MyViewHolder> {
     private final RecyclerViewInterface recyclerViewInterface;
     Context context;
     ArrayList<ModelAppointment> appointments;
     ArrayList<ModelPatient> patients;
 
-    public PhysicianFragment1Adapter(Context context, ArrayList<ModelAppointment> appointments, ArrayList<ModelPatient> patients,
-                                     RecyclerViewInterface recyclerViewInterface) {
+    public PhysicianFragment1And2Adapter(Context context, ArrayList<ModelAppointment> appointments, ArrayList<ModelPatient> patients,
+                                         RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
         this.appointments = appointments;
         this.patients = patients;
@@ -30,14 +30,14 @@ public class PhysicianFragment1Adapter extends RecyclerView.Adapter<com.example.
     }
 
     @Override
-    public com.example.aic601project.R3_R8.PhysicianFragment1Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PhysicianFragment1And2Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_appointments, parent, false);
-        return new com.example.aic601project.R3_R8.PhysicianFragment1Adapter.MyViewHolder(view, recyclerViewInterface);
+        return new PhysicianFragment1And2Adapter.MyViewHolder(view, recyclerViewInterface);
     }
 
     @Override
-    public void onBindViewHolder(com.example.aic601project.R3_R8.PhysicianFragment1Adapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(PhysicianFragment1And2Adapter.MyViewHolder holder, int position) {
         String nameSurname = patients.get(position).getName().concat(" " + patients.get(position).getSurname());
         holder.name.setText(nameSurname);
         holder.date.setText(appointments.get(position).getDate().substring(0, 16));

@@ -1,7 +1,7 @@
 <?php
+    $data = array();
     $date = $_POST['date'];
     $afm = $_POST['afm'];
-    $status = $_POST['status'];
 
     // Database connection details
     $host = "localhost";
@@ -19,38 +19,29 @@
         FROM appointment 
         INNER JOIN patient ON appointment.amka = patient.amka 
         INNER JOIN service ON appointment.service = service.code 
-        WHERE DATE(appointment.date) = '$date' AND appointment.afm = '$afm' AND appointment.status = $status";
+        WHERE DATE(appointment.date) = '$date' AND appointment.afm = '$afm' AND (appointment.status = 2 OR appointment.status = 3)";
 
     $result = mysqli_query($dbh, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
 
-    // Check if any rows were returned
-    if (mysqli_num_rows($result) > 0) {
-        // Fetch the rows and store them in an array
-        $data = array();
-        while ($row = mysqli_fetch_assoc($result)) {
-            $data[] = array(
-                'amka' => $row['amka'],
-                'name' => $row['name'],
-                'surname' => $row['surname'],
-                'serviceCode' => $row['code'],
-                'serviceName' => $row['service_name']
-            );
-        }
+        $amka = $row['amka'];
+        $name = $row['name'];
+        $surname = $row['surname'];
+        $code = $row['code'];
+        $serviceName = $row['service_name'];
 
-        // Convert the array to JSON
-        $json = json_encode($data);
+        $arr = array(
+            "name" => $name,
+            "surname" => $surname,
+            "code" => $code,
+            "service_name" => $serviceName
+        );
 
-        // Output the JSON response
-        header('Content-Type: application/json');
-        echo $json;
-    } else {
-        // No appointments found
-        $data = array('message' => 'No appointments found');
-        $json = json_encode($data);
-        header('Content-Type: application/json');
-        echo $json;
+        $data[$amka.$row['date']] = $arr;
     }
 
-    // Close the database connection
+    header("Content-Type: application/json");
+    echo json_encode($data);
+
     mysqli_close($dbh);
 ?>

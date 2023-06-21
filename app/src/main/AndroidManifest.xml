@@ -24,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".R1_R2.AdminMainActivity"
             android:exported="false" />
@@ -40,11 +39,13 @@
         <activity
             android:name=".R1_R2.AdminR2Activity2"
             android:exported="false" />
-
         <activity
             android:name=".R3_R8.PhysicianMainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".R3_R8.PhysicianActivityAppointmentInformationView"
+            android:exported="false" />
         <activity
             android:name=".R3_R8.PhysicianR4Activity"
             android:exported="false" />
@@ -63,7 +64,6 @@
         <activity
             android:name=".R3_R8.PhysicianR8Activity"
             android:exported="false" />
-
         <activity
             android:name=".R9_R10.UserMainActivity"
             android:exported="false" />

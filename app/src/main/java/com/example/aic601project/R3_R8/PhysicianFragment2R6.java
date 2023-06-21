@@ -1,13 +1,21 @@
 package com.example.aic601project.R3_R8;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
+import com.example.aic601project.MainActivity;
+import com.example.aic601project.ModelAppointment;
+import com.example.aic601project.ModelAppointmentList;
+import com.example.aic601project.ModelPatient;
+import com.example.aic601project.ModelService;
 import com.example.aic601project.R;
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.aic601project.RecyclerViewInterface;
 import com.google.android.material.textfield.TextInputLayout;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,17 +23,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PhysicianFragment2R6#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PhysicianFragment2R6 extends Fragment {
+public class PhysicianFragment2R6 extends Fragment implements RecyclerViewInterface {
 
-    private TextInputLayout calendarBtn;
+    // ModelAppointmentList - used to get the appointments from the database
+    private ModelAppointmentList appointmentList;
+    // String - used to get the ip address from the MainActivity, the AFM from the PhysicianMainActivity and the date from the Calendar dialog
+    private String ip, afm, date;
+    // SwipeRefreshLayout - used to refresh the RecyclerView
+    private SwipeRefreshLayout swipeRefreshLayout;
+    // RecyclerView - used to display the clinics
+    private RecyclerView recyclerView;
+    // PhysicianFragment1And2Adapter - used to provide the data for the RecyclerView
+    private PhysicianFragment1And2Adapter adapter;
+
+    private HashMap<HashMap<ModelAppointment, ModelPatient>, ModelService> appointmentPatientServiceData;
+    private HashMap<ModelAppointment, ModelPatient> appointmentPatientData;
+    private ArrayList<HashMap<ModelAppointment, ModelPatient>> innerHashMap;
+    private ArrayList<ModelAppointment> appointments;
+    private ArrayList<ModelPatient> patients;
+    private ArrayList<ModelService> services;
+
+    private TextInputLayout calendarLayout;
     private Calendar calendar;
-    private TextInputEditText date;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -73,74 +101,23 @@ public class PhysicianFragment2R6 extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_physician2, container, false);
 
-        date = (TextInputEditText) rootView.findViewById(R.id.physician_r6_textInputEditText_dateEditText);
-        date.addTextChangedListener(new TextWatcher() {
-            private String current = "";
-            private String ddmmyyyy = "ΗΗΜΜΕΕΕΕ";
-            private Calendar cal = Calendar.getInstance();
+        calendarLayout = rootView.findViewById(R.id.physician_r6_textInputLayout_calendar);
+        calendar = Calendar.getInstance();
+        rootView.findViewById(R.id.imageButtonCalendar).setOnClickListener(v -> showDatePicker());
 
+        calendarLayout.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().equals(current)) {
-                    String clean = s.toString().replaceAll("[^\\d.]", "");
-                    String cleanC = current.replaceAll("[^\\d.]", "");
-
-                    int cl = clean.length();
-                    int sel = cl;
-                    for (int i = 2; i <= cl && i < 6; i += 2) {
-                        sel++;
-                    }
-                    // Fix for pressing delete next to a forward slash
-                    if (clean.equals(cleanC))
-                        sel--;
-
-                    if (clean.length() < 8) {
-                        clean = clean + ddmmyyyy.substring(clean.length());
-                    } else {
-                        // This part makes sure that when we finish entering numbers
-                        // the date is correct, fixing it otherwise
-                        int day = Integer.parseInt(clean.substring(0, 2));
-                        int mon = Integer.parseInt(clean.substring(2, 4));
-                        int year = Integer.parseInt(clean.substring(4, 8));
-
-                        if (mon > 12)
-                            mon = 12;
-                        cal.set(Calendar.MONTH, mon - 1);
-
-                        year = (year < 1900) ? 1900 : (year > 2100) ? 2100 : year;
-                        cal.set(Calendar.YEAR, year);
-                        // ^ first set year for the line below to work correctly
-                        // with leap years - otherwise, date e.g. 29/02/2012
-                        // would be automatically corrected to 28/02/2012
-
-                        day = (day > cal.getActualMaximum(Calendar.DATE)) ? cal.getActualMaximum(Calendar.DATE) : day;
-                        clean = String.format("%02d%02d%02d", day, mon, year);
-                    }
-
-                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
-                            clean.substring(2, 4),
-                            clean.substring(4, 8));
-
-                    sel = sel < 0 ? 0 : sel;
-                    current = clean;
-                    date.setText(current);
-                    date.setSelection(sel < current.length() ? sel : current.length());
-                }
-            }
-
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { /* Do nothing */ }
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
+            public void onTextChanged(CharSequence s, int start, int before, int count) { /* Do nothing */ }
             @Override
             public void afterTextChanged(Editable s) {
+                if (!calendarLayout.getEditText().getText().toString().isEmpty()){
+                    date = calendarLayout.getEditText().getText().toString();
+                    showAppointments(date);
+                }
             }
         });
-
-        calendarBtn = rootView.findViewById(R.id.physician_r6_textInputLayout_calendarBtn);
-        calendar = Calendar.getInstance();
-
-        calendarBtn.setEndIconOnClickListener(v -> showDatePicker());
 
         return rootView;
     }
@@ -152,11 +129,81 @@ public class PhysicianFragment2R6 extends Fragment {
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                 (view, year1, month1, dayOfMonth1) -> {
-                    String selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", dayOfMonth1,
-                            (month1 + 1), year1);
-                    calendarBtn.getEditText().setText(selectedDate);
+                    String selectedDate = String.format(Locale.getDefault(), "%04d/%02d/%02d", year1,
+                            (month1 + 1), dayOfMonth1);
+                    calendarLayout.getEditText().setText(selectedDate);
                 }, year, month, dayOfMonth);
 
         datePickerDialog.show();
+    }
+
+    private void showAppointments(String date) {
+        // gets the IP address from the MainActivity
+        ip = MainActivity.getIP();
+
+        // gets the AFM from the PhysicianMainActivity
+        afm = PhysicianMainActivity.getAfm();
+
+        fetchAndHash();
+
+        // initiates the RecyclerView
+        recyclerView = requireActivity().findViewById(R.id.physician_fragment2_recyclerView);
+        adapter = new PhysicianFragment1And2Adapter(requireActivity(), appointments, patients, this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+
+        // initiates the SwipeRefreshLayout and sets the onRefreshListener
+        swipeRefreshLayout = requireActivity().findViewById(R.id.physician_fragment2_swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+
+            fetchAndHash();
+
+            adapter = new PhysicianFragment1And2Adapter(requireActivity(), appointments, patients, this);
+            recyclerView.setAdapter(adapter);
+            swipeRefreshLayout.setRefreshing(false);
+        });
+    }
+
+    // method for the RecyclerViewInterface / physician_fragment1_recyclerView
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(requireActivity(), PhysicianActivityAppointmentInformationView.class);
+
+        intent.putExtra("name", patients.get(position).getName());
+        intent.putExtra("surname", patients.get(position).getSurname());
+        intent.putExtra("date", appointments.get(position).getDate());
+        intent.putExtra("service", services.get(position).getName());
+
+        startActivity(intent);
+        requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+    }
+
+    private void fetchAndHash(){
+        // fetches the appropriate appointments from the myTherapy database
+        appointmentList = new ModelAppointmentList(ip, afm, date, "PhysicianFragment2");
+        appointmentPatientServiceData = appointmentList.getAppointmentPatientServiceData();
+
+        innerHashMap = new ArrayList<>();
+        services = new ArrayList<>();
+
+        // HashMap<HashMap<ModelAppointment, ModelPatient>, ModelService>
+        for(HashMap<ModelAppointment, ModelPatient> hashMap : appointmentPatientServiceData.keySet()) {
+            ModelService service = appointmentPatientServiceData.get(hashMap);
+            services.add(service);
+            innerHashMap.add(hashMap);
+        }
+
+        appointments = new ArrayList<>();
+        patients = new ArrayList<>();
+
+        for (int i = 0; i < innerHashMap.size(); i++){
+            appointmentPatientData = innerHashMap.get(i);
+            // HashMap<ModelAppointment, ModelPatient>
+            for(ModelAppointment appointment: appointmentPatientData.keySet()) {
+                ModelPatient patient = appointmentPatientData.get(appointment);
+                appointments.add(appointment);
+                patients.add(patient);
+            }
+        }
     }
 }

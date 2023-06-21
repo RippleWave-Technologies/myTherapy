@@ -90,7 +90,7 @@ public class OkHttpHandler {
     }
 
     public HashMap<ModelAppointment, ModelPatient> fetchClinicConfirmedAppointmentsPastCurrent(String url, String afm) throws IOException {
-        HashMap<ModelAppointment, ModelPatient> appointmentData = new HashMap<>();
+        HashMap<ModelAppointment, ModelPatient> appointmentPatientData = new HashMap<>();
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
@@ -119,14 +119,59 @@ public class OkHttpHandler {
                 String name = clinicObject.getString("name");
                 String surname = clinicObject.getString("surname");
 
-                appointmentData.put(new ModelAppointment(amka, "", date, "", ""),
+                appointmentPatientData.put(new ModelAppointment(amka, "", date, "", ""),
                         new ModelPatient(amka, name, surname, "", "", "", ""));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return appointmentData;
+        return appointmentPatientData;
+    }
+
+    public HashMap<HashMap<ModelAppointment, ModelPatient>, ModelService> fetchClinicConfirmedAppointments(String url, String date, String afm) throws IOException {
+        HashMap<HashMap<ModelAppointment, ModelPatient>, ModelService> appointmentPatientServiceData = new HashMap<>();
+
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        RequestBody body = new FormBody.Builder()
+                .add("date", date)
+                .add("afm", afm)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        String data = response.body().string();
+
+        try {
+            JSONObject json = new JSONObject(data);
+            Iterator<String> keys = json.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                JSONObject clinicObject = json.getJSONObject(key);
+
+                String amka = key.substring(0, 11);
+                String dateTime = key.substring(11);
+
+                String name = clinicObject.getString("name");
+                String surname = clinicObject.getString("surname");
+                String code = clinicObject.getString("code");
+                String serviceName = clinicObject.getString("service_name");
+
+                appointmentPatientServiceData.put(new HashMap<ModelAppointment, ModelPatient>() {{
+                        put(new ModelAppointment(amka, "", dateTime, "", ""),
+                                new ModelPatient(amka, name, surname, "", "", "", ""));}},
+                    new ModelService(code, serviceName, "", ""));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return appointmentPatientServiceData;
     }
 
     public int insertClinicPatientRequestedAppointment(String url, String date, String amka, String afm) throws IOException{

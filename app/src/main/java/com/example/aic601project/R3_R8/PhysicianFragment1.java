@@ -34,10 +34,10 @@ public class PhysicianFragment1 extends Fragment implements RecyclerViewInterfac
     private SwipeRefreshLayout swipeRefreshLayout;
     // RecyclerView - used to display the clinics
     private RecyclerView recyclerView;
-    // PhysicianFragment1Adapter - used to provide the data for the RecyclerView
-    private PhysicianFragment1Adapter adapter;
+    // PhysicianFragment1And2Adapter - used to provide the data for the RecyclerView
+    private PhysicianFragment1And2Adapter adapter;
 
-    private HashMap<ModelAppointment, ModelPatient> appointmentData;
+    private HashMap<ModelAppointment, ModelPatient> appointmentPatientData;
     private ArrayList<ModelAppointment> appointments;
     private ArrayList<ModelPatient> patients;
 
@@ -98,42 +98,21 @@ public class PhysicianFragment1 extends Fragment implements RecyclerViewInterfac
         // gets the AFM from the PhysicianMainActivity
         afm = PhysicianMainActivity.getAfm();
 
-        // fetches the appropriate appointments from the myTherapy database
-        appointmentList = new ModelAppointmentList(ip, afm, "PhysicianFragment1");
-        appointmentData = appointmentList.getAppointmentData();
-
-        appointments = new ArrayList<>();
-        patients = new ArrayList<>();
-
-        for(ModelAppointment appointment: appointmentData.keySet()) {
-            ModelPatient patient = appointmentData.get(appointment);
-            appointments.add(appointment);
-            patients.add(patient);
-        }
+        fetchAndHash();
 
         // initiates the RecyclerView
         recyclerView = rootView.findViewById(R.id.physician_fragment1_recyclerView);
-        adapter = new PhysicianFragment1Adapter(requireActivity(), appointments, patients, this);
+        adapter = new PhysicianFragment1And2Adapter(requireActivity(), appointments, patients, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
         // initiates the SwipeRefreshLayout and sets the onRefreshListener
         swipeRefreshLayout = rootView.findViewById(R.id.physician_fragment1_swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(() -> {
-            // fetches the appropriate appointments from the myTherapy database
-            appointmentList = new ModelAppointmentList(ip, afm, "PhysicianFragment1");
-            appointmentData = appointmentList.getAppointmentData();
 
-            appointments = new ArrayList<>();
-            patients = new ArrayList<>();
+            fetchAndHash();
 
-
-            for(ModelAppointment appointment: appointmentData.keySet()) {
-                ModelPatient patient = appointmentData.get(appointment);
-                appointments.add(appointment);
-                patients.add(patient);
-            }
-            adapter = new PhysicianFragment1Adapter(requireActivity(), appointments, patients, this);
+            adapter = new PhysicianFragment1And2Adapter(requireActivity(), appointments, patients, this);
             recyclerView.setAdapter(adapter);
             swipeRefreshLayout.setRefreshing(false);
         });
@@ -165,5 +144,20 @@ public class PhysicianFragment1 extends Fragment implements RecyclerViewInterfac
 
         startActivity(intent);
         requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
+    }
+
+    private void fetchAndHash(){
+        // fetches the appropriate appointments from the myTherapy database
+        appointmentList = new ModelAppointmentList(ip, afm, "", "PhysicianFragment1");
+        appointmentPatientData = appointmentList.getAppointmentPatientData();
+
+        appointments = new ArrayList<>();
+        patients = new ArrayList<>();
+
+        for(ModelAppointment appointment: appointmentPatientData.keySet()) {
+            ModelPatient patient = appointmentPatientData.get(appointment);
+            appointments.add(appointment);
+            patients.add(patient);
+        }
     }
 }
