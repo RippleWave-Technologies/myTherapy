@@ -42,8 +42,8 @@ public class PhysicianFragment2R6 extends Fragment implements RecyclerViewInterf
     private SwipeRefreshLayout swipeRefreshLayout;
     // RecyclerView - used to display the clinics
     private RecyclerView recyclerView;
-    // PhysicianFragment1And2Adapter - used to provide the data for the RecyclerView
-    private PhysicianFragment1And2Adapter adapter;
+    // PhysicianFragment1And2R6Adapter - used to provide the data for the RecyclerView
+    private PhysicianFragment1And2R6Adapter adapter;
 
     private HashMap<HashMap<ModelAppointment, ModelPatient>, ModelService> appointmentPatientServiceData;
     private HashMap<ModelAppointment, ModelPatient> appointmentPatientData;
@@ -148,7 +148,7 @@ public class PhysicianFragment2R6 extends Fragment implements RecyclerViewInterf
 
         // initiates the RecyclerView
         recyclerView = requireActivity().findViewById(R.id.physician_fragment2_recyclerView);
-        adapter = new PhysicianFragment1And2Adapter(requireActivity(), appointments, patients, this);
+        adapter = new PhysicianFragment1And2R6Adapter(requireActivity(), appointments, patients, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
@@ -158,7 +158,7 @@ public class PhysicianFragment2R6 extends Fragment implements RecyclerViewInterf
 
             fetchAndHash();
 
-            adapter = new PhysicianFragment1And2Adapter(requireActivity(), appointments, patients, this);
+            adapter = new PhysicianFragment1And2R6Adapter(requireActivity(), appointments, patients, this);
             recyclerView.setAdapter(adapter);
             swipeRefreshLayout.setRefreshing(false);
         });
@@ -167,7 +167,7 @@ public class PhysicianFragment2R6 extends Fragment implements RecyclerViewInterf
     // method for the RecyclerViewInterface / physician_fragment1_recyclerView
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(requireActivity(), PhysicianActivityAppointmentInformationView.class);
+        Intent intent = new Intent(requireActivity(), PhysicianR6Activity.class);
 
         intent.putExtra("name", patients.get(position).getName());
         intent.putExtra("surname", patients.get(position).getSurname());

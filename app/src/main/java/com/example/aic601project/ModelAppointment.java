@@ -13,12 +13,8 @@ public class ModelAppointment {
     }
 
     public String getAmka() { return amka; }
-
     public String getAfm() { return afm; }
-
     public String getDate() { return date; }
-
     public String getStatus() { return status; }
-
     public String getService() { return service; }
 }

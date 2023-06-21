@@ -44,27 +44,21 @@ public class ModelClinic implements Parcelable{
     public String getPhysioAFM() {
         return afm;
     }
-
     public String getPhysioName() {
         return name;
     }
-
     public String getPhysioEmail() {
         return email;
     }
-
     public String getPhysioAddress() {
         return address;
     }
-
     public String getPhysioAddressNumber() {
         return addressNumber;
     }
-
     public String getPhysioPostCode() {
         return postCode;
     }
-
     public String getPhysioCity() {
         return city;
     }

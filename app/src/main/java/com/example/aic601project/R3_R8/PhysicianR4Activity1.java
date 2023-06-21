@@ -9,9 +9,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PhysicianR4Activity extends AppCompatActivity {
+public class PhysicianR4Activity1 extends AppCompatActivity {
     private MaterialToolbar toolbar;
     // inputFields
     private TextInputLayout textInputName;
@@ -29,7 +30,7 @@ public class PhysicianR4Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_physician_r4);
+        setContentView(R.layout.activity_physician_r4_1);
 
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
         toolbar = findViewById(R.id.physician_r4_topAppBar);
@@ -53,9 +54,10 @@ public class PhysicianR4Activity extends AppCompatActivity {
     }
 
     public void viewAppointmentsHistory(View v) {
-        Intent i = new Intent(this, PhysicianR4AppointmentLogHistory.class);
-        i.putExtra("appointments", patient.getCompletedAppointments());
+        Intent i = new Intent(this, PhysicianR4Activity2.class);
+        i.putExtra("patient", patient);
         startActivity(i);
+        overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 
     private void loadStartPhysicianInformationScreen() {

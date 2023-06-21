@@ -8,39 +8,35 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aic601project.ModelAppointment;
-import com.example.aic601project.ModelPatient;
+import com.example.aic601project.ModelR4Appointment;
 import com.example.aic601project.R;
 import com.example.aic601project.RecyclerViewInterface;
 
 import java.util.ArrayList;
 
-public class PhysicianFragment1And2Adapter extends RecyclerView.Adapter<PhysicianFragment1And2Adapter.MyViewHolder> {
+public class PhysicianR4Activity2Adapter extends RecyclerView.Adapter<PhysicianR4Activity2Adapter.MyViewHolder> {
     private final RecyclerViewInterface recyclerViewInterface;
     Context context;
-    ArrayList<ModelAppointment> appointments;
-    ArrayList<ModelPatient> patients;
+    ArrayList<ModelR4Appointment> appointments;
 
-    public PhysicianFragment1And2Adapter(Context context, ArrayList<ModelAppointment> appointments, ArrayList<ModelPatient> patients,
-                                         RecyclerViewInterface recyclerViewInterface) {
+    public PhysicianR4Activity2Adapter(Context context, ArrayList<ModelR4Appointment> appointments,
+                                       RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
         this.appointments = appointments;
-        this.patients = patients;
         this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @Override
-    public PhysicianFragment1And2Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PhysicianR4Activity2Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_appointments, parent, false);
-        return new PhysicianFragment1And2Adapter.MyViewHolder(view, recyclerViewInterface);
+        return new PhysicianR4Activity2Adapter.MyViewHolder(view, recyclerViewInterface);
     }
 
     @Override
-    public void onBindViewHolder(PhysicianFragment1And2Adapter.MyViewHolder holder, int position) {
-        String nameSurname = patients.get(position).getName().concat(" " + patients.get(position).getSurname());
-        holder.name.setText(nameSurname);
-        holder.date.setText(appointments.get(position).getDate().substring(0, 16));
+    public void onBindViewHolder(PhysicianR4Activity2Adapter.MyViewHolder holder, int position) {
+        holder.date.setText(appointments.get(position).getDate().substring(0, 10));
+        holder.name.setText(appointments.get(position).getLastName());
     }
 
     @Override

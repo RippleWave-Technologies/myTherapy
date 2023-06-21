@@ -11,7 +11,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
-public class PhysicianActivityAppointmentInformationView extends AppCompatActivity {
+public class PhysicianR6Activity extends AppCompatActivity {
 
     // textIntentInputLayoutArray - logs intent contents to a String[]
     private String[] intentStringArray;
@@ -23,7 +23,7 @@ public class PhysicianActivityAppointmentInformationView extends AppCompatActivi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_physician_appointment_information_view);
+        setContentView(R.layout.activity_physician_r6);
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
 
         toolbar = findViewById(R.id.physician_appointmentInformationView_topAppBar);

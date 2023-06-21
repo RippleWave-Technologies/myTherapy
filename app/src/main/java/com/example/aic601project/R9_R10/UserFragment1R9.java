@@ -200,7 +200,7 @@ public class UserFragment1R9 extends Fragment {
 
         // dialog box to appear when button is clicked
         button = rootView.findViewById(R.id.user_r9_button);
-        View alertUserDialog = LayoutInflater.from(getActivity()).inflate(R.layout.user_r9_dialog, null);
+        View alertUserDialog = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_user_r9, null);
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
 
         alertDialog.setView(alertUserDialog);

@@ -58,9 +58,9 @@ public class OkHttpHandler {
         return patients;
     }
 
-    ArrayList<Appointment> fetchCompletedAppoinments(String url) throws Exception {
+    public ArrayList<ModelR4Appointment> fetchCompletedAppointments(String url) throws Exception {
 
-        ArrayList<Appointment> appoinments = new ArrayList<>();
+        ArrayList<ModelR4Appointment> appointments = new ArrayList<>();
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
@@ -74,19 +74,21 @@ public class OkHttpHandler {
             while (keys.hasNext()) {
                 String date = keys.next();
 
-                String amka = json.get("amka").toString();
-                String afm = json.get("afm").toString();
-                String service = json.get("serviceName").toString();
-                String lastName = json.get("surname").toString();
+                JSONObject appointmentObject = json.getJSONObject(date);
 
-                appoinments.add(new Appointment(date, amka,afm,"3", service,lastName));
+                String amka = appointmentObject.getString("amka");
+                String afm = appointmentObject.getString("afm");
+                String service = appointmentObject.getString("serviceName");;
+                String lastName = appointmentObject.getString("surname");;
+
+                appointments.add(new ModelR4Appointment(date, amka,afm,"3", service,lastName));
 
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return appoinments;
+        return appointments;
     }
 
     public HashMap<ModelAppointment, ModelPatient> fetchClinicConfirmedAppointmentsPastCurrent(String url, String afm) throws IOException {

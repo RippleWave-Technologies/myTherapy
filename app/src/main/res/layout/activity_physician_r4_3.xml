@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".R3_R8.R4AppointmentInformationView">
+    tools:context=".R3_R8.PhysicianR4Activity3">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/physician_r4_appBarLayout"
@@ -56,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:hint="Ασθενής"
+            android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -69,13 +70,14 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/physician_r4_textInputLayout_actions"
+            android:id="@+id/physician_r4_appointment_actions"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="361dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:clickable="false"
             android:hint="Ενέργειες επίσκεψης"
+            android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/physician_r4_appointment_lastName">
@@ -87,14 +89,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/physician_r4_textInputLayout_date"
+            android:id="@+id/physician_r4_appointment_date"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:hint="ΗΗ/ΜΜ/ΕΕΕΕ"
+            android:enabled="false"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_actions">
+            app:layout_constraintTop_toBottomOf="@+id/physician_r4_appointment_actions">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="200dp"
@@ -103,14 +106,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/physician_r4_textInputLayout_time"
+            android:id="@+id/physician_r4_appointment_time"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:hint="'Ωρα"
+            android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_actions">
+            app:layout_constraintTop_toBottomOf="@+id/physician_r4_appointment_actions">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"

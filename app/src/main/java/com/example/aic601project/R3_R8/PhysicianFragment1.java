@@ -34,8 +34,8 @@ public class PhysicianFragment1 extends Fragment implements RecyclerViewInterfac
     private SwipeRefreshLayout swipeRefreshLayout;
     // RecyclerView - used to display the clinics
     private RecyclerView recyclerView;
-    // PhysicianFragment1And2Adapter - used to provide the data for the RecyclerView
-    private PhysicianFragment1And2Adapter adapter;
+    // PhysicianFragment1And2R6Adapter - used to provide the data for the RecyclerView
+    private PhysicianFragment1And2R6Adapter adapter;
 
     private HashMap<ModelAppointment, ModelPatient> appointmentPatientData;
     private ArrayList<ModelAppointment> appointments;
@@ -102,7 +102,7 @@ public class PhysicianFragment1 extends Fragment implements RecyclerViewInterfac
 
         // initiates the RecyclerView
         recyclerView = rootView.findViewById(R.id.physician_fragment1_recyclerView);
-        adapter = new PhysicianFragment1And2Adapter(requireActivity(), appointments, patients, this);
+        adapter = new PhysicianFragment1And2R6Adapter(requireActivity(), appointments, patients, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
@@ -112,7 +112,7 @@ public class PhysicianFragment1 extends Fragment implements RecyclerViewInterfac
 
             fetchAndHash();
 
-            adapter = new PhysicianFragment1And2Adapter(requireActivity(), appointments, patients, this);
+            adapter = new PhysicianFragment1And2R6Adapter(requireActivity(), appointments, patients, this);
             recyclerView.setAdapter(adapter);
             swipeRefreshLayout.setRefreshing(false);
         });

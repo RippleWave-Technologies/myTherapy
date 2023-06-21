@@ -25,15 +25,15 @@
         $data = array();
 
         while ($row = mysqli_fetch_assoc($result)) {
+            $arr = array();
 
-            $arr = array(
-                'amka' => $row['amka'],
-                'afm' => $row['afm'],
-                'name' => $row['name'],
-                'surname' => $row['surname'],
-                'serviceCode' => $row['code'],
-                'serviceName' => $row['service_name']
-            );
+            $arr['amka'] = $row['amka'];
+
+            $arr['afm'] = $row['afm'];
+            $arr['name'] = $row['name'];
+            $arr['surname'] = $row['surname'];
+            $arr['serviceCode'] = $row['code'];
+            $arr['serviceName'] = $row['service_name'];
 
             $data[$row['date']] = $arr;
 

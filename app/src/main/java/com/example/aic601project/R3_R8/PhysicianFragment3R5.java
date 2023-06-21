@@ -171,7 +171,7 @@ public class PhysicianFragment3R5 extends Fragment {
 
     private void setOnClickListener() {
         listener = (v, position) -> {
-            Intent intent = new Intent(getContext(), PhysicianR4Activity.class);
+            Intent intent = new Intent(getContext(), PhysicianR4Activity1.class);
             intent.putExtra("patient", filteredList.get(position));
             startActivity(intent);
             requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
