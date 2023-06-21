@@ -35,7 +35,7 @@
         android:layout_marginBottom="51dp"
         android:drawableLeft="@drawable/baseline_check_24"
         android:enabled="false"
-        android:onClick="addPhysio1"
+        android:onClick="addPhysio1_1"
         android:text="@string/admin_addButton"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"

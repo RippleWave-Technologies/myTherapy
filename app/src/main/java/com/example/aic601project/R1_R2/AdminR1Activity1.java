@@ -135,7 +135,7 @@ public class AdminR1Activity1 extends AppCompatActivity {
     }
 
     // onClick for admin_r1_1_button Button
-    public void addPhysio1(View v) {
+    public void addPhysio1_1(View v) {
         int result = 0;
 
         String url = "http://" + ip + "/myTherapy/insertClinic.php";

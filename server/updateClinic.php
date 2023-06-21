@@ -25,6 +25,5 @@
 
     mysqli_query($dbh, $sql);
 
-    header("Content-Type: application/json");
     mysqli_close($dbh);
 ?>

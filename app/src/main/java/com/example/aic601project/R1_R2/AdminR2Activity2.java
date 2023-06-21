@@ -1,13 +1,6 @@
 package com.example.aic601project.R1_R2;
 
-import java.util.Objects;
-
-import com.example.aic601project.MainActivity;
-import com.example.aic601project.ModelClinic;
-import com.example.aic601project.OkHttpHandler;
-import com.example.aic601project.R;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,18 +11,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.aic601project.MainActivity;
+import com.example.aic601project.ModelService;
+import com.example.aic601project.OkHttpHandler;
+import com.example.aic601project.R;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.textfield.TextInputLayout;
 
-public class AdminR1Activity2 extends AppCompatActivity {
+import java.util.Objects;
+
+public class AdminR2Activity2 extends AppCompatActivity {
     // hI short for hasInput - logs whether a TextInputLayout has input
     private final boolean[] hI = {true, true, true, true, true, true, true};
     // textIntentInputLayoutArray - logs intent contents to a String[]
     private String[] intentStringArray;
     // textInputLayoutArray - logs all TextInputLayouts to a TextInputLayout[]
     private TextInputLayout[] textInputLayoutArray;
-    // toolbar - admin_r1_2_topAppBar
+    // toolbar - admin_r2_2_topAppBar
     private MaterialToolbar toolbar;
-    // button - admin_r1_2_button, deleteButton - admin_r1_2_deleteButton
+    // button - admin_r2_2_button, deleteButton - admin_r2_2_deleteButton
     private Button button, deleteButton;
     // String - used to get the ip address from the MainActivity
     private String ip;
@@ -37,7 +37,7 @@ public class AdminR1Activity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_r1_2);
+        setContentView(R.layout.activity_admin_r2_2);
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
 
         // gets the IP from the MainActivity
@@ -45,44 +45,40 @@ public class AdminR1Activity2 extends AppCompatActivity {
 
         // gets the intent and the ModelClinic object from the previous activity
         Intent intent = getIntent();
-        ModelClinic clinic = intent.getParcelableExtra("Clinic Info");
-        intentStringArray = setIntentStringArray(clinic);
+        ModelService service = intent.getParcelableExtra("Service Info");
+        intentStringArray = setIntentStringArray(service);
 
         textInputLayoutArray = setTextInputLayoutArray(intentStringArray);
 
-        button = findViewById(R.id.admin_r1_2_button);
-        deleteButton = findViewById(R.id.admin_r1_2_deleteButton);
-        toolbar = findViewById(R.id.admin_r1_2_topAppBar);
+        button = findViewById(R.id.admin_r2_2_button);
+        deleteButton = findViewById(R.id.admin_r2_2_deleteButton);
+        toolbar = findViewById(R.id.admin_r2_2_topAppBar);
         setupToolbarWithBackButton();
 
         changeToViewLayout();
+
     }
 
     // creates a String[] with String values from the ModelClinic object
-    private String[] setIntentStringArray(ModelClinic clinic) {
-        String[] intentStringArray = new String[7];
-        intentStringArray[0] = clinic.getPhysioName();
-        intentStringArray[1] = clinic.getPhysioAFM();
-        intentStringArray[2] = clinic.getPhysioEmail();
-        intentStringArray[3] = clinic.getPhysioAddress();
-        intentStringArray[4] = clinic.getPhysioAddressNumber();
-        intentStringArray[5] = clinic.getPhysioCity();
-        intentStringArray[6] = clinic.getPhysioPostCode();
+    private String[] setIntentStringArray(ModelService service) {
+        String[] intentStringArray = new String[4];
+        intentStringArray[0] = service.getName();
+        intentStringArray[1] = service.getCode();
+        intentStringArray[2] = service.getPrice();
+        intentStringArray[3] = service.getDescription();
         return intentStringArray;
     }
 
     // creates a TextInputLayout[] with the Ids of all TextInputLayouts
     private TextInputLayout[] setTextInputLayoutArray(String[] intentStringArray) {
-        TextInputLayout[] textInputLayoutArray = new TextInputLayout[7];
-        textInputLayoutArray[0] = findViewById(R.id.admin_r1_2_textInputLayout_name);
-        textInputLayoutArray[1] = findViewById(R.id.admin_r1_2_textInputLayout_ssn);
-        textInputLayoutArray[2] = findViewById(R.id.admin_r1_2_textInputLayout_email);
-        textInputLayoutArray[3] = findViewById(R.id.admin_r1_2_textInputLayout_street);
-        textInputLayoutArray[4] = findViewById(R.id.admin_r1_2_textInputLayout_stNumber);
-        textInputLayoutArray[5] = findViewById(R.id.admin_r1_2_textInputLayout_city);
-        textInputLayoutArray[6] = findViewById(R.id.admin_r1_2_textInputLayout_zip);
+        TextInputLayout[] textInputLayoutArray = new TextInputLayout[4];
+        textInputLayoutArray[0] = findViewById(R.id.admin_r2_2_textInputLayout_name);
+        textInputLayoutArray[1] = findViewById(R.id.admin_r2_2_textInputLayout_code);
+        textInputLayoutArray[2] = findViewById(R.id.admin_r2_2_textInputLayout_cost);
+        textInputLayoutArray[3] = findViewById(R.id.admin_r2_2_textInputLayout_description);
 
-        for (int i = 0; i < 7; i++) {Objects.requireNonNull(textInputLayoutArray[i].getEditText()).setText(intentStringArray[i]);}
+        for (int i = 0; i < 4; i++) {
+            Objects.requireNonNull(textInputLayoutArray[i].getEditText()).setText(intentStringArray[i]);}
         return textInputLayoutArray;
     }
 
@@ -117,14 +113,14 @@ public class AdminR1Activity2 extends AppCompatActivity {
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.admin_r1_app_bar_layout, menu);
+        getMenuInflater().inflate(R.menu.admin_r2_app_bar_layout, menu);
         return true;
     }
 
     // checks every TextInputLayout for changed text and calls
     // enableButtonIfAllInputIsTrue
     private void checkForInput() {
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 4; i++) {
             final int index = i;
             Objects.requireNonNull(textInputLayoutArray[i].getEditText()).addTextChangedListener(new TextWatcher() {
                 @Override
@@ -142,76 +138,72 @@ public class AdminR1Activity2 extends AppCompatActivity {
 
     // enables admin_r1_2_button if every TextInputLayout has input (and more)
     private void enableButtonIfAllInputIsTrue() {
-        boolean allInput = (hI[0] && hI[1] && hI[2] && hI[3] && hI[4] && hI[5] && hI[6]
-                && Objects.requireNonNull(textInputLayoutArray[6].getEditText()).getText().length() == 5);
+        boolean allInput = (hI[0] && hI[1] && hI[2] && hI[3]);
 
         // checks if the input is different from the one passed in with the intent
         boolean newInput = false;
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 4; i++) {
             String txt = Objects.requireNonNull(textInputLayoutArray[i].getEditText()).getText().toString();
             if (!txt.equals(intentStringArray[i])) {newInput = true;}
         }
         button.setEnabled(allInput && newInput);
     }
 
-    // onClick for admin_r1_2_button Button
-    public void addPhysio1_2(View v) {
+    // onClick for admin_r2_2_button Button
+    public void addService2_2(View v) {
         switch (button.getText().toString()) {
             case "Επεξεργασία":
                 changeToEditLayout();
                 break;
             case "Αποθήκευση":
-                updateClinicsData(ip);
+                updateServiceData(ip);
                 onBackPressed();
                 break;
         }
     }
 
-    // onClick for admin_r1_2_deleteButton Button
-    public void deletePhysio(View v) {
+    // onClick for admin_r2_2_deleteButton Button
+    public void deleteService(View v) {
         int result = 0;
 
-        String url = "http://" + ip + "/myTherapy/deleteClinic.php";
+        String url = "http://" + ip + "/myTherapy/deleteService.php";
         try {
             OkHttpHandler okHttpHandler = new OkHttpHandler();
-            result = okHttpHandler.deleteClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString());
+            result = okHttpHandler.deleteService(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         if (result == 0) {
-            Toast.makeText(AdminR1Activity2.this, "Το Φυσιοθεραπευτήριο αυτό έχει" +
-                    " προγραμματισμένα ραντεβού και δεν μπορεί να διαγραφεί.", Toast.LENGTH_LONG).show();
+            Toast.makeText(AdminR2Activity2.this, "Η παροχή αυτή έχει προγραμματισμένα" +
+                    " ραντεβού και δεν μπορεί να διαγραφεί.", Toast.LENGTH_LONG).show();
 
         } else {
-            Toast.makeText(AdminR1Activity2.this, "Το Φυσιοθεραπευτήριο έχει διαγραφεί.", Toast.LENGTH_LONG).show();
+            Toast.makeText(AdminR2Activity2.this, "Η παροχή έχει διαγραφεί.", Toast.LENGTH_LONG).show();
             onBackPressed();
         }
     }
 
-    // updates the clinic's data in the database
-    private void updateClinicsData(String ip) {
-        String url = "http://" + ip + "/myTherapy/updateClinic.php";
+    // updates the service's data in the database
+    private void updateServiceData(String ip) {
+        String url = "http://" + ip + "/myTherapy/updateService.php";
         try {
             OkHttpHandler okHttpHandler = new OkHttpHandler();
-            okHttpHandler.insertOrUpdateClinic(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString(),
+            okHttpHandler.insertOrUpdateService(url, Objects.requireNonNull(textInputLayoutArray[1].getEditText()).getText().toString(),
                     Objects.requireNonNull(textInputLayoutArray[0].getEditText()).getText().toString(),
                     Objects.requireNonNull(textInputLayoutArray[2].getEditText()).getText().toString(),
-                    Objects.requireNonNull(textInputLayoutArray[3].getEditText()).getText().toString(),
-                    Objects.requireNonNull(textInputLayoutArray[4].getEditText()).getText().toString(),
-                    Objects.requireNonNull(textInputLayoutArray[6].getEditText()).getText().toString(),
-                    Objects.requireNonNull(textInputLayoutArray[5].getEditText()).getText().toString());
+                    Objects.requireNonNull(textInputLayoutArray[3].getEditText()).getText().toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        Toast.makeText(AdminR1Activity2.this, "Τα στοιχεία του Φυσιοθεραπευτηρίου έχουν ενημερωθεί.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AdminR2Activity2.this, "Τα στοιχεία της παροχής έχουν ενημερωθεί.", Toast.LENGTH_SHORT).show();
         onBackPressed();
     }
 
     // enables/disables all TextInputLayouts
     private void fieldsEnableDisable(boolean enDis) {
-        for (int i = 0; i <= 6; i++) {
+        for (int i = 0; i < 4; i++) {
             textInputLayoutArray[i].setEnabled(enDis);
         }
     }
@@ -223,9 +215,6 @@ public class AdminR1Activity2 extends AppCompatActivity {
         // changes the toolbar title and disables all TextInputLayout fields
         toolbar.setTitle("Πληροφορίες");
         fieldsEnableDisable(false);
-        // disables the counter for physio_ssn and physio_zip
-        textInputLayoutArray[1].setCounterEnabled(false);
-        textInputLayoutArray[6].setCounterEnabled(false);
         // sets the button to enable and changes it's text
         button.setEnabled(true);
         button.setText("Επεξεργασία");
@@ -241,8 +230,6 @@ public class AdminR1Activity2 extends AppCompatActivity {
         toolbar.setTitle("Επεξεργασία");
         fieldsEnableDisable(true);
         textInputLayoutArray[1].setEnabled(false);
-        // enables the counter for physio_zip
-        textInputLayoutArray[6].setCounterEnabled(true);
         // sets the button to disabled and changes it's text
         button.setEnabled(false);
         button.setText("Αποθήκευση");
@@ -257,6 +244,6 @@ public class AdminR1Activity2 extends AppCompatActivity {
 
     // reverts any changes to the original input
     private void revertToOriginalInput() {
-        for (int i = 0; i < 7; i++) {Objects.requireNonNull(textInputLayoutArray[i].getEditText()).setText(intentStringArray[i]);}
+        for (int i = 0; i < 4; i++) {Objects.requireNonNull(textInputLayoutArray[i].getEditText()).setText(intentStringArray[i]);}
     }
 }

@@ -26,7 +26,7 @@
         // Row doesn't exist, create a new row
         $response = 1;
         $sql = "INSERT INTO service (code, name, price, description) 
-                VALUES ('$code', '$name', '$price', '$description'";
+                VALUES ('$code', '$name', '$price', '$description')";
     }
 
     mysqli_query($dbh, $sql);

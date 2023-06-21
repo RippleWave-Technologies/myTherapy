@@ -1,9 +1,5 @@
 <?php
-    $data = array();
     $code = $_POST["code"];
-    $name = $_POST["name"];
-    $price = $_POST["price"];
-    $description = $_POST["description"];
 
     // Database connection details
     $host = "localhost";
@@ -16,10 +12,18 @@
 
     mysqli_select_db($dbh, $dbname);
 
-    $sql = "UPDATE service SET name='$name', price='$price', description='description' 
-            WHERE code='$code'";
-
+    // Prepare the SQL query
+    $sql = "DELETE FROM service WHERE code ='$code'";
+    
     mysqli_query($dbh, $sql);
+
+    if (mysqli_errno($dbh) == 1451) {
+        $response = 0; // Foreing key error occurred
+    } else {
+        $response = 1; // Foreing key error did not occur
+    }
+
+    echo $response;
 
     mysqli_close($dbh);
 ?>

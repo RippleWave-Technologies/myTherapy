@@ -108,15 +108,15 @@ public class AdminFragment2 extends Fragment implements RecyclerViewInterface {
 
     // method for admin_fragment2_floatingActionButton
     public void addServiceToList() {
-        startActivity(new Intent(getActivity(), AdminR2Activity.class));
+        startActivity(new Intent(getActivity(), AdminR2Activity1.class));
         requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 
     // method for the RecyclerViewInterface / admin_fragment2_recyclerView
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(requireActivity(), AdminR1Activity2.class);
-//        intent.putExtra("Service Info", servicesList.getServices().get(position));
+        Intent intent = new Intent(requireActivity(), AdminR2Activity2.class);
+        intent.putExtra("Service Info", servicesList.getServices().get(position));
         startActivity(intent);
         requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }

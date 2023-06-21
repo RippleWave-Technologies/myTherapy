@@ -1,6 +1,7 @@
 package com.example.aic601project;
 
 import android.os.StrictMode;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,75 +89,6 @@ public class OkHttpHandler {
         return appoinments;
     }
 
-
-    ArrayList<ModelService> fetchServices(String url) throws Exception {
-
-        ArrayList<ModelService> services = new ArrayList<>();
-
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-
-        RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
-
-        Request request = new Request.Builder().url(url).method("POST", body).build();
-
-        Response response = client.newCall(request).execute();
-        String data = response.body().string();
-
-        try {
-            JSONObject json = new JSONObject(data);
-            Iterator<String> keys = json.keys();
-            while (keys.hasNext()) {
-                String key = keys.next();
-                JSONObject clinicObject = json.getJSONObject(key);
-
-                String name = clinicObject.getString("name");
-                String price = clinicObject.getString("price");
-                String description = clinicObject.getString("description");
-
-                services.add(new ModelService(key, name, price, description));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return services;
-    }
-
-    public ArrayList<ModelClinic> fetchClinics(String url) throws Exception {
-        ArrayList<ModelClinic> clinics = new ArrayList<>();
-
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-
-        RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
-
-        Request request = new Request.Builder().url(url).method("POST", body).build();
-
-        Response response = client.newCall(request).execute();
-        String data = response.body().string();
-
-        try {
-            JSONObject json = new JSONObject(data);
-            Iterator<String> keys = json.keys();
-            while (keys.hasNext()) {
-                String key = keys.next();
-                JSONObject clinicObject = json.getJSONObject(key);
-
-                String name = clinicObject.getString("name");
-                String email = clinicObject.getString("email");
-                String address = clinicObject.getString("address");
-                String addressNumber = clinicObject.getString("addressNumber");
-                String postcode = clinicObject.getString("postcode");
-                String city = clinicObject.getString("city");
-
-                clinics.add(new ModelClinic(key, name, email, address, addressNumber, postcode, city));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return clinics;
-    }
-
     public HashMap<ModelAppointment, ModelPatient> fetchClinicConfirmedAppointmentsPastCurrent(String url, String afm) throws IOException {
         HashMap<ModelAppointment, ModelPatient> appointmentData = new HashMap<>();
 
@@ -197,47 +129,6 @@ public class OkHttpHandler {
         return appointmentData;
     }
 
-    public int insertOrUpdateClinic(String url, String afm, String name, String email, String address,
-                                    String addressNumber, String postcode, String city) throws IOException {
-        OkHttpClient client = new OkHttpClient();
-
-        RequestBody body = new FormBody.Builder()
-                .add("afm", afm)
-                .add("name", name)
-                .add("email", email)
-                .add("address", address)
-                .add("addressNumber", addressNumber)
-                .add("postcode", postcode)
-                .add("city", city)
-                .build();
-
-        Request request = new Request.Builder()
-                .url(url)
-                .post(body)
-                .build();
-
-        Response response = client.newCall(request).execute();
-        assert response.body() != null;
-        return Integer.parseInt(response.body().string());
-    }
-
-    public int deleteClinic(String url, String afm) throws IOException {
-        OkHttpClient client = new OkHttpClient();
-
-        RequestBody body = new FormBody.Builder()
-                .add("afm", afm)
-                .build();
-
-        Request request = new Request.Builder()
-                .url(url)
-                .post(body)
-                .build();
-
-        Response response = client.newCall(request).execute();
-        assert response.body() != null;
-        return Integer.parseInt(response.body().string());
-    }
-
     public int insertClinicPatientRequestedAppointment(String url, String date, String amka, String afm) throws IOException{
         OkHttpClient client = new OkHttpClient();
 
@@ -256,6 +147,27 @@ public class OkHttpHandler {
         assert response.body() != null;
         return Integer.parseInt(response.body().string());
 
+    }
+
+    public void updateClinicPatientRequestedOrConfirmedAppointments(String url, String amka,
+                                                                    String afm, String date, String act,
+                                                                    String service) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        RequestBody body = new FormBody.Builder()
+                .add("amka", amka)
+                .add("afm", afm)
+                .add("date", date)
+                .add("act", act)
+                .add("service", service)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        client.newCall(request).execute();
     }
 
     public int loginAdmin(String url, String id, String password) throws IOException {
@@ -312,17 +224,53 @@ public class OkHttpHandler {
         return Integer.parseInt(response.body().string());
     }
 
-    public void updateClinicPatientRequestedOrConfirmedAppointments(String url, String amka,
-                                                                    String afm, String date, String act,
-                                                                    String service) throws IOException {
+    public ArrayList<ModelClinic> fetchClinics(String url) throws Exception {
+        ArrayList<ModelClinic> clinics = new ArrayList<>();
+
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
+        RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
+
+        Request request = new Request.Builder().url(url).method("POST", body).build();
+
+        Response response = client.newCall(request).execute();
+        String data = response.body().string();
+
+        try {
+            JSONObject json = new JSONObject(data);
+            Iterator<String> keys = json.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                JSONObject clinicObject = json.getJSONObject(key);
+
+                String name = clinicObject.getString("name");
+                String email = clinicObject.getString("email");
+                String address = clinicObject.getString("address");
+                String addressNumber = clinicObject.getString("addressNumber");
+                String postcode = clinicObject.getString("postcode");
+                String city = clinicObject.getString("city");
+
+                clinics.add(new ModelClinic(key, name, email, address, addressNumber, postcode, city));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return clinics;
+    }
+
+    public int insertOrUpdateClinic(String url, String afm, String name, String email, String address,
+                                    String addressNumber, String postcode, String city) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
         RequestBody body = new FormBody.Builder()
-                .add("amka", amka)
                 .add("afm", afm)
-                .add("date", date)
-                .add("act", act)
-                .add("service", service)
+                .add("name", name)
+                .add("email", email)
+                .add("address", address)
+                .add("addressNumber", addressNumber)
+                .add("postcode", postcode)
+                .add("city", city)
                 .build();
 
         Request request = new Request.Builder()
@@ -330,6 +278,97 @@ public class OkHttpHandler {
                 .post(body)
                 .build();
 
-        client.newCall(request).execute();
+        Response response = client.newCall(request).execute();
+        assert response.body() != null;
+        return Integer.parseInt(response.body().string());
+    }
+
+    public int deleteClinic(String url, String afm) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = new FormBody.Builder()
+                .add("afm", afm)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        assert response.body() != null;
+        return Integer.parseInt(response.body().string());
+    }
+
+    ArrayList<ModelService> fetchServices(String url) throws Exception {
+
+        ArrayList<ModelService> services = new ArrayList<>();
+
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        RequestBody body = RequestBody.create("", MediaType.parse("text/plain"));
+
+        Request request = new Request.Builder().url(url).method("POST", body).build();
+
+        Response response = client.newCall(request).execute();
+        String data = response.body().string();
+
+        try {
+            JSONObject json = new JSONObject(data);
+            Iterator<String> keys = json.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                JSONObject clinicObject = json.getJSONObject(key);
+
+                String name = clinicObject.getString("name");
+                String price = clinicObject.getString("price");
+                String description = clinicObject.getString("description");
+
+                services.add(new ModelService(key, name, price, description));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return services;
+    }
+
+    public int insertOrUpdateService(String url, String code, String name, String price, String description) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        Log.d("imtestingbro", code + " " + name + " " + price + " " + description);
+
+        RequestBody body = new FormBody.Builder()
+                .add("code", code)
+                .add("name", name)
+                .add("price", price)
+                .add("description", description)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        assert response.body() != null;
+        return Integer.parseInt(response.body().string());
+    }
+
+    public int deleteService(String url, String code) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = new FormBody.Builder()
+                .add("code", code)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        assert response.body() != null;
+        return Integer.parseInt(response.body().string());
     }
 }

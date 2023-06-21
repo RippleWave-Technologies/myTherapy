@@ -1,5 +1,7 @@
 package com.example.aic601project.R1_R2;
 
+import com.example.aic601project.MainActivity;
+import com.example.aic601project.OkHttpHandler;
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -7,16 +9,23 @@ import com.google.android.material.textfield.TextInputEditText;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AdminR2Activity extends AppCompatActivity {
+import java.util.Objects;
+
+public class AdminR2Activity1 extends AppCompatActivity {
 
     private Button add;
 
-    // toolbar - admin_r2_topAppBar
+    // String - used to get the ip address from the MainActivity
+    private String ip;
+
+    // toolbar - admin_r2_1_topAppBar
     private MaterialToolbar toolbar;
     private TextInputEditText nameText;
     private TextInputEditText costText;
@@ -26,28 +35,27 @@ public class AdminR2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_r2);
+        setContentView(R.layout.activity_admin_r2_1);
+
+        // gets the IP from the MainActivity
+        ip = MainActivity.getIP();
+
         // δημιουργω τα text πεδια
-        nameText = findViewById(R.id.admin_r2_textInputLayout_name_editText);
-        costText = findViewById(R.id.admin_r2_textInputLayout_cost_editText);
-        codeText = findViewById(R.id.admin_r2_textInputLayout_code_editText);
-        descriptionText = findViewById((R.id.admin_r2_textInputLayout_description_editText));
-        add = findViewById(R.id.admin_r2_button);
+        nameText = findViewById(R.id.admin_r2_1_textInputLayout_name_editText);
+        costText = findViewById(R.id.admin_r2_1_textInputLayout_cost_editText);
+        codeText = findViewById(R.id.admin_r2_1_textInputLayout_code_editText);
+        descriptionText = findViewById((R.id.admin_r2_1_textInputLayout_description_editText));
+        add = findViewById(R.id.admin_r2_1_button);
         // προσθετω την διαδικασια
         nameText.addTextChangedListener(longinTextWatcher);
         costText.addTextChangedListener(longinTextWatcher);
         codeText.addTextChangedListener(longinTextWatcher);
         descriptionText.addTextChangedListener(longinTextWatcher);
-        add = findViewById(R.id.admin_r2_button);
 
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
 
-        toolbar = findViewById(R.id.admin_r2_topAppBar);
+        toolbar = findViewById(R.id.admin_r2_1_topAppBar);
         setupToolbarWithBackButton();
-
-        add = findViewById(R.id.admin_r2_button);
-        add.setOnClickListener(
-                v -> Toast.makeText(getApplicationContext(), "Η παροχή προστέθηκε", Toast.LENGTH_SHORT).show());
     }
 
     // sets up a toolbar where clicking the back button calls onBackPressed()
@@ -82,10 +90,10 @@ public class AdminR2Activity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            String nameInput = nameText.getText().toString().trim();
-            String costInput = costText.getText().toString().trim();
-            String codeInput = codeText.getText().toString().trim();
-            String descriptionInput = descriptionText.getText().toString().trim();
+            String nameInput = nameText.getText().toString();
+            String costInput = costText.getText().toString();
+            String codeInput = codeText.getText().toString();
+            String descriptionInput = descriptionText.getText().toString();
 
             add.setEnabled(!nameInput.isEmpty() && !costInput.isEmpty() && !codeInput.isEmpty()
                     && !descriptionInput.isEmpty());
@@ -97,4 +105,31 @@ public class AdminR2Activity extends AppCompatActivity {
 
         }
     };
+
+    // onClick for admin_r2_1_button Button
+    public void addService2_1(View v) {
+        int result = 0;
+
+        Log.d("imtestingbro", "mphke");
+
+        String url = "http://" + ip + "/myTherapy/insertService.php";
+        try {
+            OkHttpHandler okHttpHandler = new OkHttpHandler();
+            result = okHttpHandler.insertOrUpdateService(url, Objects.requireNonNull(codeText.getText()).toString(),
+                    Objects.requireNonNull(nameText.getText()).toString(),
+                    Objects.requireNonNull(costText.getText()).toString(),
+                    Objects.requireNonNull(descriptionText.getText()).toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (result == 0) {
+            Toast.makeText(AdminR2Activity1.this, "Ανεπιτυχής προσθήκη! Ο κωδικός παροχής αυτός υπάρχει ήδη.", Toast.LENGTH_LONG).show();
+            onBackPressed();
+
+        } else {
+            Toast.makeText(AdminR2Activity1.this, "Η παροχή έχει προστεθεί.", Toast.LENGTH_LONG).show();
+            onBackPressed();
+        }
+    }
 }

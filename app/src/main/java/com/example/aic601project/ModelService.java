@@ -1,48 +1,59 @@
 package com.example.aic601project;
 
-public class ModelService {
-    private String code;
-    private String name;
-    private String price;
-    private String discription;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    public ModelService(String code, String name, String price, String discription) {
+import androidx.annotation.NonNull;
+
+public class ModelService implements Parcelable {
+    private String code, name, price, description;
+
+    public ModelService(String code, String name, String price, String description) {
         this.code = code;
         this.name = name;
         this.price = price;
-        this.discription = discription;
+        this.description = description;
     }
 
-    //Getters and Setters
+    protected ModelService(Parcel in) {
+        code = in.readString();
+        name = in.readString();
+        price = in.readString();
+        description = in.readString();
+    }
+
+    public static final Creator<ModelService> CREATOR = new Creator<ModelService>() {
+        @Override
+        public ModelService createFromParcel(Parcel in) {
+            return new ModelService(in);
+        }
+
+        @Override
+        public ModelService[] newArray(int size) {
+            return new ModelService[size];
+        }
+    };
+
     public String getCode() {
         return code;
     }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPrice() {
         return price;
     }
-
-    public void setPrice(String price) {
-        this.price = price;
+    public String getDescription() {
+        return description;
     }
 
-    public String getDiscription() {
-        return discription;
-    }
+    public int describeContents() { return 0; }
 
-    public void setDiscription(String discription) {
-        this.discription = discription;
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(code);
+        parcel.writeString(name);
+        parcel.writeString(price);
+        parcel.writeString(description);
     }
 }

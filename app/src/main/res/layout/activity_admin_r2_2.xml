@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".R1_R2.AdminMainActivity">
+    tools:context=".R1_R2.AdminR2Activity2">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/admin_r2_appBarLayout"
+        android:id="@+id/admin_r2_2_appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/md_theme_light_surfaceVariant"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/admin_r2_topAppBar"
+            android:id="@+id/admin_r2_2_topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/admin_r2_app_bar_layout"
@@ -28,20 +28,37 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <Button
-        android:id="@+id/admin_r2_button"
+        android:id="@+id/admin_r2_2_button"
         style="@style/Widget.Material3.Button.IconButton.Filled"
         android:layout_width="148dp"
         android:layout_height="65dp"
         android:layout_marginBottom="51dp"
-        android:drawableLeft="@drawable/baseline_check_24"
-        android:enabled="false"
+        android:enabled="true"
+        android:onClick="addService2_2"
         android:text="@string/admin_addButton"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/admin_r2_constraintLayout_fields" />
+        app:layout_constraintEnd_toEndOf="@+id/admin_r2_2_constraintLayout_fields"
+        tools:ignore="RtlHardcoded" />
+
+    <Button
+        android:id="@+id/admin_r2_2_deleteButton"
+        style="@style/Widget.Material3.Button.IconButton.Filled"
+        android:layout_width="148dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="51dp"
+        android:enabled="true"
+        android:onClick="deleteService"
+        android:text="@string/admin_delButton"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:backgroundTint="@color/design_default_color_error"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/admin_r2_2_button"
+        tools:ignore="RtlHardcoded" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/admin_r2_constraintLayout_fields"
+        android:id="@+id/admin_r2_2_constraintLayout_fields"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -49,10 +66,10 @@
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_r2_appBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/admin_r2_2_appBarLayout">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r2_textInputLayout_name"
+            android:id="@+id/admin_r2_2_textInputLayout_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/admin_service"
@@ -62,14 +79,14 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/admin_r2_textInputLayout_name_editText"
+                android:id="@+id/admin_r2_2_textInputLayout_name_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r2_textInputLayout_code"
+            android:id="@+id/admin_r2_2_textInputLayout_code"
             android:layout_width="0dp"
             android:layout_height="65dp"
             android:layout_marginTop="22dp"
@@ -77,17 +94,17 @@
             app:boxBackgroundMode="outline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r2_textInputLayout_name">
+            app:layout_constraintTop_toBottomOf="@+id/admin_r2_2_textInputLayout_name">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/admin_r2_textInputLayout_code_editText"
+                android:id="@+id/admin_r2_2_textInputLayout_code_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r2_textInputLayout_cost"
+            android:id="@+id/admin_r2_2_textInputLayout_cost"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -95,10 +112,10 @@
             app:boxBackgroundMode="outline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r2_textInputLayout_code">
+            app:layout_constraintTop_toBottomOf="@+id/admin_r2_2_textInputLayout_code">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/admin_r2_textInputLayout_cost_editText"
+                android:id="@+id/admin_r2_2_textInputLayout_cost_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
@@ -106,7 +123,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/admin_r2_textInputLayout_description"
+            android:id="@+id/admin_r2_2_textInputLayout_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -114,10 +131,10 @@
             app:boxBackgroundMode="outline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/admin_r2_textInputLayout_cost">
+            app:layout_constraintTop_toBottomOf="@+id/admin_r2_2_textInputLayout_cost">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/admin_r2_textInputLayout_description_editText"
+                android:id="@+id/admin_r2_2_textInputLayout_description_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
