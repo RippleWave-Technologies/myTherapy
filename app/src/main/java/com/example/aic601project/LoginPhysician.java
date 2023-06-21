@@ -78,7 +78,7 @@ public class LoginPhysician extends Fragment {
         ip = MainActivity.getIP();
 
         button = rootView.findViewById(R.id.login_physician_button);
-        shortcut = rootView.findViewById(R.id.shortcut_login_physician_button);
+//        shortcut = rootView.findViewById(R.id.shortcut_login_physician_button);
 
         parameter1 = rootView.findViewById(R.id.login_physician_parameter1);
         parameter2 = rootView.findViewById(R.id.login_physician_parameter2);
@@ -108,7 +108,7 @@ public class LoginPhysician extends Fragment {
         });
 
         button.setOnClickListener(view -> attemptPhysicianLogin());
-        shortcut.setOnClickListener(view -> shortcutClick());
+//        shortcut.setOnClickListener(view -> shortcutClick());
 
         return rootView;
     }
@@ -138,9 +138,9 @@ public class LoginPhysician extends Fragment {
         }
     }
 
-    private void shortcutClick() {
-        Objects.requireNonNull(parameter1.getEditText()).setText("094222211");
-        Objects.requireNonNull(parameter2.getEditText()).setText("12345678");
-        attemptPhysicianLogin();
-    }
+//    private void shortcutClick() {
+//        Objects.requireNonNull(parameter1.getEditText()).setText("094222211");
+//        Objects.requireNonNull(parameter2.getEditText()).setText("12345678");
+//        attemptPhysicianLogin();
+//    }
 }

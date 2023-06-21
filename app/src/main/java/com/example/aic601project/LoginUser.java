@@ -78,7 +78,7 @@ public class LoginUser extends Fragment {
         ip = MainActivity.getIP();
 
         button = rootView.findViewById(R.id.login_user_button);
-        shortcut = rootView.findViewById(R.id.shortcut_login_user_button);
+//        shortcut = rootView.findViewById(R.id.shortcut_login_user_button);
 
         parameter1 = rootView.findViewById(R.id.login_user_parameter1);
         parameter2 = rootView.findViewById(R.id.login_user_parameter2);
@@ -108,7 +108,7 @@ public class LoginUser extends Fragment {
         });
 
         button.setOnClickListener(view -> attemptUserLogin());
-        shortcut.setOnClickListener(view -> shortcutClick());
+//        shortcut.setOnClickListener(view -> shortcutClick());
 
         return rootView;
     }
@@ -138,9 +138,9 @@ public class LoginUser extends Fragment {
         }
     }
 
-    private void shortcutClick() {
-        Objects.requireNonNull(parameter1.getEditText()).setText("02070301851");
-        Objects.requireNonNull(parameter2.getEditText()).setText("12345678");
-        attemptUserLogin();
-    }
+//    private void shortcutClick() {
+//        Objects.requireNonNull(parameter1.getEditText()).setText("02070301851");
+//        Objects.requireNonNull(parameter2.getEditText()).setText("12345678");
+//        attemptUserLogin();
+//    }
 }

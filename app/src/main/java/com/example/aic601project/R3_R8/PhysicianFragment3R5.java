@@ -151,11 +151,8 @@ public class PhysicianFragment3R5 extends Fragment {
         });
 
         button.setOnClickListener(view -> {
-            // Intent intent = new Intent(getApplicationContext(),
-            // PhysicianR3Acticity.class);
-            // startActivity(intent);
-            // requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom,
-            // R.anim.no_slide_in_or_out);
+             startActivity(new Intent(requireActivity(),  PhysicianR3Activity.class));
+             requireActivity().overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
         });
 
         swipeRefreshLayout = rootView.findViewById(R.id.physician_r5_swipeRefreshLayout);

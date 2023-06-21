@@ -74,7 +74,7 @@ public class LoginAdmin extends Fragment {
         ip = MainActivity.getIP();
 
         button = rootView.findViewById(R.id.login_admin_button);
-        shortcut = rootView.findViewById(R.id.shortcut_login_admin_button);
+//        shortcut = rootView.findViewById(R.id.shortcut_login_admin_button);
 
         parameter1 = rootView.findViewById(R.id.login_admin_parameter1);
         parameter2 = rootView.findViewById(R.id.login_admin_parameter2);
@@ -104,7 +104,7 @@ public class LoginAdmin extends Fragment {
         });
 
         button.setOnClickListener(view -> attemptAdminLogin());
-        shortcut.setOnClickListener(view -> shortcutClick());
+//        shortcut.setOnClickListener(view -> shortcutClick());
 
         return rootView;
     }
@@ -131,9 +131,9 @@ public class LoginAdmin extends Fragment {
         }
     }
 
-    private void shortcutClick() {
-        Objects.requireNonNull(parameter1.getEditText()).setText("001");
-        Objects.requireNonNull(parameter2.getEditText()).setText("12345678");
-        attemptAdminLogin();
-    }
+//    private void shortcutClick() {
+//        Objects.requireNonNull(parameter1.getEditText()).setText("001");
+//        Objects.requireNonNull(parameter2.getEditText()).setText("12345678");
+//        attemptAdminLogin();
+//    }
 }

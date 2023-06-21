@@ -418,4 +418,29 @@ public class OkHttpHandler {
         assert response.body() != null;
         return Integer.parseInt(response.body().string());
     }
+
+    public int insertClinicPatients(String url, String amka, String name, String surname, String address,
+                                    String addressNumber, String city, String postcode, String afm) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = new FormBody.Builder()
+                .add("amka", amka)
+                .add("name", name)
+                .add("surname", surname)
+                .add("address", address)
+                .add("addressNumber", addressNumber)
+                .add("city", city)
+                .add("postcode", postcode)
+                .add("afm", afm)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        assert response.body() != null;
+        return Integer.parseInt(response.body().string());
+    }
 }
