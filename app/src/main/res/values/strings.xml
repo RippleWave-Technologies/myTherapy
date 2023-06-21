@@ -19,7 +19,7 @@
     <string name="country">Χώρα</string>
     <string name="signIn">Είσοδος</string>
     <string name="clearForm">Εκκαθάριση φόρμας</string>
-    <string name="welcome_message">Καλώς ορίσατε,</string>
+    <string name="welcome_message">Καλώς ορίσατε!</string>
 
     <string name="admin_user">Χρήστης ΠΣΦ</string>
     <string name="admin_namePhysio">Όνομα Φυσιοθεραπευτηρίου</string>

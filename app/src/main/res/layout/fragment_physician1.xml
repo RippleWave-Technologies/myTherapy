@@ -13,7 +13,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/physician_constraintLayout_upper"
             android:layout_width="413dp"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:background="@color/md_theme_light_surfaceVariant"
             android:elevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,20 +47,6 @@
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/physician_textView_company" />
-
-            <TextView
-                android:id="@+id/physician_textView_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="22dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="tempText"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/physician_textView_welcome" />
 
             <ImageButton
                 android:id="@+id/physician_imageButton_exit"
