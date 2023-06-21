@@ -4,21 +4,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Intent;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aic601project.PatientR7;
+import com.example.aic601project.R7ListItem;
 import com.example.aic601project.R;
 
 import java.util.List;
 
 public class PhysicianR7Activity1Adapter extends RecyclerView.Adapter<PhysicianR7Activity1Adapter.ViewHolder> {
-    private List<PatientR7> itemList; // List to hold the data for each list item
+    private List<R7ListItem> itemList; // List to hold the data for each list item
 
     // Constructor for the adapter
-    public PhysicianR7Activity1Adapter(List<PatientR7> itemList) {
+    public PhysicianR7Activity1Adapter(List<R7ListItem> itemList) {
         this.itemList = itemList;
     }
 
@@ -46,7 +45,7 @@ public class PhysicianR7Activity1Adapter extends RecyclerView.Adapter<PhysicianR
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // Get the item data at the given position
-        PatientR7 item = itemList.get(position);
+        R7ListItem item = itemList.get(position);
         // Set the data to the views in the ViewHolder
         holder.dateTextView.setText(item.getDate());
         holder.nameTextView.setText(item.getName());
@@ -56,7 +55,7 @@ public class PhysicianR7Activity1Adapter extends RecyclerView.Adapter<PhysicianR
             @Override
             public void onClick(View v) {
                 // Retrieve the clicked item
-                PatientR7 patient = itemList.get(holder.getAdapterPosition());
+                R7ListItem patient = itemList.get(holder.getAdapterPosition());
 
                 // Start the InformationActivity and pass the necessary data
                 Intent intent = new Intent(holder.itemView.getContext(), PhysicianR7Activity2.class);

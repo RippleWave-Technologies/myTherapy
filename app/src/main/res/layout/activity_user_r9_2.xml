@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".R9_R10.UserR9NotificationsActivity">
+    tools:context=".R9_R10.UserR9Activity1">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/user_r9notifications_appBarLayout"

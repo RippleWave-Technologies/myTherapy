@@ -1,11 +1,11 @@
 package com.example.aic601project;
 
-public class PatientR7 {
+public class R7ListItem {
     String name;
     String date;
     String time;
 
-    public PatientR7(String date, String name, String time) {
+    public R7ListItem(String date, String name, String time) {
         this.name = name;
         this.date = date;
         this.time = time;

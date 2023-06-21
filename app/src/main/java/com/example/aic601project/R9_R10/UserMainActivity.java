@@ -65,7 +65,7 @@ public class UserMainActivity extends AppCompatActivity {
 
     // method for user_imageButton_notifications
     private void launchUserR9NotificationsActivity() {
-        startActivity(new Intent(this, UserR9NotificationsActivity.class));
+        startActivity(new Intent(this, UserR9Activity1.class));
         overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.no_slide_in_or_out);
     }
 

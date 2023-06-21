@@ -11,8 +11,7 @@ import android.widget.Button;
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
-public class UserR9NotificationsActivity extends AppCompatActivity {
-    // toolbar - admin_r1_topAppBar
+public class UserR9Activity1 extends AppCompatActivity {
     private MaterialToolbar toolbar;
 
     private Button tempButton;
@@ -20,7 +19,7 @@ public class UserR9NotificationsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_r9_notifications);
+        setContentView(R.layout.activity_user_r9_2);
 
         getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_light_surfaceVariant, this.getTheme()));
         toolbar = findViewById(R.id.user_r9notifications_topAppBar);
@@ -31,8 +30,8 @@ public class UserR9NotificationsActivity extends AppCompatActivity {
         tempButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(UserR9NotificationsActivity.this, UserR9AppointmentInfoActivity.class);
-                UserR9NotificationsActivity.this.startActivity(myIntent);
+                Intent myIntent = new Intent(UserR9Activity1.this, UserR9Activity2.class);
+                UserR9Activity1.this.startActivity(myIntent);
             }
         });
     }

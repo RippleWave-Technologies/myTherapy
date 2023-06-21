@@ -68,10 +68,10 @@
             android:name=".R9_R10.UserMainActivity"
             android:exported="false" />
         <activity
-            android:name=".R9_R10.UserR9AppointmentInfoActivity"
+            android:name=".R9_R10.UserR9Activity2"
             android:exported="false" />
         <activity
-            android:name=".R9_R10.UserR9NotificationsActivity"
+            android:name=".R9_R10.UserR9Activity1"
             android:exported="false" />
         <activity
             android:name=".R9_R10.UserR10Activity"

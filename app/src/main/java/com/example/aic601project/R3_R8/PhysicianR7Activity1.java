@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.aic601project.PatientR7;
+import com.example.aic601project.R7ListItem;
 import com.example.aic601project.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -28,12 +28,12 @@ public class PhysicianR7Activity1 extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
 
-        List<PatientR7> patientList = new ArrayList<PatientR7>();
+        List<R7ListItem> patientList = new ArrayList<R7ListItem>();
         // Create a list of sample patients
-        patientList.add(new PatientR7("2023-04-30", "John Doe", "10:00"));
-        patientList.add(new PatientR7("2023-05-01", "John Doe", "10:00"));
-        patientList.add(new PatientR7("2023-05-02", "Jane Smith", "09:30"));
-        patientList.add(new PatientR7("2023-05-03", "Bob Johnson", "13:00"));
+        patientList.add(new R7ListItem("2023-04-30", "John Doe", "10:00"));
+        patientList.add(new R7ListItem("2023-05-01", "John Doe", "10:00"));
+        patientList.add(new R7ListItem("2023-05-02", "Jane Smith", "09:30"));
+        patientList.add(new R7ListItem("2023-05-03", "Bob Johnson", "13:00"));
 
         adapter = new PhysicianR7Activity1Adapter (patientList);
 
