@@ -139,7 +139,7 @@ public class LoginPhysician extends Fragment {
     }
 
     private void shortcutClick() {
-        Objects.requireNonNull(parameter1.getEditText()).setText("111111114");
+        Objects.requireNonNull(parameter1.getEditText()).setText("094222211");
         Objects.requireNonNull(parameter2.getEditText()).setText("12345678");
         attemptPhysicianLogin();
     }

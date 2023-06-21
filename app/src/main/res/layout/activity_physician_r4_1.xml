@@ -62,7 +62,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -79,8 +79,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -89,7 +88,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="361dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="97dp"
             android:clickable="false"
             android:hint="@string/physician_AMKA"
             app:counterEnabled="true"
@@ -99,7 +98,7 @@
             app:errorIconDrawable="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_lastName">
+            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -114,15 +113,14 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="108dp"
             android:hint="@string/street"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_amka">
+            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_lastName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                 />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -130,10 +128,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
             android:hint="@string/stNumber"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_amka">
+            app:layout_constraintTop_toTopOf="@+id/physician_r4_textInputLayout_street">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -163,12 +160,11 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
             android:hint="@string/zipNo"
             app:counterEnabled="true"
             app:counterMaxLength="5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/physician_r4_textInputLayout_stNumber">
+            app:layout_constraintTop_toTopOf="@+id/physician_r4_textInputLayout_city">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"

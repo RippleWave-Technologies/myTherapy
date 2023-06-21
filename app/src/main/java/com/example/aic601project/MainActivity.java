@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String IP = "192.168.64.76";
+    private static final String IP = "temp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
